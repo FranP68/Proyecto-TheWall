@@ -98,3 +98,39 @@ input{
     font-size: 14px;
     text-align: center;
 }
+
+.contenedor{
+    width: 95%;
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    border-radius: 7px;    
+}
+
+/* ------------------------------------ */
+
+input[type=file]#nuestroinput {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+label[for="nuestroinput"] {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #106BA0;
+    display: flex;
+    transition: all .5s;
+    cursor: pointer;
+    padding: 15px 40px !important;
+    text-transform: uppercase;
+    width: fit-content;
+    text-align: center;
+    position: relative;
+    top: 3px;
+    left: 60px;
+}
+
