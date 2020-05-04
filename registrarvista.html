@@ -21,20 +21,26 @@
         <script src="static/js/validar.js"></script>
       
       </head>
-      <header>
-        <div class="modal-dialog text-center">
-          <div class="col-sm-12 main-section">
-            <div class="modal-content">
-        <h1> The Wall</h1>
-        <!-- <p>esto es una red para contar tus cosas del dia</p> -->
-      </div>
-      </div>
-      </div>
-      </header>
+      
 
 <body>
+    
+    <header class="header">
+        <div class="container logo-nav-container">
+          <a href="#" class="logo"> The Wall</a>
+          <nav class="navegacion">
+            <ul>
+           <li><a href="#">Inicio </a></li>
+           <li><a href="#">Perfil </a></li> 
+           <li><a href="#"> Cerrar Sesion </a></li> 
+         </ul>
+          </nav>
+        </div>
+      </header>
+
+      <main class="main">
     <div class="modal-dialog text-center">
-        <div class="col-sm-8 main-section">
+        <div class="col-sm-12 main-section">
           <div class="modal-content">
             <div class="col-12 user-img">
               <img src="static/img/avatar.png" />
@@ -62,7 +68,13 @@
             <input type="password" id="clave2" name="clave2" placeholder="Repetir Contraseña" class="form-control"required>
         </div>
             <div class="form-group" id="user-group">
-            <input type="file" class="file" id="foto" placeholder="Seleccione foto de perfil" class="form-control"required>
+                <span class="nuestroinput">
+                    <input type="file" class="nuestroinput" id="nuestroinput" placeholder="Seleccione foto de perfil" required>
+                </span>
+            
+                <label for="nuestroinput">
+                    <span class="nuestroinput">Seleccione foto de perfil</span>
+                </label>
         </div>
             
         </div>
@@ -71,9 +83,7 @@
     <div class="col-12">
       <p>¿Ya tienes una cuenta? <a class="link" href="index2prueba.html">Iniciar Sesion </a>  </p>
     </div>
-
-
-
+</main>
     
 </body>
 
