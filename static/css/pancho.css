@@ -1,0 +1,33 @@
+.fotoPerfil{
+    text-align: center;
+    padding: 20px;
+    height: 100px;
+    background-color: brown;
+}
+.imagen-perfil-usuario{
+    height: 100px;
+}
+.nombre{
+    font-size: 20px;
+    margin-top: 5px;
+    font-style: italic ;
+    color: white;
+}
+.seguidores{
+    height: 200px;
+    margin-top: 50px;
+    border-style: groove;
+    border-color: brown;
+}
+
+.dejarDeSeguir {
+    margin: 10px;
+    border: 0;
+    border-radius: 10px;
+    background-color: red;
+    color: #ffffff;
+}
+.contenedor{
+    height: 400px;
+
+}
