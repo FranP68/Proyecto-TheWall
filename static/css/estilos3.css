@@ -110,3 +110,13 @@ label[for="nuestroinput"] {
     left: 60px;
 }
 
+
+.container-perfil {
+    padding: 20px;
+    border-radius: 15px;
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
