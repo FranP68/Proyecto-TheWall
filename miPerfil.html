@@ -16,30 +16,59 @@
 
 <body>
 
-<div class="contenedor">
-    <div class="fotoPerfil">
-        <img src="static/img/avatar.png" class="imagen-perfil-usuario" alt="">
-        <h3 class="nombre">MiNombre MiApellido</h3>
-        <h3 class="nombre">MiNombreDeUsuario</h3>
-    </div>
-    <ul class="seguidores">
-        <h3>Seguidores:</h3>
-        <li>Juan Perez(juanp1)
-            <button class="dejarDeSeguir">Dejar de Seguir</button>
-        </li>
-        <li>Cristiano Ronaldo(CR7)
-            <button class="dejarDeSeguir">Dejar de Seguir</button>
-        </li>
-        <li>Juan Roman Riquelme (JRR10)
-            <button class="dejarDeSeguir">Dejar de Seguir</button>
-        </li>
+    <div class="contenedor">
+        <div class="fotoPerfil">
+            <img src="static/img/avatar.png" class="imagen-perfil-usuario" alt="">
+            <h3 class="nombre">MiNombre MiApellido</h3>
+            <h3 class="nombre">MiNombreDeUsuario</h3>
+        </div>
+        <ul class="seguidores">
+            <h3>Seguidores:</h3>
+            <li>Juan Perez(juanp1)
+                <button class="dejarDeSeguir">Dejar de Seguir</button>
+            </li>
+            <li>Cristiano Ronaldo(CR7)
+                <button class="dejarDeSeguir">Dejar de Seguir</button>
+            </li>
+            <li>Juan Roman Riquelme (JRR10)
+                <button class="dejarDeSeguir">Dejar de Seguir</button>
+            </li>
 
-    </ul>
+        </ul>
 
-    <div class="editar-perfil">
-        <button class="btn-change-image">Editar perfil</button>
+        <div class="editar-perfil">
+
+            <a class="botonEditar" type="button" href="editarMiPerfil.html"> Editar perfil</a>
+
+
+        </div>
     </div>
-</div>
+    
+    <div class="mensajes">
+        <ul class="men-box">
+            <h3>Mis mensajes</h3>
+            <li>Un mensaje
+                <button class="meGusta">Me gusta</button>
+                <button class="eliminar">Eliminar</button>
+            </li>
+            <li>Otro mensaje
+                <button class="meGusta">Me gusta</button>
+                <button class="eliminar">Eliminar</button>
+            </li>
+            <li>
+                <textarea name="nuevoMensaje" placeholder="Escriba un nuevo mensaje" maxlength="140" minlength="1" style="width: 300px;height: 120px;"></textarea>
+                <input type="submit" class="botonMensaje" value="Enviar mensaje">
+                
+            </li>
+
+            
+        </ul> 
+            
+        </div>
+
+
+    </div>
+
 </body>
 
 </html>

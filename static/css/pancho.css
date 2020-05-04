@@ -1,7 +1,7 @@
 .fotoPerfil{
     text-align: center;
     padding: 20px;
-    height: 100px;
+    height: 200px;
     background-color: brown;
 }
 .imagen-perfil-usuario{
@@ -28,6 +28,52 @@
     color: #ffffff;
 }
 .contenedor{
-    height: 400px;
+    float: left;
+    padding: 20px;
+    height: 1200px;
+    width: 600px;
+}
+.mensajes{
+    float: right;
+    margin-right: 20px;
+    margin-top: 20px;
+    padding: 20px;
+    height: 600px;
+    width: 600px;
+    border-style: groove;
+    border-color: brown;
+    background-color: coral;
+}
+.men-box{
+    text-align: center;
+    list-style-type: none;
+    
+}
+.men-box li{
+    text-align: left;
+    padding: 20px;
+    margin-top: 20px;
+    border-style: groove;
+    border-color: brown;
+    background-color: cornsilk;
+}
+.meGusta{
 
+    margin: 10px;
+    border: 0;
+    border-radius: 50px;
+    background-color: green;
+    color: #ffffff;
+}
+.eliminar{
+    display: inline-block;
+ 
+    margin: 10px;
+    border: 0;
+    border-radius: 50px;
+    background-color:red;
+    color: #ffffff;
+}
+.botonMensaje{
+    display: block;
 }
