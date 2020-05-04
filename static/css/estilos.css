@@ -75,6 +75,7 @@ list-style: none;
 }
 
 .modal-content{
+    float: left;
     background-color: rgb(15, 6, 19);
     opacity: 0.95;
     padding: 0 px;
@@ -109,6 +110,7 @@ h1{
 }
 
 input[type=file]#nuestroinput {
+  
     width: 0.1px;
     height: 0.1px;
     opacity: 0;
@@ -117,6 +119,7 @@ input[type=file]#nuestroinput {
     z-index: -1;
 }
 label[for="nuestroinput"] {
+    margin-top: 15px;
     font-size: 14px;
     font-weight: 600;
     color: #fff;
@@ -124,11 +127,36 @@ label[for="nuestroinput"] {
     display: flex;
     transition: all .5s;
     cursor: pointer;
-    padding: 15px 40px !important;
+    padding: 20px 40px !important;
     text-transform: uppercase;
     width: fit-content;
     text-align: center;
     
-    top: 3px;
+    top: 8px;
     left: 60px;
+}
+
+.editarP{
+    
+    width: 400px;
+    height: 350px;
+}
+
+.editarContraseña{
+    
+    width: 400px;
+    height: 350px;
+    
+}
+
+.posicion-cuadro{
+    
+    
+    margin-top: 50px;
+    margin-left: 200px;
+}
+
+.posicion-cuadro2{
+    margin-top: 0px;
+    margin-left: 700px;
 }
