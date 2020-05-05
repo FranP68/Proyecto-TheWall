@@ -1,8 +1,13 @@
+.avatar{
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    
+}
 .fotoPerfil{
     text-align: center;
     padding: 20px;
-    height: 200px;
-    background-color: brown;
+    height: 250px;
 }
 .imagen-perfil-usuario{
     height: 100px;
@@ -17,7 +22,8 @@
     height: 200px;
     margin-top: 50px;
     border-style: groove;
-    border-color: brown;
+    border-color: white;
+    list-style: none;
 }
 
 .dejarDeSeguir {
@@ -28,10 +34,16 @@
     color: #ffffff;
 }
 .contenedor{
+    
     float: left;
+    margin-left: 20px;
+    margin-top: 20px;
     padding: 20px;
-    height: 1200px;
+    height: 600px;
     width: 600px;
+    background-color: rgb(15, 6, 19);
+    box-shadow: 0px 0px 3px #848484;
+    opacity: 0.95;
 }
 .mensajes{
     float: right;
@@ -39,10 +51,10 @@
     margin-top: 20px;
     padding: 20px;
     height: 600px;
-    width: 600px;
-    border-style: groove;
-    border-color: brown;
-    background-color: coral;
+    width: 600px;    
+    background-color: rgb(15, 6, 19);
+    box-shadow: 0px 0px 3px #848484;
+    opacity: 0.95;
 }
 .men-box{
     text-align: center;
@@ -50,12 +62,19 @@
     
 }
 .men-box li{
+    font-size: 15px;
     text-align: left;
     padding: 20px;
     margin-top: 20px;
     border-style: groove;
-    border-color: brown;
-    background-color: cornsilk;
+    border-color: rgb(252, 252, 252);
+    background-color: white;
+}
+.usuarioLink{
+    font-size: 15px;
+    margin-top: 5px;
+    font-style: italic ;
+    color: white;
 }
 .meGusta{
 
@@ -74,6 +93,33 @@
     background-color:red;
     color: #ffffff;
 }
-.botonMensaje{
-    display: block;
+
+.seguir{
+    margin: 10px;
+    border: 0;
+    border-radius: 50px;
+    background-color: orangered;
+    color: #ffffff;
+}
+.yaNoMeGusta{
+
+    margin: 10px;
+    border: 0;
+    border-radius: 50px;
+    background-color: orangered;
+    color: #ffffff;
+}
+
+
+
+/* ------------------- */
+body{
+    background: url(../img/11.jpg) no-repeat center center fixed;
+    background-size: cover ;
+    
+font-family: sans-serif;
+padding-top: 50px;
+transition: padding-top 0.5s ease;
+margin: 0;
+z-index: 0;
 }
