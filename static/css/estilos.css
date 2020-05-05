@@ -160,3 +160,16 @@ label[for="nuestroinput"] {
     margin-top: 0px;
     margin-left: 700px;
 }
+
+.liBusqueda{
+    display: block;
+}
+
+
+.logoW {
+    display: block;
+    
+    height: 55px; 
+    width: 55px;
+    margin: none;
+  }
