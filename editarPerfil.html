@@ -1,45 +1,83 @@
 <!doctype html>
-<html lang="es">
 
 <head>
-    <title>The Wall</title>
-    <link rel="stylesheet" href="estilos.css">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!--JQUERY-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="static/css/pancho.css">
+  <link rel="stylesheet" type="text/css" href="static/css/estilos.css">
+  <title>Hello, world!</title>
 
-    <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-    <!-- Los iconos tipo Solid de Fontawesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
-    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!-- Nuestro css-->
-    <link rel="stylesheet" type="text/css" href="static/css/estilos.css">
-    <script src="static/js/validar.js"></script>
 
 </head>
 
 
 <body>
 
-    <header class="header">
-        <div class="container logo-nav-container">
-            <img class="logoW" src="static/img/logo2.jpg" />
-            <a href="#" class="logo"> The Wall</a>
-            <nav class="navegacion">
-                <ul>
-                    <li><a href="#">Inicio </a></li>
-                    <li><a href="miPerfil.html">Perfil </a></li>
-                    <li><a href="editarPerfil.html">Configuracion </a></li>
-                    <li><a href="login.html"> Cerrar Sesion </a></li>
-                </ul>
-            </nav>
-        </div>
+  <header class="header">
+    <div class="container logo-nav-container">
+      <img class="logoW" src="static/img/logo2.jpg" />
+      <a href="#" class="logo"> The Wall</a>
+      <nav class="navegacion">
+        <ul>
+          <li>
+            <input type="text" id="buscador" placeholder="Buscar usuario" class="form-control"></li>
+          <button class="btn btn-info mb-1" id="botonBuscador"><i class="fa fa-search"></i></button>
+          <li id="resultado"></li>
+          <li><a href="index.html">Inicio </a></li>
+          <li><a href="miPerfil.html">Perfil </a></li>
+          <li><a href="editarPerfil.html">Configuracion </a></li>
+          <li><a href="login.html"> Cerrar Sesion </a></li>
+        </ul>
 
-    </header>
+        <script>
+          const usuariosRegistrados = [
+            { nombre: 'Cristiano ronaldo' },
+            { nombre: 'Juan Roman Riquelme' },
+            { nombre: 'Leandro Atilio Romagnoli' },
+            { nombre: 'Lionel Messi' }, //esto se sacaria de la base de datos
+          ]
+
+
+          const buscador = document.querySelector('#buscador');
+          const botonBuscador = document.querySelector('#botonBuscador');
+          const resultado = document.querySelector('#resultado')
+
+          const filtrar = () => {
+            //console.log(buscador.value);
+            resultado.innerHTML = '';
+
+            const texto = buscador.value.toLowerCase();
+
+            for (let usuarioRegistrado of usuariosRegistrados) {
+              let nombre = usuarioRegistrado.nombre.toLowerCase();
+              if (nombre.indexOf(texto) !== -1) {
+                resultado.innerHTML += ` <a href="perfilUsuarioCristiano.html" class="logo"> ${usuarioRegistrado.nombre}</a>`
+              }
+            }
+            if (resultado.innerHTML === '') {
+              resultado.innerHTML += `<li>Usuario no encontrado...</li>`
+            }
+          }
+          botonBuscador.addEventListener('click', filtrar);
+                    //buscador.addEventListener('keyup', filtrar)
+
+
+
+        </script>
+      </nav>
+    </div>
+
+  </header>
 
     <main class="main">
         <div class="modal-dialog text-center posicion-cuadro">
