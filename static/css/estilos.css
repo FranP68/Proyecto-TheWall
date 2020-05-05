@@ -42,7 +42,7 @@ z-index: 0;
  }
  .logo-nav-container{
      display: flex;
-     justify-content: space-between;
+     /* justify-content: space-between; */
      align-items: center;
  }
  
@@ -105,9 +105,21 @@ p{
 }
 
 h1{
-    color: aliceblue;
+    font-size: 20px;
+    margin-top: 5px;
+    font-style: italic ;
+    color: white;
 
 }
+
+h2{
+    font-size: 20px;
+    margin-top: 5px;
+    font-style: italic ;
+    color: white;
+
+}
+
 
 input[type=file]#nuestroinput {
   
@@ -173,3 +185,5 @@ label[for="nuestroinput"] {
     width: 55px;
     margin: none;
   }
+
+  

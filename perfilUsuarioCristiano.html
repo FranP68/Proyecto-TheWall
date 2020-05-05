@@ -18,11 +18,34 @@
 
     <!-- Nuestro css-->
     <link rel="stylesheet" type="text/css" href="static/css/pancho.css">
+    <link rel="stylesheet" type="text/css" href="static/css/estilos.css">
     <!-- <script src="static/js/validar.js"></script> -->
 
 </head>
 
 <body>
+    <header class="header">
+        <div class="container logo-nav-container">
+            <img class="logoW" src="static/img/logo2.jpg" />
+            <a href="#" class="logo"> The Wall</a>
+            <nav class="navegacion">
+                <ul>
+                    <li>
+                        <input type="text" id="buscador" placeholder="Buscar usuario" class="form-control" ></li>
+                        <button class="btn btn-info mb-1" id="botonBuscador" ><i class="fa fa-search"></i></button>
+                        <li id="resultado"></li>
+                    <li><a href="#">Inicio </a></li>
+                    <li><a href="miPerfil.html">Perfil </a></li>
+                    <li><a href="editarPerfil.html">Configuracion </a></li>
+                    <li><a href="login.html"> Cerrar Sesion </a></li>
+                </ul>
+            </nav>
+        </div>
+
+    </header>
+
+
+
     <div class="contenedor">
         <div class="fotoPerfil">
             <img src="static/img/CR7.jpg" class="avatar" alt="">
