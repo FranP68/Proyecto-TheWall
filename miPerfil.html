@@ -18,19 +18,22 @@
 
     <div class="contenedor">
         <div class="fotoPerfil">
-            <img src="static/img/avatar.png" class="imagen-perfil-usuario" alt="">
+            <img src="static/img/avatar.png" class="avatar" alt="">
             <h3 class="nombre">MiNombre MiApellido</h3>
             <h3 class="nombre">MiNombreDeUsuario</h3>
         </div>
         <ul class="seguidores">
-            <h3>Seguidores:</h3>
-            <li>Juan Perez(juanp1)
+            <h3 class="nombre">Seguidores:</h3>
+            <li> <a class="usuarioLink" type="button" href="perfilUsuarioJuanPerez.html">Juan Perez</a> <a
+                    class="usuarioLink" type="button" href="perfilUsuarioJuanPerez.html"> (juanp1)</a></h3>
                 <button class="dejarDeSeguir">Dejar de Seguir</button>
             </li>
-            <li>Cristiano Ronaldo(CR7)
+            <li> <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.html">Cristiano Ronaldo</a> <a
+                    class="usuarioLink" type="button" href="perfilUsuarioCristiano.html"> (CR7)</a></h3>
                 <button class="dejarDeSeguir">Dejar de Seguir</button>
             </li>
-            <li>Juan Roman Riquelme (JRR10)
+            <li> <a class="usuarioLink" type="button" href="perfilUsuarioJuanRoman.html">Juan Roman Riquelme</a> <a
+                    class="usuarioLink" type="button" href="perfilUsuarioJuanRoman.html"> (JRR10)</a></h3>
                 <button class="dejarDeSeguir">Dejar de Seguir</button>
             </li>
 
@@ -38,33 +41,37 @@
 
         <div class="editar-perfil">
 
-            <a class="botonEditar" type="button" href="editarMiPerfil.html"> Editar perfil</a>
+            <a class="botonEditar" type="button" href="editarPerfil.html"> Editar perfil</a>
 
 
         </div>
     </div>
-    
+
     <div class="mensajes">
         <ul class="men-box">
-            <h3>Mis mensajes</h3>
+            <h3 class="nombre">Mis mensajes</h3>
             <li>Un mensaje
-                <button class="meGusta">Me gusta</button>
-                <button class="eliminar">Eliminar</button>
-            </li>
+
+            </li><button class="meGusta">Me gusta</button>
+            <button class="eliminar">Eliminar</button>
             <li>Otro mensaje
-                <button class="meGusta">Me gusta</button>
-                <button class="eliminar">Eliminar</button>
-            </li>
+
+            </li><button class="meGusta">Me gusta</button>
+            <button class="eliminar">Eliminar</button>
             <li>
-                <textarea name="nuevoMensaje" placeholder="Escriba un nuevo mensaje" maxlength="140" minlength="1" style="width: 300px;height: 120px;"></textarea>
-                <input type="submit" class="botonMensaje" value="Enviar mensaje">
-                
+                <form action="nuevoMensaje.php" method="post" class="form-mensaje">
+                    <div>
+                    <textarea name="nuevoMensaje" placeholder="Escriba un nuevo mensaje" maxlength="140" minlength="1" style="width: 300px;height: 120px;" required></textarea>
+                    </div>
+                    <input type="submit" class="botonMensaje" value="Enviar mensaje">
+                    <input type="file" class="botonImagen" value="Seleccionar imagen">
+                </form>
             </li>
 
-            
-        </ul> 
-            
-        </div>
+
+        </ul>
+
+    </div>
 
 
     </div>
