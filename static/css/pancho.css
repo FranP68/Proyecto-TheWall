@@ -1,3 +1,5 @@
+
+/* ---Perfil/Perfil Usuario--- */
 .avatar{
     height: 150px;
     width: 150px;
@@ -50,7 +52,7 @@
     margin-right: 20px;
     margin-top: 20px;
     padding: 20px;
-    height: 600px;
+    /* height: 600px; */
     width: 600px;    
     background-color: rgb(15, 6, 19);
     box-shadow: 0px 0px 3px #848484;
@@ -76,16 +78,9 @@
     font-style: italic ;
     color: white;
 }
-.meGusta{
 
-    margin: 10px;
-    border: 0;
-    border-radius: 50px;
-    background-color: green;
-    color: #ffffff;
-}
 .eliminar{
-    display: inline-block;
+    display: block;
  
     margin: 10px;
     border: 0;
@@ -101,14 +96,93 @@
     background-color: orangered;
     color: #ffffff;
 }
+.meGusta{
+    display: block;
+    margin: 10px;
+    border: 0;
+    border-radius: 50px;
+    background-color: green;
+    color: #ffffff;
+}
 .yaNoMeGusta{
-
+    display: block;
     margin: 10px;
     border: 0;
     border-radius: 50px;
     background-color: orangered;
     color: #ffffff;
 }
+
+
+/* ---index--- */
+.cuadroPerfil{
+    float: left;
+    margin-left: 20px;
+    margin-top: 80px;
+    padding: 20px;
+    height: 400px;
+    width: 280px;
+    background-color: rgb(15, 6, 19);
+    box-shadow: 0px 0px 3px #848484;
+    opacity: 0.95;
+}
+.avatar2{
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    
+}
+
+.fotoPerfil2{
+    text-align: center;
+    padding: 0px;
+    height: 150px; 
+}
+.nombre2{
+    font-size: 17px;
+    margin-top: 5px;
+    font-style: italic ;
+    color: white;
+}
+.ultimosMensajes{
+    position: absolute;
+    float: left;
+    margin-left: 350px;
+    margin-top: 80px;
+    padding: 20px;
+    /* height: 600px; */
+    width: 800px;    
+    background-color: rgb(15, 6, 19);
+    box-shadow: 0px 0px 3px #848484;
+    opacity: 0.95;
+}
+.men-box2{
+    text-align: left;
+    list-style-type: none;
+    
+}
+.men-box2 li{
+    font-size: 15px;
+    text-align: left;
+    padding: 20px;
+    margin-top: 20px;
+    border-style: groove;
+    border-color: rgb(252, 252, 252);
+    background-color: white;
+}
+.men-box2-title{
+    text-align: center;
+    color: white;
+    font-style: italic;
+
+}
+.fotoMensaje{
+    padding: 20px;
+}
+.unMensaje{
+    padding: 20px;
+}
+
 
 
 

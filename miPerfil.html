@@ -123,10 +123,15 @@
             </li><button class="meGusta">Me gusta</button>
             <button class="eliminar">Eliminar</button>
             <li>
-                <textarea name="nuevoMensaje" placeholder="Escriba un nuevo mensaje" maxlength="140" minlength="1"
-                    style="width: 300px;height: 120px;"></textarea>
-                <input type="submit" class="botonMensaje" value="Enviar mensaje">
-
+                
+                <form action="nuevoMensaje.php" method="post" class="form-mensaje">
+                    <div>
+                    <textarea name="nuevoMensaje" placeholder="Escriba un nuevo mensaje" maxlength="140" minlength="1" style="width: 300px;height: 120px;" required></textarea>
+                    </div> 
+                    <input type="file" class="botonImagen" value="Seleccionar imagen">
+                    <input type="submit" class="botonMensaje" value="Enviar mensaje">
+                   
+                </form>
             </li>
 
 
