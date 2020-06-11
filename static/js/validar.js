@@ -137,3 +137,17 @@ function iguales(p1,p2){
             img.src = URL.createObjectURL(uploadFile);
         }                 
     }
+
+    function validarMensaje(){
+        
+        var mensaje;
+        var exp;
+        mensaje=document.getElementById("mensaje").value;
+        
+        exp=/^\S/;
+        if (mensaje.length==0 || !exp.test(mensaje)){
+            alert("El mensaje esta en blanco");
+            return false;
+        }
+        return true;
+    }
