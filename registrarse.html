@@ -49,26 +49,26 @@
         <h2 class="form__titulo">CREA UNA CUENTA</h2>
         <div class="contenedor-inputs">
             <div class="form-group" id="user-group">
-            <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control" required >
+            <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control" >
         </div>
         <div class="form-group" id="user-group">
-            <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" class="form-control" required >
+            <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" class="form-control"  >
         </div>
         <div class="form-group" id="user-group">
-            <input type="email" id="correo" name="correo" placeholder="Correo" class="form-control"required >
+            <input type="text" id="correo" name="correo" placeholder="Correo" class="form-control">
         </div>
             <div class="form-group" id="user-group">
-            <input type="text" id="usuario" name="usuario" placeholder="Usuario" class="form-control"required>
+            <input type="text" id="usuario" name="usuario" placeholder="Usuario" class="form-control">
         </div>
             <div class="form-group" id="user-group">
-            <input type="password" id="clave" name="clave" placeholder="Contraseña" class="form-control"required>
+            <input type="password" id="clave" name="clave" placeholder="Contraseña" class="form-control">
         </div>
             <div class="form-group" id="user-group">
-            <input type="password" id="clave2" name="clave2" placeholder="Repetir Contraseña" class="form-control"required>
+            <input type="password" id="clave2" name="clave2" placeholder="Repetir Contraseña" class="form-control">
         </div>
             <div class="form-group" id="user-group">
                 <span class="nuestroinput">
-                    <input type="file" class="nuestroinput" id="nuestroinput" placeholder="Seleccione foto de perfil" required>
+                    <input type="file" class="nuestroinput" id="nuestroinput" onchange="validarImagen(this);" placeholder="Seleccione foto de perfil" >
                 </span>
             
                 <label for="nuestroinput">

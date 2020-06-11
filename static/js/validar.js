@@ -16,29 +16,29 @@ function validar() {
         return false;
     }
     else if (nombre.length > 30) {
-        alert("El nombre es muy largo");
+        alert("El nombre es muy largo, debe tener menos de 30 letras");
         return false;
     }
     else if (expresionNum.test(nombre) || expresionEspecial.test(nombre)) {
-        alert("El nombre no es válido");
+        alert("El nombre no es válido, debe tener solo letras");
         return false;
     }
     else if (expresionNum.test(apellidos) || expresionEspecial.test(apellidos)) {
-        alert("El apellido no es válido");
+        alert("El apellido no es válido, debe tener solo letras");
         return false;
     }
     else if (apellidos.length > 30) {
-        alert("El apellido es muy largo");
+        alert("El apellido es muy largo, debe tener menos de 30 letras");
         return false;
     }
     else if (usuario.length > 30 || usuario.length < 6 || expresionEspecial.test(usuario)) {
         alert("El nombre de usuario debe tener al menos 6 caracteres alfanuméricos");
         return false;
     }
-    else if (clave.length < 6 || ! validar_clave(clave)) { 
-        alert("La contraseña debe tener al menos 6 caracteres, una mayúscula, una minúscula y un número o símbolo.");
-        return false;
-    }
+    if(!validar_clave(clave)){
+        return false
+    } 
+   
     else if(! iguales(clave, clave2)){
         alert("Las passwords deben de coincidir");
         return false;
@@ -64,8 +64,8 @@ function validar_clave(contrasenna)
 				{
 					if(contrasenna.charCodeAt(i) >= 65 && contrasenna.charCodeAt(i) <= 90)
 					{
-						mayuscula = true;
-					}
+						mayuscula = true; 
+                    }
 					else if(contrasenna.charCodeAt(i) >= 97 && contrasenna.charCodeAt(i) <= 122)
 					{
 						minuscula = true;
@@ -78,12 +78,26 @@ function validar_clave(contrasenna)
 					{
 						caracter_raro = true;
 					}
-				}
+                }
 				if(mayuscula == true && minuscula == true && (caracter_raro == true || numero == true))
 				{
 					return true;
-				}
-			}
+                }
+                else if(mayuscula==false){
+                    alert("La contraseña debe contener al menos una mayuscula");
+                }
+                else if(minuscula==false){
+                    alert("La contraseña debe contener al menos una minuscula");
+                }
+                else if(numero==false){
+                    alert("La contraseña debe contener al menos un numero");
+                }
+                else if(caracter_raro==false){
+                    alert("La contraseña debe contener al menos un caracter especial");
+                }
+                    
+            }
+            alert("La contraseña debe tener al menos 6 caracteres"); 
 			return false;
         }
 function iguales(p1,p2){
@@ -93,4 +107,33 @@ function iguales(p1,p2){
           } else {
             return true; 
           }
+    }
+
+    function validarImagen(obj){
+        var uploadFile = obj.files[0];
+    
+        if (!window.FileReader) {
+            alert('El navegador no soporta la lectura de archivos');
+            return;
+        }
+    
+        if (!(/\.(jpg|png|gif)$/i).test(uploadFile.name)) {
+            alert('El archivo a adjuntar no es una imagen');
+        }
+        else {
+            var img = new Image();
+            img.onload = function () {
+                if (this.width.toFixed(0) != 1000 && this.height.toFixed(0) != 1000) {
+                    alert('Las medidas deben ser: 1000 * 1000');
+                }
+                else if (uploadFile.size > 200000)
+                {
+                    alert('El peso de la imagen no puede exceder los 200kb')
+                }
+                else {
+                    alert('Imagen correcta :)')                
+                }
+            };
+            img.src = URL.createObjectURL(uploadFile);
+        }                 
     }

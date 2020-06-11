@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
+  <script src="static/js/validar.js"></script>
 </head>
 
 
@@ -91,25 +91,25 @@
                             <div class="contenedor-inputs">
                                 <div class="form-group" id="user-group">
                                     <input type="text" id="nombre" name="nombre" placeholder="Nombre"
-                                        class="form-control" required> 
+                                        class="form-control" > 
                                 </div>
                                 <div class="form-group" id="user-group">
                                     <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos"
-                                        class="form-control" required>
+                                        class="form-control">
                                 </div>
                                 <div class="form-group" id="user-group">
                                     <input type="email" id="correo" name="correo" placeholder="Correo"
-                                        class="form-control" required>
+                                        class="form-control">
                                 </div>
 
                                 <div class="form-group" id="user-group">
                                     <span class="nuestroinput">
                                         <input type="file" class="nuestroinput" id="nuestroinput"
-                                            placeholder="Seleccione foto de perfil" required>
+                                            placeholder="Seleccione foto de perfil" onchange="validarImagen(this);">
                                     </span>
 
                                     <label for="nuestroinput">
-                                        <span class="nuestroinput">Seleccione foto de perfil</span>
+                                        <span class="nuestroinput" >Seleccione foto de perfil</span>
                                     </label>
                                 </div>
 
@@ -132,15 +132,15 @@
                             <h2 class="form__titulo">Cambiar Contraseña</h2>
                             <div class="contenedor-inputs">
                                 <div class="form-group" id="user-group">
-                                    <input type="password" id="clave2" name="clave2" placeholder="Contraseña actual" class="form-control"
-                                      required>
+                                    <input type="password" id="claveAct" name="clave2" placeholder="Contraseña actual" class="form-control"
+                                      >
                                   </div>
                                 <div class="form-group" id="user-group">
-                                    <input type="password" id="clave" name="clave" placeholder="Nueva contraseña" class="form-control" required>
+                                    <input type="password" id="clave" name="clave" placeholder="Nueva contraseña" class="form-control">
                                   </div>
                                   <div class="form-group" id="user-group">
-                                    <input type="password" id="clave2" name="clave2" placeholder="Repetir Contraseña" class="form-control"
-                                      required>
+                                    <input type="password" id="clave" name="clave2" placeholder="Repetir Contraseña" class="form-control"
+                                      >
                                   </div>
 
                             </div>
