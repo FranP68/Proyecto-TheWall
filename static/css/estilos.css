@@ -186,4 +186,12 @@ label[for="nuestroinput"] {
     margin: none;
   }
 
-  
+  .footer{
+     background-color: rgb(15, 6, 19); 
+     width: 100%;
+     height: 20px;
+     bottom:0;
+     position: fixed;
+     text-align: right;
+     z-index: 0;
+  }
