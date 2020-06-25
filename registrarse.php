@@ -1,3 +1,6 @@
+ <?php
+  require 'BD.php';
+?>
 <!doctype html>
 <html lang="es">
 
