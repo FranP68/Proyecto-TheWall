@@ -120,22 +120,22 @@ function iguales(p1,p2){
         if (!(/\.(jpg|png|gif)$/i).test(uploadFile.name)) {
             alert('El archivo a adjuntar no es una imagen');
         }
-        else {
+        /*else {
             var img = new Image();
             img.onload = function () {
-                //if (this.width.toFixed(0) != 1000 && this.height.toFixed(0) != 1000) {
-                //    alert('Las medidas deben ser: 1000 * 1000');
-                //}
-                //else if (uploadFile.size > 200000)
-                //{
-                //    alert('El peso de la imagen no puede exceder los 200kb')
+                if (this.width.toFixed(0) != 1000 && this.height.toFixed(0) != 1000) {
+                   alert('Las medidas deben ser: 1000 * 1000');
                 }
-                //else {
-                //    alert('Imagen correcta :)')                
-                //}
-            };
+                else if (uploadFile.size > 200000)
+                {
+                   alert('El peso de la imagen no puede exceder los 200kb')
+                }
+                else {
+                   alert('Imagen correcta :)')                
+                }
+            };*/
             img.src = URL.createObjectURL(uploadFile);
-        }                 
+        //}                 
     }
 
     function validarMensaje(){
