@@ -17,13 +17,17 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <script src="static/js/validar.js"></script>
+  <script src="static/js/validarEdit.js"></script>
 </head>
 
 
-<body>
 
-  <header class="header">
+
+  
+  <body>
+    
+    
+    <header class="header">
     <div class="container logo-nav-container">
       <img class="logoW" src="static/img/logo2.jpg" />
       <a href="#" class="logo"> The Wall</a>
@@ -61,7 +65,7 @@
             for (let usuarioRegistrado of usuariosRegistrados) {
               let nombre = usuarioRegistrado.nombre.toLowerCase();
               if (nombre.indexOf(texto) !== -1) {
-                resultado.innerHTML += ` <a href="perfilUsuarioCristiano.html" class="logo"> ${usuarioRegistrado.nombre}</a>`
+                resultado.innerHTML += ` <a href="miPerfil.html" class="logo"> ${usuarioRegistrado.nombre}</a>`
               }
             }
             if (resultado.innerHTML === '') {
@@ -76,93 +80,55 @@
         </script>
       </nav>
     </div>
+      </header>
 
-  </header>
-
-    <main class="main">
-        <div class="modal-dialog text-center posicion-cuadro">
-            <div class="col-sm-12 main-section">
-                <div class="modal-content editarP">
-
-                    <form class="col-12" action="VeditarPerfil.php" method="post" class="form-register"onsubmit="return validar();">
-                        <div class="form-group" id="user-group">
-                            <h2 class="form__titulo">Editar Perfil</h2>
-                            <div class="contenedor-inputs">
-                                <div class="form-group" id="user-group">
-                                    <input type="text" id="nombre" name="nombre" placeholder="Nombre"
-                                        class="form-control" > 
-                                </div>
-                                <div class="form-group" id="user-group">
-                                    <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos"
-                                        class="form-control">
-                                </div>
-                                <div class="form-group" id="user-group">
-                                    <input type="text" id="correo" name="correo" placeholder="Correo"
-                                        class="form-control">
-                                </div>
-
-                                <div class="form-group" id="user-group">
-                                    <span class="nuestroinput">
-                                        <input type="file" class="nuestroinput" id="nuestroinput"
-                                            placeholder="Seleccione foto de perfil" onchange="validarImagen(this);">
-                                    </span>
-
-                                    <label for="nuestroinput">
-                                        <span class="nuestroinput" >Seleccione foto de perfil</span>
-                                    </label>
-                                </div>
-
-                            </div>
-                            <button type="submit" name="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>
-                                Guardar Cambios</button>
-                    </form>
-                </div>
+      <main class="main">
+    <div class="modal-dialog text-center">
+        <div class="col-sm-12 main-section">
+          <div class="modal-content">
+            <div class="col-12 user-img">
+              <img src="static/img/avatar.png" />
             </div>
+    <form  class="col-12" action="VeditarPerfil.php" method="POST" class="form-register" enctype="multipart/form-data" onsubmit="return validarEditarPerfil();">
+        <div class="form-group" id="user-group"></div>
+        <h2 class="form__titulo">Editar Perfil</h2>
+        <div class="contenedor-inputs">
+            <div class="form-group" id="user-group">
+            <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control" >
         </div>
-
-
-        <div class="modal-dialog text-center posicion-cuadro2">
-            <div class="col-sm-12 main-section"></div>
-                <div class="modal-content editarContraseña">
-
-                    <form class="col-12" action="registrar.php" method="post" class="form-register"
-                        onsubmit="return validar();">
-                        <div class="form-group" id="user-group">
-                            <h2 class="form__titulo">Cambiar Contraseña</h2>
-                            <div class="contenedor-inputs">
-                                <div class="form-group" id="user-group">
-                                    <input type="password" id="claveAct" name="clave2" placeholder="Contraseña actual" class="form-control"
-                                      >
-                                  </div>
-                                <div class="form-group" id="user-group">
-                                    <input type="password" id="clave" name="clave" placeholder="Nueva contraseña" class="form-control">
-                                  </div>
-                                  <div class="form-group" id="user-group">
-                                    <input type="password" id="clave" name="clave2" placeholder="Repetir Contraseña" class="form-control"
-                                      >
-                                  </div>
-
-                            </div>
-                            <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>
-                                Guardar Cambios</button>
-                    </form>
-                </div>
-            </div>
+        <div class="form-group" id="user-group">
+            <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" class="form-control"  >
         </div>
-        
+        <div class="form-group" id="user-group">
+            <input type="text" id="correo" name="correo" placeholder="Correo" class="form-control">
+            <div class="form-group" id="user-group">
+                <span class="nuestroinput">
+                    <input type="file" name="img"  onchange="validarImagen(this);" placeholder="Seleccione foto de perfil" ><!-- class="nuestroinput" id="nuestroinput"-->
+                </span>
+            
+                <label for="nuestroinput">
+                    <span class="nuestroinput">Seleccione foto de perfil</span>
+                </label>
+        </div>
+            
+        </div>
+        <button type="submit" name="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Guardar Cambios</button>
+    </form>
+</main>
+    
 
 
-    </main>
 <!-- Footer -->
 <footer class="page-footer font-small blue">
 
    
-  <div class="footer">
-    <a> Francisco Pavon - Santiago Goggi</a>
-  </div>
-
-</footer>
-<!-- Footer -->
+    <div class="footer">
+      <a> Francisco Pavon - Santiago Goggi</a>
+    </div>
+  
+  </footer>
+  <!-- Footer -->
 </body>
+
 
 </html>

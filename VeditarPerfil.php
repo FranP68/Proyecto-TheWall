@@ -1,21 +1,21 @@
 <?php 
 
-function comprobar_nombre_usuario($nombre_usuario){
+function comprobar_nombre($nombre){
     //compruebo que el tamaño del string sea válido.
-    if (strlen($nombre_usuario)<6 || strlen($nombre_usuario)>30){
-       echo $nombre_usuario . " no es válido<br>";
+    if (strlen($nombre)<1 || strlen($nombre)>30){
+       echo $nombre . " no es válido<br>";
        return false;
     }
  
     //compruebo que los caracteres sean los permitidos
     $permitidos = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    for ($i=0; $i<strlen($nombre_usuario); $i++){
-       if (strpos($permitidos, substr($nombre_usuario,$i,1))===false){
-          echo $nombre_usuario . " no es válido<br>";
+    for ($i=0; $i<strlen($nombre); $i++){
+       if (strpos($permitidos, substr($nombre ,$i,1))===false){
+          echo $nombre . " no es válido<br>";
           return false;
        }
     }
-    echo $nombre_usuario . " es válido<br>";
+    echo $nombre . " es válido<br>";
     return true;
  }
 
@@ -27,16 +27,17 @@ if(isset($_POST['submit'])){
     $nombre = $_POST['nombre'];
     $email =  $_POST['correo'];
 
-    comprobar_nombre_usuario($nombre); //comprueba si el nombre esta bien
+    comprobar_nombre($nombre); //comprueba si el nombre esta bien
 
-    comprobar_nombre_usuario($apellido); //comprueba si el apellido esta bien
+    comprobar_nombre($apellido); //comprueba si el apellido esta bien
 
         if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
             echo"<p> El correo es incorrecto </p>";
         }
-        
+        echo"<p> El correo es correcto</p>";
 }
 else{
-header("location: index.html");
+    echo"<p> salgo por el else </p>";
+//header("location: index.html");
 }
 ?>
