@@ -11,28 +11,44 @@
         $imagenName = $_FILES['img']['name'];
         $imagenTmp = $_FILES['img']['tmp_name'];
         $imagenType = $_FILES['img']['type'];
-        move_uploaded_file($imagenTmp, $folder.'/'.$imagenName);
-        $bytesImagen = file_get_contents($folder.'/'.$imagenName);
+        // move_uploaded_file($imagenTmp, $folder.'/'.$imagenName);
+        // $bytesImagen = file_get_contents($folder.'/'.$imagenName);
+        $bytesImagen = addslashes(file_get_contents($imagenTmp));
         $tipo=substr($imagenType, 6);
-        $sql = "INSERT INTO usuarios(apellido, nombre, contrasenia, email, nombreUsuario) VALUES ('$apellido', '$nombre', '$clave', '$email', '$nombreUsuario') "; 
-        $sql2 = "INSERT INTO usuarios( foto_contenido, foto_tipo) VALUES (?,?)";
-        $stm = $conn->prepare($sql2);
-        $stm->bind_param( 'ss', $bytesImagen, $tipo);
-        $stm->execute();
         
-        if (mysqli_query($conn, $sql)) {
+        // $sql = "INSERT INTO usuarios(foto_contenido, foto_tipo, nombreUsuario) VALUES (?,?,?) "; 
+        $sql1 = "INSERT INTO usuarios(nombre,apellido, email,foto_tipo, nombreUsuario,foto_contenido, contrasenia) VALUES ('$nombre','$apellido','$email','$tipo','$nombreUsuario','$bytesImagen', '$clave') "; 
+        // $stm = $conn->prepare($sql);
+        // $stm->bind_param( 'sss', $bytesImagen, $tipo, $nombreUsuario);
+        // $stm->execute();
+        
+        // if (mysqli_query($conn, $sql)) {
+        //     echo AAAAAAAAAA;
+        // }else{
+        //     echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
+        // }
+        
+        // $sql1 = " UPDATE usuarios 
+        //         SET nombre = '$nombre' , apellido = '$apellido' , contrasenia = '$clave' , email = '$email'
+        //         WHERE ( nombreusuario = '$nombreUsuario' ) ";
+        if (mysqli_query($conn, $sql1)) {
             echo "Nuevo registro.";
         }
         else{
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            echo "Error: " . $sql1 . "<br>" . mysqli_error($conn);
         }
+        
     }
+    //probando foto
+    /*
     $sql = "SELECT * FROM usuarios";
     $stm = $conn->query($sql);
     
     while ($datos = $stm->fetch_object()){ 
         
-        $f = base64_encode($datos->foto_contenido);?>
+        $f = base64_encode($datos->foto_contenido);//descomentar para probar?>
         <p> <img width="30px" src="data:image/jpg; base64, <?php echo  $f ?>"  ></p>
     
     <?php } ?>
+*/
+?>    
