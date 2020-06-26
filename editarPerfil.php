@@ -84,8 +84,7 @@
             <div class="col-sm-12 main-section">
                 <div class="modal-content editarP">
 
-                    <form class="col-12" action="registrar.php" method="post" class="form-register"
-                        onsubmit="return validar();">
+                    <form class="col-12" action="VeditarPerfil.php" method="post" class="form-register"onsubmit="return validar();">
                         <div class="form-group" id="user-group">
                             <h2 class="form__titulo">Editar Perfil</h2>
                             <div class="contenedor-inputs">
@@ -98,7 +97,7 @@
                                         class="form-control">
                                 </div>
                                 <div class="form-group" id="user-group">
-                                    <input type="email" id="correo" name="correo" placeholder="Correo"
+                                    <input type="text" id="correo" name="correo" placeholder="Correo"
                                         class="form-control">
                                 </div>
 
@@ -114,7 +113,7 @@
                                 </div>
 
                             </div>
-                            <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>
+                            <button type="submit" name="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>
                                 Guardar Cambios</button>
                     </form>
                 </div>
