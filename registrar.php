@@ -19,7 +19,7 @@
         $error_claveDif=false;
         $claveOK=false;
         if($clave == $clave2){
-            if( validar_clave( $clave, $error_clave )) {
+            if( Verificar::validar_clave( $clave, $error_clave )) {
                 $claveOK=true ;
             }
             else {
@@ -48,6 +48,7 @@
             $sql1 = "INSERT INTO usuarios(nombre,apellido, email,foto_tipo, nombreUsuario,foto_contenido, contrasenia) VALUES ('$nombre','$apellido','$email','$tipo','$nombreUsuario','$bytesImagen', '$clave') ";
             if (mysqli_query($conn, $sql1)) {
                 echo "Nuevo registro.";
+                header("index.php");
                 
             }
             else{
@@ -97,28 +98,59 @@ function usuario_duplicado($nombreUsuario){//devuelve true si esta duplicado
 
 
 <?php
-function validar_clave($clave,&$error_clave){
-    if(strlen($clave) < 6){
-       $error_clave = "La clave debe tener al menos 6 caracteres" ."<br>";
-       return false;
+// function validar_clave($clave,&$error_clave){
+//     if(strlen($clave) < 6){
+//        $error_clave = "La clave debe tener al menos 6 caracteres" ."<br>";
+//        return false;
+//     }
+//     if(strlen($clave) > 16){
+//        $error_clave = "La clave no puede tener más de 16 caracteres" ."<br>";
+//        return false;
+//     }
+//     if (!preg_match('[a-z]',$clave)){
+//        $error_clave = "La clave debe tener al menos una letra minúscula" ."<br>";
+//        return false;
+//     }
+//     if (!preg_match('[A-Z]',$clave)){
+//        $error_clave = "La clave debe tener al menos una letra mayúscula " ."<br>";
+//        return false;
+//     }
+//     if (!preg_match('[0-9]',$clave)){
+//        $error_clave = "La clave debe tener al menos un caracter numérico" ."<br>";
+//        return false;
+//     }
+//     $error_clave = "";
+//     return true;
+//  }
+?> 
+
+<?php 
+class Verificar{
+
+
+    public static function validar_clave($clave,&$error_clave){
+            if(strlen($clave) < 6){
+               $error_clave = "La clave debe tener al menos 6 caracteres" ."<br>";
+               return false;
+            }
+            if(strlen($clave) > 16){
+               $error_clave = "La clave no puede tener más de 16 caracteres" ."<br>";
+               return false;
+            }
+            if (!preg_match('[a-z]',$clave)){
+               $error_clave = "La clave debe tener al menos una letra minúscula" ."<br>";
+               return false;
+            }
+            if (!preg_match('[A-Z]',$clave)){
+               $error_clave = "La clave debe tener al menos una letra mayúscula " ."<br>";
+               return false;
+            }
+            if (!preg_match('[0-9]',$clave)){
+               $error_clave = "La clave debe tener al menos un caracter numérico" ."<br>";
+               return false;
+            }
+            $error_clave = "";
+            return true;
+         }
     }
-    if(strlen($clave) > 16){
-       $error_clave = "La clave no puede tener más de 16 caracteres" ."<br>";
-       return false;
-    }
-    if (!preg_match('[a-z]',$clave)){
-       $error_clave = "La clave debe tener al menos una letra minúscula" ."<br>";
-       return false;
-    }
-    if (!preg_match('[A-Z]',$clave)){
-       $error_clave = "La clave debe tener al menos una letra mayúscula " ."<br>";
-       return false;
-    }
-    if (!preg_match('[0-9]',$clave)){
-       $error_clave = "La clave debe tener al menos un caracter numérico" ."<br>";
-       return false;
-    }
-    $error_clave = "";
-    return true;
- }
 ?>
