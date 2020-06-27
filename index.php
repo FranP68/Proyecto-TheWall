@@ -80,20 +80,26 @@
   </header>
 
   <body>
-
+    <?php
+      session_start();
+      $usuario = $_SESSION['usuario'];
+      $nombre = $_SESSION['nombre'];
+      $apellido = $_SESSION['apellido'];
+    ?>
+    
     <div class="cuadroPerfil">
       <div class="fotoPerfil2">
         <img src="static/img/avatar.png" class="avatar2" alt="">
-        <h3 class="nombre2">MiNombre MiApellido</h3>
-        <h3 class="nombre2">MiNombreDeUsuario</h3>
+        <h3 class="nombre2"><?php echo $nombre; echo $apellido?> </h3>
+        <h3 class="nombre2"><?php echo $usuario?></h3>
       </div>
       <div class="nuevoMensaje">
-        <form action="nuevoMensaje.php" method="post" class="form-mensaje" onsubmit="return validarMensaje();" >
+        <form action="nuevoMensaje.php" method="post" class="form-mensaje" enctype="multipart/form-data" onsubmit="return validarMensaje();" >
           <div>
             <textarea name="nuevoMensaje" id="mensaje" placeholder="Escriba un nuevo mensaje" maxlength="140" minlength="1"
               style="width: 230px;height: 120px;" ></textarea>
           </div>
-          <input type="file" class="botonImagen" value="Seleccionar imagen" onchange="validarImagen(this);">
+          <input type="file" name="img" class="botonImagen" value="Seleccionar imagen" onchange="validarImagen(this);">
           <input type="submit" class="botonMensaje" value="Enviar mensaje">
 
         </form>
