@@ -1,4 +1,6 @@
 <?php 
+require 'BD.php';
+
 
 function comprobar_nombre($nombre){
     //compruebo que el tamaño del string sea válido.
@@ -17,7 +19,8 @@ function comprobar_nombre($nombre){
  }
 
 
-
+ if (   (  !empty($_POST['apellidos']) )  && (  !empty($_POST['nombre'])  )  &&  (  !empty($_POST['correo']) )  )
+ {  
 
 if(isset($_POST['submit'])){
     $apellido = $_POST['apellidos'];
@@ -49,4 +52,18 @@ else{
     //echo"<p> salgo por el else </p>";
 //header("location: index.html");
 }
+ }
+else{
+    if(  empty($_POST['apellidos']) ){
+        echo "El apellido no está definido";
+    }
+    if(  empty($_POST['nombre']) ){
+            echo "El nombre no está definido";
+    }
+    if(  empty($_POST['correo']) ){
+            echo "El correo no está definido";
+    }
+    
+    }
+
 ?>

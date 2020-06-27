@@ -137,15 +137,15 @@ class Verificar{
                $error_clave = "La clave no puede tener más de 16 caracteres" ."<br>";
                return false;
             }
-            if (!preg_match('[a-z]',$clave)){
+            if (!preg_match('/[a-z]/',$clave)){
                $error_clave = "La clave debe tener al menos una letra minúscula" ."<br>";
                return false;
             }
-            if (!preg_match('[A-Z]',$clave)){
+            if (!preg_match('/[A-Z]/',$clave)){
                $error_clave = "La clave debe tener al menos una letra mayúscula " ."<br>";
                return false;
             }
-            if (!preg_match('[0-9]',$clave)){
+            if (!preg_match('/[0-9]/',$clave)){
                $error_clave = "La clave debe tener al menos un caracter numérico" ."<br>";
                return false;
             }
