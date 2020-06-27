@@ -48,7 +48,9 @@
             $sql1 = "INSERT INTO usuarios(nombre,apellido, email,foto_tipo, nombreUsuario,foto_contenido, contrasenia) VALUES ('$nombre','$apellido','$email','$tipo','$nombreUsuario','$bytesImagen', '$clave') ";
             if (mysqli_query($conn, $sql1)) {
                 echo "Nuevo registro.";
-                header("index.php");
+                session_start();
+                $_SESSION['usuario']=$nombreUsuario;
+                header("Location:index.php");
                 
             }
             else{
