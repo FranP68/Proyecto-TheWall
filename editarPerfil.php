@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <script src="static/js/validarEdit.js"></script>
+   <!--<script src="static/js/validarEdit.js"></script>-->
 </head>
 
 
@@ -89,7 +89,7 @@
             <div class="col-12 user-img">
               <img src="static/img/avatar.png" />
             </div>
-    <form  class="col-12" action="VeditarPerfil.php" method="POST" class="form-register" enctype="multipart/form-data" onsubmit="return validarEditarPerfil();">
+    <form  class="col-12" action="VeditarPerfil.php"  method="POST" class="form-register" enctype="multipart/form-data" onsubmit="return validarEditarPerfil();">
         <div class="form-group" id="user-group"></div>
         <h2 class="form__titulo">Editar Perfil</h2>
         <div class="contenedor-inputs">
@@ -106,14 +106,13 @@
                     <input type="file" name="img"  onchange="validarImagen(this);" placeholder="Seleccione foto de perfil" ><!-- class="nuestroinput" id="nuestroinput"-->
                 </span>
             
-                <label for="nuestroinput">
-                    <span class="nuestroinput">Seleccione foto de perfil</span>
-                </label>
         </div>
             
         </div>
         <button type="submit" name="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Guardar Cambios</button>
-    </form>
+    
+                                                                                                                                                                                       
+      </form>
 </main>
     
 
