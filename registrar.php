@@ -42,13 +42,20 @@
                 $_SESSION['usuario']=$nombreUsuario;
                 $_SESSION['nombre']=$nombre;
                 $_SESSION['apellido']=$apellido;
-                
+                //obtengo id de usuario
+                $rs=mysqli_query($conn, "SELECT id FROM usuarios WHERE nombreusuario='$nombreUsuario' ");
+                if ($row = mysqli_fetch_row($rs)) {
+                    $id = trim($row[0]);
+                }
+                $_SESSION['id']=$id;
                 /* $rs = mysqli_query ($conn, " SELECT MAX(id_tabla) AS id FROM tabla " );
                 if ($row = mysqli_fetch_row($rs)) {
                     $id = trim($row[0]);
                     
                 }
+                
                 $_SESSION['id']=$id; */
+
                 header("Location:index.php");
                 
             }
