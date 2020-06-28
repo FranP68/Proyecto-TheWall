@@ -98,16 +98,9 @@
     
       while ( $datos = mysqli_fetch_array($result) ){ 
         $bytesImagen = $datos["foto_contenido"];
-        //$tipo = $datos["foto_tipo"];
-        
-        // echo "<img src= 'data:image/jpeg; base64, " . base64_encode($bytesImagen) ."' >";
       }
       ?>
         
-       
-
-
-
         <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " class="avatar2" alt="">
         <h3 class="nombre2"><?php echo "$nombre " ; echo $apellido;?> </h3>
         <h3 class="nombre2"><?php echo $usuario?></h3>
