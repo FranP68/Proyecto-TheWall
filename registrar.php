@@ -30,10 +30,20 @@
 
         $apellidoOk=Verificar::validar_apellido($apellido,$error_apellido);
     
-        
-        // ---------------------
+         // verificar email
 
-        if(Verificar::usuario_duplicado($nombreUsuario,$error_usuarioDuplicado) && $nombreOk && $claveOk && $apellidoOk && Verificar::usuario_duplicado($email,$error_emailDuplicado)){
+         $emailOk = Verificar::validar_email($email, $error_email);
+
+         // ---------------------
+ 
+        // verificar email duplicado
+         $emailDuplicadoOk = Verificar::email_duplicado($email,$error_emailDuplicado);
+
+        // ---------------------
+        $usuarioDuplicadoOk = Verificar::usuario_duplicado($nombreUsuario,$error_usuarioDuplicado);
+
+
+        if($usuarioDuplicadoOk && $nombreOk && $claveOk && $apellidoOk && $emailOk && $emailDuplicadoOk ){
             //agrego nuevo usuario a la base de datos
             $sql1 = "INSERT INTO usuarios(nombre,apellido, email,foto_tipo, nombreUsuario,foto_contenido, contrasenia) VALUES ('$nombre','$apellido','$email','$tipo','$nombreUsuario','$bytesImagen', '$clave') ";
             if (mysqli_query($conn, $sql1)) {
@@ -63,14 +73,16 @@
                 echo "Error: " . $sql1 . "<br>" . mysqli_error($conn);
             }
         }else{
-            if (!Verificar::usuario_duplicado($nombreUsuario,$error_usuarioDuplicado))
-                echo "$error_usuarioDuplicado";
-            if (!Verificar::email_duplicado($email,$error_emailDuplicado))
-                echo "$error_emailDuplicado";
             if (!$nombreOk)
                 echo "$error_nombre";
             if (!$apellidoOk)
                 echo "$error_apellido";
+            if (!$emailOk)
+                echo "$error_email";
+            if (!$emailDuplicadoOk)
+                echo "$error_emailDuplicado";
+            if (!$usuarioDuplicadoOk)
+                echo "$error_usuarioDuplicado";
             if (!$claveOk)
                 echo "$error_clave";    
 
@@ -78,8 +90,28 @@
         }    
     }
     else{
-        if(empty($_FILES['img']['name'])){
-            echo "La foto de perfil no está definida";
+        if(  empty($_POST['nombre']) ){
+            echo "El nombre no está definido"."<br>";
+        }
+        if(  empty($_POST['apellidos']) ){
+            echo "El apellido no está definido"."<br>";
+        }
+        
+        if(  empty($_POST['correo']) ){
+            echo "El correo no está definido"."<br>";
+        }
+        if(  empty($_POST['usuario']) ){
+            echo "El usuario no está definido"."<br>";
+        }
+        
+        if(  empty($_POST['clave']) ){
+            echo "La clave no está definida"."<br>";
+        }
+        if(  empty($_POST['clave2']) ){
+            echo "La clave 2 no está definida"."<br>";
+        }
+        if(  empty($_FILES['img']['name'])){
+            echo "El imagen no está definida"."<br>";
         }
 
     }
