@@ -24,6 +24,7 @@ if  (   (!empty($_POST['nuevoMensaje']))     )  {
     
     if (mysqli_query($conn, $sql1)) {
         echo "Nuevo mensaje.";
+        header("Location:index.php");
     } else {
         echo "Error: " . $sql1 . "<br>" . mysqli_error($conn);
     }

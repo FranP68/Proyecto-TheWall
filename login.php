@@ -49,7 +49,7 @@
         <div class="col-18 user-img">
           <img src="static/img/avatar.png" />
         </div>
-        <form class="col-12" action="validarLogin.php" method="POST"  action="">
+        <form class="col-12" action="validarLogin.php" method="POST">
           <div class="form-group" id="user-group">
           <input type="text" name="usuario" class="form-control" placeholder="Nombre de Usuario">  
           </div>
@@ -60,7 +60,7 @@
             <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt" ></i>  Iniciar sesion</button>
         </form>
         <div class="col-12">
-          <p>¿No tienes una cuenta? <a class="link" href="registrarse.html">Registrate </a>  </p>
+          <p>¿No tienes una cuenta? <a class="link" href="registrarse.php">Registrate </a>  </p>
         </div>
 
       

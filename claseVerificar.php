@@ -2,7 +2,7 @@
 class Verificar{
 
 
-    public static function validar_clave($clave, $clave2,&$error){
+    public static function validar_clave($clave, $clave2, &$error_clave){
         if($clave == $clave2){
             if(strlen($clave) < 6){
                $error_clave = "La clave debe tener al menos 6 caracteres" ."<br>";

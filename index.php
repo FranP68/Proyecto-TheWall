@@ -33,10 +33,10 @@
             <input type="text" id="buscador" placeholder="Buscar usuario" class="form-control"></li>
           <button class="btn btn-info mb-1" id="botonBuscador"><i class="fa fa-search"></i></button>
           <li id="resultado"></li>
-          <li><a href="index.html">Inicio </a></li>
-          <li><a href="miPerfil.html">Perfil </a></li>
-          <li><a href="editarPerfil.html">Configuracion </a></li>
-          <li><a href="login.html"> Cerrar Sesion </a></li>
+          <li><a href="index.php">Inicio </a></li>
+          <li><a href="miPerfil.php">Perfil </a></li>
+          <li><a href="editarPerfil.php">Configuracion </a></li>
+          <li><a href="login.php"> Cerrar Sesion </a></li>
         </ul>
 
         <script>
@@ -90,7 +90,7 @@
     <div class="cuadroPerfil">
       <div class="fotoPerfil2">
         <img src="static/img/avatar.png" class="avatar2" alt="">
-        <h3 class="nombre2"><?php echo $nombre; echo $apellido?> </h3>
+        <h3 class="nombre2"><?php echo "$nombre " ; echo $apellido;?> </h3>
         <h3 class="nombre2"><?php echo $usuario?></h3>
       </div>
       <div class="nuevoMensaje">
