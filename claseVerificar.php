@@ -110,7 +110,20 @@ class Verificar{
             }
         }
         
-
+        public static function validar_email($email, &$error_email){
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+                $error_email = "El correo es incorrecto" ."<br>"; 
+                return false;
+            }
+            else{
+                $error_email = "El correo es correcto" ."<br>"; 
+                return true;
+            }
+    
+    
+    
+        }
+    }    
 
         
         
