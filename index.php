@@ -81,6 +81,7 @@
 
   <body>
     <?php
+      require "BD.php";
       session_start();
       $usuario = $_SESSION['usuario'];
       $nombre = $_SESSION['nombre'];
@@ -89,7 +90,25 @@
     
     <div class="cuadroPerfil">
       <div class="fotoPerfil2">
-        <img src="static/img/avatar.png" class="avatar2" alt="">
+          
+
+      <?php $sql = " SELECT foto_contenido FROM usuarios WHERE nombreusuario = '$usuario' ";
+  
+        $result = mysqli_query($conn, $sql);
+    
+      while ( $datos = mysqli_fetch_array($result) ){ 
+        $bytesImagen = $datos["foto_contenido"];
+        //$tipo = $datos["foto_tipo"];
+        
+        // echo "<img src= 'data:image/jpeg; base64, " . base64_encode($bytesImagen) ."' >";
+      }
+      ?>
+        
+       
+
+
+
+        <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " class="avatar2" alt="">
         <h3 class="nombre2"><?php echo "$nombre " ; echo $apellido;?> </h3>
         <h3 class="nombre2"><?php echo $usuario?></h3>
       </div>

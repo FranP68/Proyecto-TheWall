@@ -125,10 +125,4 @@ class Verificar{
         }
     }    
 
-        
-        
-
-
-
-}
 ?>
