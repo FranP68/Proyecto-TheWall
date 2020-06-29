@@ -52,6 +52,7 @@
                 $_SESSION['usuario']=$nombreUsuario;
                 $_SESSION['nombre']=$nombre;
                 $_SESSION['apellido']=$apellido;
+                $_SESSION['email'] = $email;
                 //obtengo id de usuario
                 $rs=mysqli_query($conn, "SELECT id FROM usuarios WHERE nombreusuario='$nombreUsuario' ");
                 if ($row = mysqli_fetch_row($rs)) {

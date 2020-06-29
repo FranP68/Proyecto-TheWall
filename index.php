@@ -61,7 +61,7 @@
             for (let usuarioRegistrado of usuariosRegistrados) {
               let nombre = usuarioRegistrado.nombre.toLowerCase();
               if (nombre.indexOf(texto) !== -1) {
-                resultado.innerHTML += ` <a href="miPerfil.html" class="logo"> ${usuarioRegistrado.nombre}</a>`
+                resultado.innerHTML += ` <a href="miPerfil.php" class="logo"> ${usuarioRegistrado.nombre}</a>`
               }
             }
             if (resultado.innerHTML === '') {
@@ -123,8 +123,8 @@
         <h3 class="men-box2-title">Ultimos mensajes</h3>
         <div class="unMensaje">
           <img src="static/img/CR7.jpg" class="avatar2" alt="">
-          <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.html">Cristiano Ronaldo</a> <a
-            class="usuarioLink" type="button" href="perfilUsuarioCristiano.html"> (CR7)</a></h3>
+          <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php">Cristiano Ronaldo</a> <a
+            class="usuarioLink" type="button" href="perfilUsuarioCristiano.php"> (CR7)</a></h3>
           <button class="dejarDeSeguir">Dejar de Seguir</button>
           <li>
             <div>
@@ -135,8 +135,8 @@
         </div>
         <div class="unMensaje">
           <img src="static/img/CR7.jpg" class="avatar2" alt="">
-          <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.html">Cristiano Ronaldo</a> <a
-            class="usuarioLink" type="button" href="perfilUsuarioCristiano.html"> (CR7)</a></h3>
+          <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php">Cristiano Ronaldo</a> <a
+            class="usuarioLink" type="button" href="perfilUsuarioCristiano.php"> (CR7)</a></h3>
           <button class="dejarDeSeguir">Dejar de Seguir</button>
           <li>
             <div>
@@ -147,8 +147,8 @@
         </div>
         <div class="unMensaje">
           <img src="static/img/avatar.png" class="avatar2" alt="">
-          <a class="usuarioLink" type="button" href="miPerfil.html">MiNombre MiApellido</a> <a class="usuarioLink"
-            type="button" href="miPerfil.html"> (MiNombreDeUsuario)</a></h3>
+          <a class="usuarioLink" type="button" href="miPerfil.php">MiNombre MiApellido</a> <a class="usuarioLink"
+            type="button" href="miPerfil.php"> (MiNombreDeUsuario)</a></h3>
           <li>
             <div>
               Un mensaje
@@ -158,8 +158,8 @@
         </div>
         <div class="unMensaje">
           <img src="static/img/avatar.png" class="avatar2" alt="">
-          <a class="usuarioLink" type="button" href="miPerfil.html">MiNombre MiApellido</a> <a class="usuarioLink"
-            type="button" href="miPerfil.html"> (MiNombreDeUsuario)</a></h3>
+          <a class="usuarioLink" type="button" href="miPerfil.php">MiNombre MiApellido</a> <a class="usuarioLink"
+            type="button" href="miPerfil.php"> (MiNombreDeUsuario)</a></h3>
           <li>
             <div>
               Otro mensaje

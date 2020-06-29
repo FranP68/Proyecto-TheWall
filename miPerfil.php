@@ -67,7 +67,7 @@
                         for (let usuarioRegistrado of usuariosRegistrados) {
                             let nombre = usuarioRegistrado.nombre.toLowerCase();
                             if (nombre.indexOf(texto) !== -1) {
-                                resultado.innerHTML += ` <a href="miPerfil.html" class="logo"> ${usuarioRegistrado.nombre}</a>`
+                                resultado.innerHTML += ` <a href="miPerfil.php" class="logo"> ${usuarioRegistrado.nombre}</a>`
                             }
                         }
                         if (resultado.innerHTML === '') {
@@ -107,13 +107,13 @@
         </div>
         <ul class="seguidores">
             <h3 class="nombre">Seguidores:</h3>
-            <li> <a class="usuarioLink" type="button" href="perfilUsuarioJuanPerez.html">Juan Perez</a> <a class="usuarioLink" type="button" href="perfilUsuarioJuanPerez.html"> (juanp1)</a></h3>
+            <li> <a class="usuarioLink" type="button" href="perfilUsuarioJuanPerez.php">Juan Perez</a> <a class="usuarioLink" type="button" href="perfilUsuarioJuanPerez.php"> (juanp1)</a></h3>
                 <button class="dejarDeSeguir">Dejar de Seguir</button>
             </li>
-            <li> <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.html">Cristiano Ronaldo</a> <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.html"> (CR7)</a></h3>
+            <li> <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php">Cristiano Ronaldo</a> <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php"> (CR7)</a></h3>
                 <button class="dejarDeSeguir">Dejar de Seguir</button>
             </li>
-            <li> <a class="usuarioLink" type="button" href="perfilUsuarioJuanRoman.html">Juan Roman Riquelme</a> <a class="usuarioLink" type="button" href="perfilUsuarioJuanRoman.html"> (JRR10)</a></h3>
+            <li> <a class="usuarioLink" type="button" href="perfilUsuarioJuanRoman.php">Juan Roman Riquelme</a> <a class="usuarioLink" type="button" href="perfilUsuarioJuanRoman.php"> (JRR10)</a></h3>
                 <button class="dejarDeSeguir">Dejar de Seguir</button>
             </li>
 
@@ -121,7 +121,7 @@
 
         <div class="editar-perfil">
 
-            <a class="botonEditar" type="button" href="editarPerfil.html"> Editar perfil</a>
+            <a class="botonEditar" type="button" href="editarPerfil.php"> Editar perfil</a>
 
 
         </div>

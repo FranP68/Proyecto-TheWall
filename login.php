@@ -34,7 +34,7 @@
      <nav class="navegacion">
        <ul>
       <!-- <li><a href="#">Inicio </a></li> 
-      <li><a href="miPerfil.html">Perfil </a></li> 
+      <li><a href="miPerfil.php">Perfil </a></li> 
       <li><a href="#"> Cerrar Sesion </a></li>  -->
     </ul>
      </nav>

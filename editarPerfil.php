@@ -25,7 +25,13 @@
 
   
   <body>
-    
+  <?php
+      session_start();
+      $usuario = $_SESSION['usuario'];
+      $nombre = $_SESSION['nombre'];
+      $apellido = $_SESSION['apellido'];
+      $email = $_SESSION['email'];
+  ?>
     
     <header class="header">
     <div class="container logo-nav-container">
@@ -37,10 +43,10 @@
             <input type="text" id="buscador" placeholder="Buscar usuario" class="form-control"></li>
           <button class="btn btn-info mb-1" id="botonBuscador"><i class="fa fa-search"></i></button>
           <li id="resultado"></li>
-          <li><a href="index.html">Inicio </a></li>
-          <li><a href="miPerfil.html">Perfil </a></li>
-          <li><a href="editarPerfil.html">Configuracion </a></li>
-          <li><a href="login.html"> Cerrar Sesion </a></li>
+          <li><a href="index.php">Inicio </a></li>
+          <li><a href="miPerfil.php">Perfil </a></li>
+          <li><a href="editarPerfil.php">Configuracion </a></li>
+          <li><a href="login.php"> Cerrar Sesion </a></li>
         </ul>
 
         <script>
@@ -65,7 +71,7 @@
             for (let usuarioRegistrado of usuariosRegistrados) {
               let nombre = usuarioRegistrado.nombre.toLowerCase();
               if (nombre.indexOf(texto) !== -1) {
-                resultado.innerHTML += ` <a href="miPerfil.html" class="logo"> ${usuarioRegistrado.nombre}</a>`
+                resultado.innerHTML += ` <a href="miPerfil.php" class="logo"> ${usuarioRegistrado.nombre}</a>`
               }
             }
             if (resultado.innerHTML === '') {
@@ -94,13 +100,13 @@
         <h2 class="form__titulo">Editar Perfil</h2>
         <div class="contenedor-inputs">
             <div class="form-group" id="user-group">
-            <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control" >
+            <input type="text" id="nombre" name="nombre" value="<?PHP echo $nombre ?>" class="form-control" >
         </div>
         <div class="form-group" id="user-group">
-            <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" class="form-control"  >
+            <input type="text" id="apellidos" name="apellidos" value="<?PHP echo $apellido ?>" class="form-control"  >
         </div>
         <div class="form-group" id="user-group">
-            <input type="text" id="correo" name="correo" placeholder="Correo" class="form-control">
+            <input type="text" id="correo" name="correo" value="<?PHP echo $email ?>" class="form-control">
             <div class="form-group" id="user-group">
                 <span class="nuestroinput">
                     <input type="file" name="img"  onchange="validarImagen(this);" placeholder="Seleccione foto de perfil" ><!-- class="nuestroinput" id="nuestroinput"-->

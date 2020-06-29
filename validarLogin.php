@@ -21,9 +21,15 @@ if ((!empty($_POST['usuario']))  && (!empty($_POST['clave']))) {
                 $apellido = trim($row[0]);
             }
 
+            $rs = mysqli_query($conn, "SELECT email FROM usuarios WHERE nombreusuario='$nombreUsuario' ");
+            if ($row = mysqli_fetch_row($rs)) {
+                $email = trim($row[0]);
+            }
+
             $_SESSION['usuario'] = $nombreUsuario;
             $_SESSION['nombre'] = $nombre;
             $_SESSION['apellido'] = $apellido;
+            $_SESSION['email'] = $email;
             //obtengo id de usuario
             $rs = mysqli_query($conn, "SELECT id FROM usuarios WHERE nombreusuario='$nombreUsuario' ");
             if ($row = mysqli_fetch_row($rs)) {

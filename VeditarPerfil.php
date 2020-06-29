@@ -4,6 +4,7 @@
 
     session_start();
     $usuario = $_SESSION['usuario'];
+    $emailActual = $_SESSION['email'];
 
     if (   (  !empty($_POST['apellidos']) )  && (  !empty($_POST['nombre'])  )  &&   (  !empty($_POST['correo']) )  &&  (  !empty($_FILES['img']['name']) ) ) 
     { 
@@ -33,9 +34,14 @@
 
         // ---------------------
 
+        if($email==$emailActual){
+            $emailDuplicadoOk=true;
+        }
+        else{
+            $emailDuplicadoOk = Verificar::email_duplicado($email,$error_emailDuplicado);
+        }
+        
 
-        $emailDuplicadoOk = Verificar::email_duplicado($email,$error_emailDuplicado);
-       
         if( $nombreOk && $emailOk && $apellidoOk && $emailDuplicadoOk){
             //actualizo usuario en la base de datos
             $sql1 = "UPDATE usuarios SET nombre='$nombre', apellido='$apellido' , email='$email'  WHERE nombreusuario='$usuario' ";
