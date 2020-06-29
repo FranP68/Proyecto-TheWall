@@ -88,7 +88,8 @@
     $usuario = $_SESSION['usuario'];
     $nombre = $_SESSION['nombre'];
     $apellido = $_SESSION['apellido'];
-    $idUsuario  = $_SESSION['id'];
+    $idLogueado = $_SESSION['id'];
+
     ?>
     <div class="contenedor">
         <div class="fotoPerfil">
@@ -101,30 +102,61 @@
             }
             ?>
 
-            <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " class="avatar2" alt="">
+            <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " class="avatar" alt="">
             <h3 class="nombre"><?php echo "$nombre " ; echo $apellido;?></h3>
             <h3 class="nombre"><?php echo $usuario?></h3>
         </div>
+        
         <ul class="seguidores">
             <h3 class="nombre">Seguidores:</h3>
-            <li> <a class="usuarioLink" type="button" href="perfilUsuarioJuanPerez.php">Juan Perez</a> <a class="usuarioLink" type="button" href="perfilUsuarioJuanPerez.php"> (juanp1)</a></h3>
+            
+            <?php $sql2 = " SELECT u.nombre, u.apellido, u.nombreusuario, u.foto_contenido, s.usuarioseguido_id FROM siguiendo s INNER JOIN usuarios u ON (u.id = s.usuarioseguido_id) WHERE ($idLogueado = s.usuarios_id) "; ?>
+          <?php
+          if ($re = mysqli_query($conn, $sql2)) {
+
+            while ($row = mysqli_fetch_array($re)) {
+                if (isset($row[0])) {
+                $bytesImagen = $row["foto_contenido"]; ?>
+                <form  action="validarSeguir.php" method="POST" >
+                    <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " class="avatar2" alt="">
+                <?php
+                $nombreU = $row["nombre"];
+                $apellidoU = $row["apellido"];
+                $usuarioSeguido = $row["nombreusuario"];
+                $usuarioSeguido_id = $row["usuarioseguido_id"];
+                ?>
+
+                
+                   
+                
+                
+                
+                  <input type="hidden"   name="usuarioSeguido" value="<?php echo $usuarioSeguido?>">
+                  <input type="hidden"    name="US_id" value="<?php echo $usuarioSeguido_id?>"> 
+                  <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php"><?php echo "$nombreU "; echo $apellidoU; ?></a>
+                    <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php"> <?php echo "($usuarioSeguido)" ?></a></h3>
+                  <button type= "submit" class="dejarDeSeguir"  >Dejar de Seguir</button>
+                </form>
+
+                <?php } ?>
+                
+                
+            
+                <?php }?>
+                </ul>
+            
+            <?php } ?>
+
+                <!-- <li> <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php">Cristiano Ronaldo</a> <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php"> (CR7)</a></h3>
                 <button class="dejarDeSeguir">Dejar de Seguir</button>
-            </li>
-            <li> <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php">Cristiano Ronaldo</a> <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php"> (CR7)</a></h3>
-                <button class="dejarDeSeguir">Dejar de Seguir</button>
-            </li>
-            <li> <a class="usuarioLink" type="button" href="perfilUsuarioJuanRoman.php">Juan Roman Riquelme</a> <a class="usuarioLink" type="button" href="perfilUsuarioJuanRoman.php"> (JRR10)</a></h3>
-                <button class="dejarDeSeguir">Dejar de Seguir</button>
-            </li>
-
-        </ul>
-
-        <div class="editar-perfil">
-
-            <a class="botonEditar" type="button" href="editarPerfil.php"> Editar perfil</a>
+            </li> -->
+            
 
 
-        </div>
+
+      
+
+        
     </div>
 
     <div class="mensajes">
@@ -134,7 +166,7 @@
 
             
             <?php
-              $rs=mysqli_query ($conn, "SELECT texto,imagen_contenido FROM mensaje WHERE usuarios_id='$idUsuario' ORDER BY fechayhora DESC");
+              $rs=mysqli_query ($conn, "SELECT texto,imagen_contenido FROM mensaje WHERE usuarios_id='$idLogueado' ORDER BY fechayhora DESC LIMIT 0,10" );
             
               while ($row = mysqli_fetch_array($rs)  ) {
                     

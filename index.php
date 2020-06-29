@@ -137,6 +137,7 @@
             while ($row = mysqli_fetch_array($re)) {
               if (isset($row[0])) {
                 $bytesImagen = $row["foto_contenido"]; ?>
+                <form action="validarSeguir.php" method="POST" >
                 <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " class="avatar2" alt="">
                 <?php
                 $nombreU = $row["nombre"];
@@ -145,13 +146,13 @@
                 $usuarioSeguido_id=$row[6];
                 ?>
 
-                <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php"><?php echo "$nombreU "; echo $apellidoU; ?></a>
-                <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php"> <?php echo "($usuarioSeguido)" ?></a></h3>
+                <a class="usuarioLink" type="button" href="perfilUsuario.php?idUsuario=<?php echo $usuarioSeguido_id ?>"><?php echo "$nombreU "; echo $apellidoU; ?></a>
+                <a class="usuarioLink" type="button" href="perfilUsuario.php?idUsuario=<?php echo $usuarioSeguido_id ?>"><?php echo "($usuarioSeguido)" ?></a></h3>
                 
-                <form  action="validarSeguir.php" method="POST" >
+                
                   <input type="hidden"   name="usuarioSeguido" value="<?php echo $usuarioSeguido?>">
                   <input type="hidden"    name="US_id" value="<?php echo $usuarioSeguido_id?>">
-                  <button type= "submit" class="dejarDeSeguir"  >Dejar de Seguir<button>
+                  <button type= "submit" class="dejarDeSeguir"  >Dejar de Seguir</button>
                 </form>
                 <div class="unMensaje">        
                 <li>
