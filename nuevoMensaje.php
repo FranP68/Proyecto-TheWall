@@ -24,8 +24,11 @@ if  (   (!empty($_POST['nuevoMensaje']))     )  {
     
     if (mysqli_query($conn, $sql1)) {
         echo "Nuevo mensaje.";
-        header("Location:index.php");
+        header('Location:' . getenv('HTTP_REFERER'));
     } else {
         echo "Error: " . $sql1 . "<br>" . mysqli_error($conn);
     }
+}
+else{
+    echo "El mensaje esta en blanco";
 }

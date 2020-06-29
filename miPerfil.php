@@ -152,9 +152,11 @@
                 <button class="eliminar">Eliminar</button>
                 
             <?php } ?>
-           
+            <?php
             
 
+            
+            ?>
                 <form action="nuevoMensaje.php" method="post" class="form-mensaje">
                     <div>
                         <textarea name="nuevoMensaje" placeholder="Escriba un nuevo mensaje" maxlength="140" minlength="1" style="width: 300px;height: 120px;"></textarea>

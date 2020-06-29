@@ -128,41 +128,49 @@
     <div class="ultimosMensajes">
       <ul class="men-box2">
         <h3 class="men-box2-title">Ultimos mensajes</h3>
-        <div class="unMensaje">
+        
 
-          <?php $sql2 = " SELECT m.texto, m.imagen_contenido, u.nombre, u.apellido, u.nombreusuario, u.foto_contenido FROM mensaje m INNER JOIN siguiendo s ON (s.usuarioseguido_id = m.usuarios_id) INNER JOIN usuarios u ON (u.id = m.usuarios_id) WHERE ($idLogueado = s.usuarios_id) ORDER BY m.fechayhora DESC "; ?>
+          <?php $sql2 = " SELECT m.texto, m.imagen_contenido, u.nombre, u.apellido, u.nombreusuario, u.foto_contenido, s.usuarioseguido_id FROM mensaje m INNER JOIN siguiendo s ON (s.usuarioseguido_id = m.usuarios_id) INNER JOIN usuarios u ON (u.id = m.usuarios_id) WHERE ($idLogueado = s.usuarios_id) ORDER BY m.fechayhora DESC "; ?>
           <?php
           if ($re = mysqli_query($conn, $sql2)) {
 
             while ($row = mysqli_fetch_array($re)) {
-              if (isset($row[1])) {
-                $bytesImagen = $row["imagen_contenido"]; ?>
+              if (isset($row[0])) {
+                $bytesImagen = $row["foto_contenido"]; ?>
                 <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " class="avatar2" alt="">
                 <?php
-				$nombreU = $row["nombre"];
-				$apellidoU = $row["apellido"];
-				$usuarioSeguido = $row["nombreusuario"];
-				?>
+                $nombreU = $row["nombre"];
+                $apellidoU = $row["apellido"];
+                $usuarioSeguido = $row["nombreusuario"];
+                $usuarioSeguido_id=$row[6];
+                ?>
 
-				<a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php"><?php echo "$nombreU ";echo $apellidoU; ?></a>
-				<a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php"> <?php echo "($usuarioSeguido)" ?></a></h3>
-                <button class="dejarDeSeguir">Dejar de Seguir</button>
+                <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php"><?php echo "$nombreU "; echo $apellidoU; ?></a>
+                <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php"> <?php echo "($usuarioSeguido)" ?></a></h3>
+                
+                <form  action="validarSeguir.php" method="POST" >
+                  <input type="hidden"   name="usuarioSeguido" value="<?php echo $usuarioSeguido?>">
+                  <input type="hidden"    name="US_id" value="<?php echo $usuarioSeguido_id?>">
+                  <button type= "submit" class="dejarDeSeguir"  >Dejar de Seguir<button>
+                </form>
+                <div class="unMensaje">        
                 <li>
                   <div>
-                    <?php $sql2 = " SELECT texto, imagen_contenido FROM mensaje m INNER JOIN siguiendo s ON (s.usuarioseguido_id = m.usuarios_id) WHERE ($idLogueado = s.usuarios_id) ORDER BY m.fechayhora DESC "; ?>
+
                     <?php
 
 
                     ?>
-                    <?php echo "<li>$row[0] </li> ";
+                    <?php echo "$row[0] <br><br>";
                     if (isset($row[1])) {
                       $bytesImagen = $row["imagen_contenido"]; ?>
                       <img src='data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> ' style="width: 300px;height: 190px;"><?php
-                                                                                                    }
-                                                                                                      ?>
-                    <button class="meGusta">Me gusta</button>
-
-              <?php }
+                    }?>
+                   
+                </li> <button class="meGusta">Me gusta</button>
+              <?php } else {
+                echo "El mensaje esta en blanco";
+              }
             }
           } else {
             echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
