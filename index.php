@@ -6,8 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="static/css/pancho.css">
   <link rel="stylesheet" type="text/css" href="static/css/estilos.css">
   <title>Hello, world!</title>
@@ -40,11 +39,18 @@
         </ul>
 
         <script>
-          const usuariosRegistrados = [
-            { nombre: 'Cristiano ronaldo' },
-            { nombre: 'Juan Roman Riquelme' },
-            { nombre: 'Leandro Atilio Romagnoli' },
-            { nombre: 'Lionel Messi' }, //esto se sacaria de la base de datos
+          const usuariosRegistrados = [{
+              nombre: 'Cristiano ronaldo'
+            },
+            {
+              nombre: 'Juan Roman Riquelme'
+            },
+            {
+              nombre: 'Leandro Atilio Romagnoli'
+            },
+            {
+              nombre: 'Lionel Messi'
+            }, //esto se sacaria de la base de datos
           ]
 
 
@@ -69,10 +75,7 @@
             }
           }
           botonBuscador.addEventListener('click', filtrar);
-                    //buscador.addEventListener('keyup', filtrar)
-
-
-
+          //buscador.addEventListener('keyup', filtrar)
         </script>
       </nav>
     </div>
@@ -81,35 +84,36 @@
 
   <body>
     <?php
-      require "BD.php";
-      session_start();
-      $usuario = $_SESSION['usuario'];
-      $nombre = $_SESSION['nombre'];
-      $apellido = $_SESSION['apellido'];
+    require "BD.php";
+    session_start();
+    $usuario = $_SESSION['usuario'];
+    $nombre = $_SESSION['nombre'];
+    $apellido = $_SESSION['apellido'];
+    $idLogueado = $_SESSION['id'];
     ?>
-    
+
     <div class="cuadroPerfil">
       <div class="fotoPerfil2">
-          
 
-      <?php $sql = " SELECT foto_contenido FROM usuarios WHERE nombreusuario = '$usuario' ";
-  
+
+        <?php $sql = " SELECT foto_contenido FROM usuarios WHERE nombreusuario = '$usuario' ";
+
         $result = mysqli_query($conn, $sql);
-    
-      while ( $datos = mysqli_fetch_array($result) ){ 
-        $bytesImagen = $datos["foto_contenido"];
-      }
-      ?>
-        
+
+        while ($datos = mysqli_fetch_array($result)) {
+          $bytesImagen = $datos["foto_contenido"];
+        }
+        ?>
+
         <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " class="avatar2" alt="">
-        <h3 class="nombre2"><?php echo "$nombre " ; echo $apellido;?> </h3>
-        <h3 class="nombre2"><?php echo $usuario?></h3>
+        <h3 class="nombre2"><?php echo "$nombre ";
+                            echo $apellido; ?> </h3>
+        <h3 class="nombre2"><?php echo $usuario ?></h3>
       </div>
       <div class="nuevoMensaje">
-        <form action="nuevoMensaje.php" method="post" class="form-mensaje" enctype="multipart/form-data" onsubmit="return validarMensaje();" >
+        <form action="nuevoMensaje.php" method="post" class="form-mensaje" enctype="multipart/form-data" onsubmit="return validarMensaje();">
           <div>
-            <textarea name="nuevoMensaje" id="mensaje" placeholder="Escriba un nuevo mensaje" maxlength="140" minlength="1"
-              style="width: 230px;height: 120px;" ></textarea>
+            <textarea name="nuevoMensaje" id="mensaje" placeholder="Escriba un nuevo mensaje" maxlength="140" minlength="1" style="width: 230px;height: 120px;"></textarea>
           </div>
           <input type="file" name="img" class="botonImagen" value="Seleccionar imagen" onchange="validarImagen(this);">
           <input type="submit" class="botonMensaje" value="Enviar mensaje">
@@ -118,70 +122,69 @@
       </div>
     </div>
 
+
+
+
     <div class="ultimosMensajes">
       <ul class="men-box2">
         <h3 class="men-box2-title">Ultimos mensajes</h3>
         <div class="unMensaje">
-          <img src="static/img/CR7.jpg" class="avatar2" alt="">
-          <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php">Cristiano Ronaldo</a> <a
-            class="usuarioLink" type="button" href="perfilUsuarioCristiano.php"> (CR7)</a></h3>
-          <button class="dejarDeSeguir">Dejar de Seguir</button>
-          <li>
-            <div>
-              Soy el mejor
-            </div>
 
-          </li><button class="yaNoMeGusta"> Ya no me gusta</button>
-        </div>
-        <div class="unMensaje">
-          <img src="static/img/CR7.jpg" class="avatar2" alt="">
-          <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php">Cristiano Ronaldo</a> <a
-            class="usuarioLink" type="button" href="perfilUsuarioCristiano.php"> (CR7)</a></h3>
-          <button class="dejarDeSeguir">Dejar de Seguir</button>
-          <li>
-            <div>
-              Lio te amo
-            </div>
-            <img src="static/img/messi.jpg" class="fotoMensaje" alt="">
-          </li><button class="meGusta">Me gusta</button>
-        </div>
-        <div class="unMensaje">
-          <img src="static/img/avatar.png" class="avatar2" alt="">
-          <a class="usuarioLink" type="button" href="miPerfil.php">MiNombre MiApellido</a> <a class="usuarioLink"
-            type="button" href="miPerfil.php"> (MiNombreDeUsuario)</a></h3>
-          <li>
-            <div>
-              Un mensaje
-            </div>
+          <?php $sql2 = " SELECT m.texto, m.imagen_contenido, u.nombre, u.apellido, u.nombreusuario, u.foto_contenido FROM mensaje m INNER JOIN siguiendo s ON (s.usuarioseguido_id = m.usuarios_id) INNER JOIN usuarios u ON (u.id = m.usuarios_id) WHERE ($idLogueado = s.usuarios_id) ORDER BY m.fechayhora DESC "; ?>
+          <?php
+          if ($re = mysqli_query($conn, $sql2)) {
 
-          </li><button class="meGusta">Me gusta</button>
-        </div>
-        <div class="unMensaje">
-          <img src="static/img/avatar.png" class="avatar2" alt="">
-          <a class="usuarioLink" type="button" href="miPerfil.php">MiNombre MiApellido</a> <a class="usuarioLink"
-            type="button" href="miPerfil.php"> (MiNombreDeUsuario)</a></h3>
-          <li>
-            <div>
-              Otro mensaje
-            </div>
+            while ($row = mysqli_fetch_array($re)) {
+              if (isset($row[1])) {
+                $bytesImagen = $row["imagen_contenido"]; ?>
+                <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " class="avatar2" alt="">
+                <?php
+				$nombreU = $row["nombre"];
+				$apellidoU = $row["apellido"];
+				$usuarioSeguido = $row["nombreusuario"];
+				?>
 
-          </li><button class="meGusta">Me gusta</button>
+				<a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php"><?php echo "$nombreU ";echo $apellidoU; ?></a>
+				<a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php"> <?php echo "($usuarioSeguido)" ?></a></h3>
+                <button class="dejarDeSeguir">Dejar de Seguir</button>
+                <li>
+                  <div>
+                    <?php $sql2 = " SELECT texto, imagen_contenido FROM mensaje m INNER JOIN siguiendo s ON (s.usuarioseguido_id = m.usuarios_id) WHERE ($idLogueado = s.usuarios_id) ORDER BY m.fechayhora DESC "; ?>
+                    <?php
+
+
+                    ?>
+                    <?php echo "<li>$row[0] </li> ";
+                    if (isset($row[1])) {
+                      $bytesImagen = $row["imagen_contenido"]; ?>
+                      <img src='data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> ' style="width: 300px;height: 190px;"><?php
+                                                                                                    }
+                                                                                                      ?>
+                    <button class="meGusta">Me gusta</button>
+
+              <?php }
+            }
+          } else {
+            echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
+          } ?>
+                  </div>
         </div>
-      </ul>
+    </div>
+    </ul>
 
     </div>
 
-    </div>
-<!-- Footer -->
-<footer class="page-footer font-small blue">
 
-   
-  <div class="footer">
-    <a> Francisco Pavon - Santiago Goggi</a>
-  </div>
+    <!-- Footer -->
+    <footer class="page-footer font-small blue">
 
-</footer>
-<!-- Footer -->
+
+      <div class="footer">
+        <a> Francisco Pavon - Santiago Goggi</a>
+      </div>
+
+    </footer>
+    <!-- Footer -->
 
 
   </body>

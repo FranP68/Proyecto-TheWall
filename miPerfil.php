@@ -132,28 +132,28 @@
           
             <h3 class="nombre">Mis mensajes</h3>
 
-            <?php $i=0;
-              $rs=mysqli_query($conn, "SELECT texto FROM mensaje WHERE usuarios_id='$idUsuario' ");
-              
-              while ($row = mysqli_fetch_row($rs)  ) {
+            
+            <?php
+              $rs=mysqli_query ($conn, "SELECT texto,imagen_contenido FROM mensaje WHERE usuarios_id='$idUsuario' ORDER BY fechayhora DESC");
+            
+              while ($row = mysqli_fetch_array($rs)  ) {
                     
                 ?>    
-                <?php echo "<li>$row[0] </li> " ?>
+                <?php echo "<li>$row[0] </li> " ;
+                if(isset($row[1])){
+                    $bytesImagen = $row["imagen_contenido"];?>
+                    <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> "><?php
+                }
+                ?>
+                
+                
+                
                 <button class="meGusta">Me gusta</button>
                 <button class="eliminar">Eliminar</button>
                 
             <?php } ?>
            
             
-            
-            
-            <!-- <button class="meGusta">Me gusta</button>
-            <button class="eliminar">Eliminar</button> -->
-            <!-- <li>Otro mensaje
-
-            </li><button class="meGusta">Me gusta</button>
-            <button class="eliminar">Eliminar</button>
-            <li> -->
 
                 <form action="nuevoMensaje.php" method="post" class="form-mensaje">
                     <div>
