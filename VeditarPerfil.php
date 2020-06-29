@@ -6,7 +6,7 @@
     $usuario = $_SESSION['usuario'];
     $emailActual = $_SESSION['email'];
 
-    if (   (  !empty($_POST['apellidos']) )  && (  !empty($_POST['nombre'])  )  &&   (  !empty($_POST['correo']) )  &&  (  !empty($_FILES['img']['name']) ) ) 
+    if (   (  !empty($_POST['apellidos']) )  && (  !empty($_POST['nombre'])  )  &&   (  !empty($_POST['correo']) ) ) 
     { 
         $apellido = $_POST['apellidos'];
         $nombre = $_POST['nombre'];
@@ -44,7 +44,20 @@
 
         if( $nombreOk && $emailOk && $apellidoOk && $emailDuplicadoOk){
             //actualizo usuario en la base de datos
-            $sql1 = "UPDATE usuarios SET nombre='$nombre', apellido='$apellido' , email='$email'  WHERE nombreusuario='$usuario' ";
+            
+            if(empty($_FILES['img']['name']) ){
+                $sql1 = "UPDATE usuarios SET nombre='$nombre', apellido='$apellido' , email='$email'  WHERE nombreusuario='$usuario' ";
+            }
+            elseif(!empty($_FILES['img']['name']) ){
+                $imagenTmp = $_FILES['img']['tmp_name'];
+                $imagenType = $_FILES['img']['type'];
+                $bytesImagen = addslashes(file_get_contents($imagenTmp));
+                $tipo=substr($imagenType, 6);
+
+
+                $sql1 = "UPDATE usuarios SET nombre='$nombre', apellido='$apellido' , email='$email', foto_contenido='$bytesImagen', foto_tipo='$tipo'  WHERE nombreusuario='$usuario' ";
+            }
+            
             if (mysqli_query($conn, $sql1)) {
                 echo "Actualizar registro.";
                 session_start();

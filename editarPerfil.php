@@ -25,7 +25,9 @@
 
   
   <body>
+    
   <?php
+      require "BD.php";
       session_start();
       $usuario = $_SESSION['usuario'];
       $nombre = $_SESSION['nombre'];
@@ -93,7 +95,16 @@
         <div class="col-sm-12 main-section">
           <div class="modal-content">
             <div class="col-12 user-img">
-              <img src="static/img/avatar.png" />
+              <?php $sql = " SELECT foto_contenido FROM usuarios WHERE nombreusuario = '$usuario' ";
+  
+              $result = mysqli_query($conn, $sql);
+
+              while ( $datos = mysqli_fetch_array($result) ){ 
+                $bytesImagen = $datos["foto_contenido"];
+              }
+              ?>
+  
+  <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " class="avatar2" alt="">
             </div>
     <form  class="col-12" action="VeditarPerfil.php"  method="POST" class="form-register" enctype="multipart/form-data" onsubmit="return validarEditarPerfil();">
         <div class="form-group" id="user-group"></div>
