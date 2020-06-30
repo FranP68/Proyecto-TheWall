@@ -137,7 +137,7 @@
 
             
             <?php
-              $rs=mysqli_query ($conn, "SELECT texto,imagen_contenido FROM mensaje WHERE usuarios_id='$idLogueado' ORDER BY fechayhora DESC LIMIT 0,10" );
+              $rs=mysqli_query ($conn, "SELECT texto,imagen_contenido,id FROM mensaje WHERE usuarios_id='$idLogueado' ORDER BY fechayhora DESC LIMIT 0,10" );
             
               while ($row = mysqli_fetch_array($rs)  ) {
                     
@@ -147,11 +147,14 @@
                     $bytesImagen = $row["imagen_contenido"];?>
                     <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> "><?php
                 }
+                
+                $idMensaje=$row[2];
                 ?>
                 
-                
-                
-                <button class="meGusta">Me gusta</button>
+                <form action="ponerMeGusta.php" method="post" class="form-mensaje">
+                <input type="hidden"   name="idMensaje" value="<?php echo $idMensaje?>">
+                <input type="submit" value="Me gusta" class="meGusta">
+                </form>>
                 <button class="eliminar">Eliminar</button>
                 
             <?php } ?>
