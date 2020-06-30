@@ -149,12 +149,24 @@
                 }
                 
                 $idMensaje=$row[2];
-                ?>
+                $sql3="SELECT COUNT(mg.id) FROM me_gusta mg WHERE $idMensaje=mg.mensaje_id AND $idLogueado=mg.usuarios_id ";
+                $rs2=mysqli_query($conn, $sql3);
+               if ($row=mysqli_fetch_row($rs2)){
+                    if($row[0]==0){?>
+                        <form action="ponerMeGusta.php" method="post" class="form-mensaje">
+                        <input type="hidden"   name="idMensaje" value="<?php echo $idMensaje?>">
+                        <input type="submit" value="Me gusta" class="meGusta">
+                        </form>>
+                    <?php }
+                    elseif ($row[0]==1){?>
+                        <form action="quitarMeGusta.php" method="post" class="form-mensaje">
+                        <input type="hidden"   name="idMensaje" value="<?php echo $idMensaje?>">
+                        <input type="submit" value="Ya no me gusta" class="yaNoMeGusta">
+                        </form>
+                <?php }  
+                } ?>
                 
-                <form action="ponerMeGusta.php" method="post" class="form-mensaje">
-                <input type="hidden"   name="idMensaje" value="<?php echo $idMensaje?>">
-                <input type="submit" value="Me gusta" class="meGusta">
-                </form>>
+                
                 <button class="eliminar">Eliminar</button>
                 
             <?php } ?>

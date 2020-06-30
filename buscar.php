@@ -102,7 +102,7 @@
         
                 <?php
                 
-                $sql = "SELECT u.id, u.nombre, u.apellido, u.nombreusuario, u.foto_contenido FROM usuarios u  WHERE ((u.nombre LIKE '$busqueda%') OR (u.nombreusuario LIKE '$busqueda%') OR (u.apellido LIKE '$busqueda%')) AND u.id NOT IN (SELECT s.usuarioseguido_id FROM siguiendo AS s WHERE 195=s.usuarios_id ) ";
+                $sql = "SELECT u.id, u.nombre, u.apellido, u.nombreusuario, u.foto_contenido FROM usuarios u  WHERE ((u.nombre LIKE '$busqueda%') OR (u.nombreusuario LIKE '$busqueda%') OR (u.apellido LIKE '$busqueda%')) AND u.id NOT IN (SELECT s.usuarioseguido_id FROM siguiendo AS s WHERE $idLogueado=s.usuarios_id ) ";
                 $result = mysqli_query($conn, $sql);   
                 while ($datos = mysqli_fetch_array($result)) {
                 if (isset($datos[0])) {
@@ -111,21 +111,28 @@
                     $nombreUsuario=$datos['nombreusuario'];
                     $idBuscado=$datos['id'];
                     $bytesImagen=$datos['foto_contenido'];
+                    
                     ?>
                     <li>
                     <form  action="validarSeguir.php" method="POST" >
+                    <?php if ($idBuscado!=$idLogueado){ ?>             
                         <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " class="avatar2" alt=""> 
                         <a class="usuarioLink" type="button" href="perfilUsuario.php?idUsuario=<?php echo $idBuscado ?>"><?php echo "$nombre "; echo $apellido; ?></a>
                         <a class="usuarioLink" type="button" href="perfilUsuario.php?idUsuario=<?php echo $idBuscado ?>"><?php echo "($nombreUsuario)" ?></a>
-                                
+                    <?php  } else{ ?>
+                        <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " class="avatar2" alt=""> 
+                        <a class="usuarioLink" type="button" href="miPerfil.php"><?php echo "$nombre "; echo $apellido; ?></a>
+                        <a class="usuarioLink" type="button" href="miPerfil.php"><?php echo "($nombreUsuario)" ?></a>
+                    <?php }
+                      if ($idBuscado!=$idLogueado){ ?>          
                         <input type="hidden"   name="usuarioSeguido" value="<?php echo $nombreUsuario?>">
                         <input type="hidden"    name="US_id" value="<?php echo $idBuscado?>">
                         <button type= "submit" class="seguir"  >Seguir</button>
                     </li>
-                </form>
+                    </form>
                     <?php                    
-                        }
-                    }?>
+                        } }
+                    } ?>
                     
                     </ul>     
     </div>

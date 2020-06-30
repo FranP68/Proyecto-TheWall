@@ -116,12 +116,13 @@
                 </form>        
             <?php }
             elseif($row[0]==0){ ?>
+                <?php if ($idSeguido!=$idLogueado){ ?> 
                 <form  action="validarSeguir.php" method="POST" >
                 <input type="hidden"   name="usuarioSeguido" value="<?php echo $usuarioSeguido?>">
                 <input type="hidden"    name="US_id" value="<?php echo $idSeguido?>"> 
                 <button type= "submit" class="seguir"  >Seguir</button>
                 </form>
-            <?php }
+            <?php } }
         }?>
         
     
@@ -141,7 +142,7 @@
 
             
             <?php
-              $rs=mysqli_query ($conn, "SELECT texto,imagen_contenido FROM mensaje WHERE usuarios_id='$idSeguido' ORDER BY fechayhora DESC LIMIT 0,10" );
+              $rs=mysqli_query ($conn, "SELECT texto,imagen_contenido,id FROM mensaje WHERE usuarios_id='$idSeguido' ORDER BY fechayhora DESC LIMIT 0,10" );
             
               while ($row = mysqli_fetch_array($rs)  ) {
                     
@@ -153,9 +154,25 @@
                 }
                 ?>
                 
+                <?php
                 
-                
-                <button class="meGusta">Me gusta</button>
+                $idMensaje=$row[2];
+                $sql3="SELECT COUNT(mg.id) FROM me_gusta mg WHERE $idMensaje=mg.mensaje_id AND $idLogueado=mg.usuarios_id ";
+                $rs2=mysqli_query($conn, $sql3);
+               if ($row=mysqli_fetch_row($rs2)){
+                    if($row[0]==0){?>
+                        <form action="ponerMeGusta.php" method="post" class="form-mensaje">
+                        <input type="hidden"   name="idMensaje" value="<?php echo $idMensaje?>">
+                        <input type="submit" value="Me gusta" class="meGusta">
+                        </form>>
+                    <?php }
+                    elseif ($row[0]==1){?>
+                        <form action="quitarMeGusta.php" method="post" class="form-mensaje">
+                        <input type="hidden"   name="idMensaje" value="<?php echo $idMensaje?>">
+                        <input type="submit" value="Ya no me gusta" class="yaNoMeGusta">
+                        </form>
+                <?php }  
+                } ?>
              
                 
             <?php } ?>

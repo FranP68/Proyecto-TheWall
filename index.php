@@ -117,7 +117,7 @@
         <h3 class="men-box2-title">Ultimos mensajes</h3>
         
 
-          <?php $sql2 = " SELECT m.texto, m.imagen_contenido, u.nombre, u.apellido, u.nombreusuario, u.foto_contenido, s.usuarioseguido_id FROM mensaje m INNER JOIN siguiendo s ON (s.usuarioseguido_id = m.usuarios_id) INNER JOIN usuarios u ON (u.id = m.usuarios_id) WHERE ($idLogueado = s.usuarios_id) ORDER BY m.fechayhora DESC "; ?>
+          <?php $sql2 = " SELECT m.texto, m.imagen_contenido, u.nombre, u.apellido, u.nombreusuario, u.foto_contenido, s.usuarioseguido_id, m.id FROM mensaje m INNER JOIN siguiendo s ON (s.usuarioseguido_id = m.usuarios_id) INNER JOIN usuarios u ON (u.id = m.usuarios_id) WHERE ($idLogueado = s.usuarios_id) ORDER BY m.fechayhora DESC "; ?>
           <?php
           if ($re = mysqli_query($conn, $sql2)) {
 
@@ -155,16 +155,34 @@
                       <img src='data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> ' style="width: 300px;height: 190px;"><?php
                     }?>
                    
-                    </li> <button class="meGusta">Me gusta</button>
-                    
+                    </li> 
+                    <?php $idMensaje=$row[7];
+                          $sql3="SELECT COUNT(mg.id) FROM me_gusta mg WHERE $idMensaje=mg.mensaje_id AND $idLogueado=mg.usuarios_id ";
+                          if ($rs2=mysqli_query($conn, $sql3)){
+                          if ($row2=mysqli_fetch_row($rs2)){
+                            if($row2[0]==0){?>
+                              <form action="ponerMeGusta.php" method="post" class="form-mensaje">
+                              <input type="hidden"   name="idMensaje" value="<?php echo $idMensaje?>">
+                              <input type="submit" value="Me gusta" class="meGusta">
+                              </form>
+                    <?php }
+                            elseif ($row2[0]==1){?>
+                              <form action="quitarMeGusta.php" method="post" class="form-mensaje">
+                              <input type="hidden"   name="idMensaje" value="<?php echo $idMensaje?>">
+                              <input type="submit" value="Ya no me gusta" class="yaNoMeGusta">
+                              </form>
+                <?php }  
+                } }else {
+                  echo "Error: " . $sql3 . "<br>" . mysqli_error($conn);  }?>
+                  
                   </div> 
-                  <?php } else {
-                    echo "El mensaje esta en blanco";
-                     }
-                    }
-                    } else {
-                    echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
-                    } ?>
+            <?php } else {
+                  echo "El mensaje esta en blanco";
+                }
+              }
+          } else {
+              echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
+          } ?>
                  
     </ul>
 
