@@ -46,56 +46,24 @@
       <img class="logoW" src="static/img/logo2.jpg" />
       <a href="#" class="logo"> The Wall</a>
       <nav class="navegacion">
-        <ul>
+        <ul >
           <li>
-            <input type="text" id="buscador" placeholder="Buscar usuario" class="form-control"></li>
-          <button class="btn btn-info mb-1" id="botonBuscador"><i class="fa fa-search"></i></button>
+          <form  action="buscar.php" method="POST" >
+            
+              <input type="text" name="busqueda" id="buscador" placeholder="Buscar usuario" class="form-control">
+              </li>
+              <button type="submit" class="btn btn-info mb-1" id="botonBuscador"><i class="fa fa-search"></i></button>
+          </form>
+          
+          
+
+          
           <li id="resultado"></li>
           <li><a href="index.php">Inicio </a></li>
           <li><a href="miPerfil.php">Perfil </a></li>
           <li><a href="editarPerfil.php">Configuracion </a></li>
           <li><a href="cerrarSesion.php"> Cerrar Sesion </a></li>
         </ul>
-
-        <script>
-          const usuariosRegistrados = [{
-              nombre: 'Cristiano ronaldo'
-            },
-            {
-              nombre: 'Juan Roman Riquelme'
-            },
-            {
-              nombre: 'Leandro Atilio Romagnoli'
-            },
-            {
-              nombre: 'Lionel Messi'
-            }, //esto se sacaria de la base de datos
-          ]
-
-
-          const buscador = document.querySelector('#buscador');
-          const botonBuscador = document.querySelector('#botonBuscador');
-          const resultado = document.querySelector('#resultado')
-
-          const filtrar = () => {
-            //console.log(buscador.value);
-            resultado.innerHTML = '';
-
-            const texto = buscador.value.toLowerCase();
-
-            for (let usuarioRegistrado of usuariosRegistrados) {
-              let nombre = usuarioRegistrado.nombre.toLowerCase();
-              if (nombre.indexOf(texto) !== -1) {
-                resultado.innerHTML += ` <a href="miPerfil.php" class="logo"> ${usuarioRegistrado.nombre}</a>`
-              }
-            }
-            if (resultado.innerHTML === '') {
-              resultado.innerHTML += `<li>Usuario no encontrado...</li>`
-            }
-          }
-          botonBuscador.addEventListener('click', filtrar);
-          //buscador.addEventListener('keyup', filtrar)
-        </script>
       </nav>
     </div>
 
