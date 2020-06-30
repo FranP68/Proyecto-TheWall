@@ -174,8 +174,8 @@
                   <button type= "submit" class="dejarDeSeguir"  >Dejar de Seguir</button>
                 </form>
                 <div class="unMensaje">        
-                <li>
-                  <div>
+                  <li>
+                  
 
                     <?php
 
@@ -187,17 +187,17 @@
                       <img src='data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> ' style="width: 300px;height: 190px;"><?php
                     }?>
                    
-                </li> <button class="meGusta">Me gusta</button>
-              <?php } else {
-                echo "El mensaje esta en blanco";
-              }
-            }
-          } else {
-            echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
-          } ?>
-                  </div>
-        </div>
-    </div>
+                    </li> <button class="meGusta">Me gusta</button>
+                    
+                  </div> 
+                  <?php } else {
+                    echo "El mensaje esta en blanco";
+                     }
+                    }
+                    } else {
+                    echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
+                    } ?>
+                 
     </ul>
 
     </div>

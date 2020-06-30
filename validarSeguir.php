@@ -16,6 +16,9 @@
                     echo "Error: " . $sql1 . "<br>" . mysqli_error($conn);
                 }
             }
+            else{
+                echo "Usted no sigue al usuario @$usuarioSeguido ";
+            }
         }
     }
     else{
