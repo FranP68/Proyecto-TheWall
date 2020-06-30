@@ -124,7 +124,7 @@
             while ($row = mysqli_fetch_array($re)) {
               if (isset($row[0])) {
                 $bytesImagen = $row["foto_contenido"]; ?>
-                <form action="validarSeguir.php" method="POST" >
+                <form action="validarDejarDeSeguir.php" method="POST" >
                 <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " class="avatar2" alt="">
                 <?php
                 $nombreU = $row["nombre"];

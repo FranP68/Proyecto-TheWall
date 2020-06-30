@@ -81,19 +81,22 @@
                 $bytesImagen=$datos['foto_contenido'];
                 ?>
                 <li>
-                <form  action="validarSeguir.php" method="POST" >
+                <form  action="validarDejarDeSeguir.php" method="POST" >
                     <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " class="avatar2" alt=""> 
                     <a class="usuarioLink" type="button" href="perfilUsuario.php?idUsuario=<?php echo $idBuscado ?>"><?php echo "$nombre "; echo $apellido; ?></a>
                     <a class="usuarioLink" type="button" href="perfilUsuario.php?idUsuario=<?php echo $idBuscado ?>"><?php echo "($nombreUsuario)" ?></a>
-                    <button type= "submit" class="dejarDeSeguir"  >Dejar de Seguir</button>               
+                    <?php  echo $idBuscado?>               
                     <input type="hidden"   name="usuarioSeguido" value="<?php echo $nombreUsuario?>">
                     <input type="hidden"    name="US_id" value="<?php echo $idBuscado?>"> 
+                    <button type= "submit" class="dejarDeSeguir"  >Dejar de Seguir</button>
                     </li>
+                </form>
                     <?php
+
                             }
                                    
                         }?>
-                </form>
+                
 
                 
         
@@ -114,14 +117,16 @@
                         <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " class="avatar2" alt=""> 
                         <a class="usuarioLink" type="button" href="perfilUsuario.php?idUsuario=<?php echo $idBuscado ?>"><?php echo "$nombre "; echo $apellido; ?></a>
                         <a class="usuarioLink" type="button" href="perfilUsuario.php?idUsuario=<?php echo $idBuscado ?>"><?php echo "($nombreUsuario)" ?></a>
-                        <button type= "submit" class="seguir"  >Seguir</button>               
+                        <?php  echo $idBuscado?>         
                         <input type="hidden"   name="usuarioSeguido" value="<?php echo $nombreUsuario?>">
-                        <input type="hidden"    name="US_id" value="<?php echo $idBuscado?>"> 
+                        <input type="hidden"    name="US_id" value="<?php echo $idBuscado?>">
+                        <button type= "submit" class="seguir"  >Seguir</button>
                     </li>
+                </form>
                     <?php                    
                         }
                     }?>
-                    </form>
+                    
                     </ul>     
     </div>
     
