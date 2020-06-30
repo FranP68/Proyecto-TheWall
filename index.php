@@ -1,5 +1,24 @@
 <!doctype html>
 
+<!-- sirve para controlar que no se entre a una pagina sin antes haber iniciado sesion -->
+
+<?php
+  session_start();
+  error_reporting(0);
+  $s=$_SESSION['usuario'];
+  
+  if(($s == NULL) || ($s == "")){
+    echo "Debe loguearse primero <br> ";
+    ?>
+    <a href='login.php'> Ir a iniciar sesion</a>
+    <?php
+    die();
+  }
+  
+?>
+
+<!--  --------------------------                                          -->
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -35,7 +54,7 @@
           <li><a href="index.php">Inicio </a></li>
           <li><a href="miPerfil.php">Perfil </a></li>
           <li><a href="editarPerfil.php">Configuracion </a></li>
-          <li><a href="login.php"> Cerrar Sesion </a></li>
+          <li><a href="cerrarSesion.php"> Cerrar Sesion </a></li>
         </ul>
 
         <script>
@@ -85,7 +104,7 @@
   <body>
     <?php
     require "BD.php";
-    session_start();
+    
     $usuario = $_SESSION['usuario'];
     $nombre = $_SESSION['nombre'];
     $apellido = $_SESSION['apellido'];

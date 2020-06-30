@@ -133,8 +133,8 @@
                 
                   <input type="hidden"   name="usuarioSeguido" value="<?php echo $usuarioSeguido?>">
                   <input type="hidden"    name="US_id" value="<?php echo $usuarioSeguido_id?>"> 
-                  <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php"><?php echo "$nombreU "; echo $apellidoU; ?></a>
-                    <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php"> <?php echo "($usuarioSeguido)" ?></a></h3>
+                  <a class="usuarioLink" type="button" href="perfilUsuario.php?idUsuario=<?php echo $usuarioSeguido_id ?>"><?php echo "$nombreU "; echo $apellidoU; ?></a>
+                <a class="usuarioLink" type="button" href="perfilUsuario.php?idUsuario=<?php echo $usuarioSeguido_id ?>"><?php echo "($usuarioSeguido)" ?></a></h3>
                   <button type= "submit" class="dejarDeSeguir"  >Dejar de Seguir</button>
                 </form>
 
