@@ -50,7 +50,7 @@
           <li>
           <form  action="buscar.php" method="POST" >
             
-              <input type="text" name="busqueda" id="buscador" placeholder="Buscar usuario" class="form-control">
+              <input type="text" name="busqueda" id="buscador" placeholder="Buscar usuario" class="form-control" required>
               </li>
               <button type="submit" class="btn btn-info mb-1" id="botonBuscador"><i class="fa fa-search"></i></button>
           </form>

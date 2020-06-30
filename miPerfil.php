@@ -29,54 +29,18 @@
             <nav class="navegacion">
                 <ul>
                     <li>
-                        <input type="text" id="buscador" placeholder="Buscar usuario" class="form-control"></li>
-                    <button class="btn btn-info mb-1" id="botonBuscador"><i class="fa fa-search"></i></button>
+                    <form  action="buscar.php" method="POST" >
+            
+            <input type="text" name="busqueda" id="buscador" placeholder="Buscar usuario" class="form-control" required>
+            </li>
+            <button type="submit" class="btn btn-info mb-1" id="botonBuscador"><i class="fa fa-search"></i></button>
+        </form>
                     <li id="resultado"></li>
                     <li><a href="index.php">Inicio </a></li>
                     <li><a href="miPerfil.php">Perfil </a></li>
                     <li><a href="editarPerfil.php">Configuracion </a></li>
                     <li><a href="login.php"> Cerrar Sesion </a></li>
-                </ul>
-
-                <script>
-                    const usuariosRegistrados = [{
-                            nombre: 'Cristiano ronaldo'
-                        },
-                        {
-                            nombre: 'Juan Roman Riquelme'
-                        },
-                        {
-                            nombre: 'Leandro Atilio Romagnoli'
-                        },
-                        {
-                            nombre: 'Lionel Messi'
-                        }, //esto se sacaria de la base de datos
-                    ]
-
-
-                    const buscador = document.querySelector('#buscador');
-                    const botonBuscador = document.querySelector('#botonBuscador');
-                    const resultado = document.querySelector('#resultado')
-
-                    const filtrar = () => {
-                        //console.log(buscador.value);
-                        resultado.innerHTML = '';
-
-                        const texto = buscador.value.toLowerCase();
-
-                        for (let usuarioRegistrado of usuariosRegistrados) {
-                            let nombre = usuarioRegistrado.nombre.toLowerCase();
-                            if (nombre.indexOf(texto) !== -1) {
-                                resultado.innerHTML += ` <a href="miPerfil.php" class="logo"> ${usuarioRegistrado.nombre}</a>`
-                            }
-                        }
-                        if (resultado.innerHTML === '') {
-                            resultado.innerHTML += `<li>Usuario no encontrado...</li>`
-                        }
-                    }
-                    botonBuscador.addEventListener('click', filtrar);
-                    //buscador.addEventListener('keyup', filtrar)
-                </script>
+                </ul>               
             </nav>
         </div>
 
@@ -106,9 +70,16 @@
             <h3 class="nombre"><?php echo "$nombre " ; echo $apellido;?></h3>
             <h3 class="nombre"><?php echo $usuario?></h3>
         </div>
-        
+        <form action="nuevoMensaje.php" method="post" class="form-mensaje">
+                    <div>
+                        <textarea name="nuevoMensaje" placeholder="Escriba un nuevo mensaje" maxlength="140" minlength="1" style="width: 300px;height: 120px;"></textarea>
+                    </div>
+                    <input type="file" id="foto" class="botonImagen" onchange="validarImagen(this);" value="Seleccionar imagen">
+                    <input type="submit" class="botonMensaje" value="Enviar mensaje">
+
+                </form>
         <ul class="seguidores">
-            <h3 class="nombre">Seguidores:</h3>
+            <h3 class="nombre">Usuarios Seguidos</h3>
             
             <?php $sql2 = " SELECT u.nombre, u.apellido, u.nombreusuario, u.foto_contenido, s.usuarioseguido_id FROM siguiendo s INNER JOIN usuarios u ON (u.id = s.usuarioseguido_id) WHERE ($idLogueado = s.usuarios_id) "; ?>
           <?php
@@ -189,14 +160,7 @@
 
             
             ?>
-                <form action="nuevoMensaje.php" method="post" class="form-mensaje">
-                    <div>
-                        <textarea name="nuevoMensaje" placeholder="Escriba un nuevo mensaje" maxlength="140" minlength="1" style="width: 300px;height: 120px;"></textarea>
-                    </div>
-                    <input type="file" id="foto" class="botonImagen" onchange="validarImagen(this);" value="Seleccionar imagen">
-                    <input type="submit" class="botonMensaje" value="Enviar mensaje">
-
-                </form>
+                
             </li>
 
 

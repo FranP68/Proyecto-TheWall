@@ -74,9 +74,12 @@
             <nav class="navegacion">
                 <ul>
                     <li>
-                        <input type="text" id="buscador" placeholder="Buscar usuario" class="form-control"></li>
-                    <button class="btn btn-info mb-1" id="botonBuscador"><i class="fa fa-search"></i></button>
-                    <li id="resultado"></li>
+                    <form  action="buscar.php" method="POST" >
+            
+            <input type="text" name="busqueda" id="buscador" placeholder="Buscar usuario" class="form-control" required>
+            </li>
+            <button type="submit" class="btn btn-info mb-1" id="botonBuscador"><i class="fa fa-search"></i></button>
+        </form>
                     <li><a href="index.php">Inicio </a></li>
                     <li><a href="miPerfil.php">Perfil </a></li>
                     <li><a href="editarPerfil.php">Configuracion </a></li>
@@ -89,66 +92,46 @@
 
 
 
-    <div class="contenedor">
+    <div class="contenedorPerfilUsuario">
         <div class="fotoPerfil">
         <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " class="avatar" alt="">
         <h3 class="nombre"><?php echo "$nombreSeguido "; echo $apellidoSeguido; ?></h3>
         <h3 class="nombre"><?php echo $usuarioSeguido ?></h3>
         
-
-        <form  action="validarSeguir.php" method="POST" >
+        
+        
+        
+  
+        <?php 
+        $sql3= "SELECT COUNT(s.id) FROM siguiendo s WHERE $idLogueado=s.usuarios_id AND $idSeguido=s.usuarioseguido_id";
+        
+        $rs=mysqli_query($conn,$sql3);
+        while($row = mysqli_fetch_row($rs)){
+            if($row[0]==1){ ?>
+                <form  action="validarDejarDeSeguir.php" method="POST" >
                   <input type="hidden"   name="usuarioSeguido" value="<?php echo $usuarioSeguido?>">
                   <input type="hidden"    name="US_id" value="<?php echo $idSeguido?>"> 
                   
                   <button type= "submit" class="dejarDeSeguir"  >Dejar de Seguir</button>
+                </form>        
+            <?php }
+            elseif($row[0]==0){ ?>
+                <form  action="validarSeguir.php" method="POST" >
+                <input type="hidden"   name="usuarioSeguido" value="<?php echo $usuarioSeguido?>">
+                <input type="hidden"    name="US_id" value="<?php echo $idSeguido?>"> 
+                <button type= "submit" class="seguir"  >Seguir</button>
                 </form>
+            <?php }
+        }?>
+        
+    
+        
+        
 
+        
 
 
         </div>
-
-        <ul class="seguidores">
-            <h3 class="nombre">Seguidores:</h3>
-            
-            <?php $sql2 = " SELECT u.nombre, u.apellido, u.nombreusuario, u.foto_contenido, s.usuarioseguido_id FROM siguiendo s INNER JOIN usuarios u ON (u.id = s.usuarioseguido_id) WHERE ($idSeguido = s.usuarios_id) "; ?>
-          <?php
-          if ($re = mysqli_query($conn, $sql2)) {
-
-            while ($row = mysqli_fetch_array($re)) {
-                if (isset($row[0])) {
-                $bytesImagen = $row["foto_contenido"]; ?>
-                <form  action="validarSeguir.php" method="POST" >
-                    <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " class="avatar2" alt="">
-                <?php
-                $nombreU = $row["nombre"];
-                $apellidoU = $row["apellido"];
-                $usuarioSeguido = $row["nombreusuario"];
-                $usuarioSeguido_id = $row["usuarioseguido_id"];
-                ?>
-
-                
-                   
-                
-                
-                
-                  <input type="hidden"   name="usuarioSeguido" value="<?php echo $usuarioSeguido?>">
-                  <input type="hidden"    name="US_id" value="<?php echo $usuarioSeguido_id?>"> 
-
-                  <a class="usuarioLink" type="button" href="perfilUsuario.php?idUsuario=<?php echo $usuarioSeguido_id ?>"><?php echo "$nombreU "; echo $apellidoU; ?></a>
-                <a class="usuarioLink" type="button" href="perfilUsuario.php?idUsuario=<?php echo $usuarioSeguido_id ?>"><?php echo "($usuarioSeguido)" ?></a></h3>
-
-
-                  
-                  <button type= "submit" class="dejarDeSeguir"  >Dejar de Seguir</button>
-                </form>
-
-                <?php } ?>
-                
-                
-            
-                <?php }?>
-                </ul>
-                <?php } ?>
     </div>
 
     <div class="mensajes">

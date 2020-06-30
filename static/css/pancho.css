@@ -34,11 +34,23 @@
     background-color: red;
     color: #ffffff;
 }
+.contenedorPerfilUsuario{
+    
+    float: left;
+    margin-left: 20px;
+    margin-top: 50px;
+    padding: 20px;
+    width: 600px;
+    height: 400px;
+    background-color: rgb(15, 6, 19);
+    box-shadow: 0px 0px 3px #848484;
+    opacity: 0.95;
+}
 .contenedor{
     
     float: left;
     margin-left: 20px;
-    margin-top: 20px;
+    margin-top: 50px;
     padding: 20px;
     width: 600px;
     background-color: rgb(15, 6, 19);
@@ -49,7 +61,7 @@
 .mensajes{
     float: right;
     margin-right: 20px;
-    margin-top: 20px;
+    margin-top: 50px;
     padding: 20px;
     width: 600px;    
     background-color: rgb(15, 6, 19);

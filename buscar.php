@@ -40,7 +40,7 @@
                 <li>
           <form  action="buscar.php" method="POST" >
             
-              <input type="text" name="busqueda" id="buscador" placeholder="Buscar usuario" class="form-control">
+              <input type="text" name="busqueda" id="buscador" placeholder="Buscar usuario" class="form-control" required>
               </li>
               <button type="submit" class="btn btn-info mb-1" id="botonBuscador"><i class="fa fa-search"></i></button>
           </form>
@@ -85,7 +85,7 @@
                     <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " class="avatar2" alt=""> 
                     <a class="usuarioLink" type="button" href="perfilUsuario.php?idUsuario=<?php echo $idBuscado ?>"><?php echo "$nombre "; echo $apellido; ?></a>
                     <a class="usuarioLink" type="button" href="perfilUsuario.php?idUsuario=<?php echo $idBuscado ?>"><?php echo "($nombreUsuario)" ?></a>
-                    <?php  echo $idBuscado?>               
+              
                     <input type="hidden"   name="usuarioSeguido" value="<?php echo $nombreUsuario?>">
                     <input type="hidden"    name="US_id" value="<?php echo $idBuscado?>"> 
                     <button type= "submit" class="dejarDeSeguir"  >Dejar de Seguir</button>
@@ -117,7 +117,7 @@
                         <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " class="avatar2" alt=""> 
                         <a class="usuarioLink" type="button" href="perfilUsuario.php?idUsuario=<?php echo $idBuscado ?>"><?php echo "$nombre "; echo $apellido; ?></a>
                         <a class="usuarioLink" type="button" href="perfilUsuario.php?idUsuario=<?php echo $idBuscado ?>"><?php echo "($nombreUsuario)" ?></a>
-                        <?php  echo $idBuscado?>         
+                                
                         <input type="hidden"   name="usuarioSeguido" value="<?php echo $nombreUsuario?>">
                         <input type="hidden"    name="US_id" value="<?php echo $idBuscado?>">
                         <button type= "submit" class="seguir"  >Seguir</button>
