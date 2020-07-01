@@ -81,7 +81,7 @@
                 echo "$error_nombre";
             if (!$apellidoOk)
                 echo "$error_apellido";
-
+            header("Location:inicio.php"); //comentar esta linea si quiero ver las verificaciones de php
            // echo "El nombre de usuario ya esta en uso 11";
         }    
         }
@@ -102,7 +102,7 @@
         if(  empty($_FILES['img']['name'])){
             echo "El imagen no está definida"."<br>";
         }
-    
+        header("Location:inicio.php"); //comentar esta linea si quiero ver las verificaciones de php
     }
 
 ?>

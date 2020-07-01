@@ -1,5 +1,18 @@
 <!doctype html>
-
+<?php
+  session_start();
+  error_reporting(0);
+  $s=$_SESSION['usuario'];
+  
+  if(($s == NULL) || ($s == "")){
+    echo "Debe loguearse primero <br> ";
+    ?>
+    <a href='index.php'> Ir a iniciar sesion</a>
+    <?php
+    die();
+  }
+  
+?>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -139,7 +152,9 @@
                 <?php echo "<li>$row[0] </li> " ;
                 if(isset($row[1])){
                     $bytesImagen = $row["imagen_contenido"];?>
-                    <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> "><?php
+                    <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " width="500">
+                
+                        <?php
                 }
                 $idMensaje=$row[2];
                 $sqlMG="SELECT COUNT(mg.id) FROM me_gusta mg WHERE $idMensaje=mg.mensaje_id";

@@ -1,6 +1,19 @@
 <!doctype html>
 <html lang="es">
-
+<?php
+  session_start();
+  error_reporting(0);
+  $s=$_SESSION['usuario'];
+  
+  if(($s == NULL) || ($s == "")){
+    echo "Debe loguearse primero <br> ";
+    ?>
+    <a href='index.php'> Ir a iniciar sesion</a>
+    <?php
+    die();
+  }
+  
+?>
 
 <head>
     <title>The Wall</title>
