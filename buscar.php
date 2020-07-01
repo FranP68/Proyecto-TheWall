@@ -31,30 +31,30 @@
 
 <body>
 
-    <header class="header">
-        <div class="container logo-nav-container">
-            <img class="logoW" src="static/img/logo2.jpg" />
-            <a href="#" class="logo"> The Wall</a>
-            <nav class="navegacion">
-                <ul>
-                <li>
+<header class="header">
+    <div class="container logo-nav-container">
+      <img class="logoW" src="static/img/logo2.jpg" />
+      <a href="inicio.php" class="logo"> The Wall</a>
+      </div>
+      <nav class="navegacion">
+        <ul >
+          <li>
           <form  action="buscar.php" method="POST" >
             
               <input type="text" name="busqueda" id="buscador" placeholder="Buscar usuario" class="form-control" required>
               </li>
               <button type="submit" class="btn btn-info mb-1" id="botonBuscador"><i class="fa fa-search"></i></button>
           </form>
-                    <li id="resultado"></li>
-                    <li><a href="inicio.php">Inicio </a></li>
-                    <li><a href="miPerfil.php">Perfil </a></li>
-                    <li><a href="editarPerfil.php">Editar perfil</a></li>
-                    <li><a href="editarContraseña.php">Editar contraseña </a></li>
-                    <li><a href="index.php"> Cerrar Sesion </a></li>
-                </ul>
-            </nav>
-        </div>
+          <li><a href="inicio.php">Inicio </a></li>
+          <li><a href="miPerfil.php">Perfil </a></li>
+          <li><a href="editarPerfil.php">Editar perfil </a></li>
+          <li><a href="editarContraseña.php">Editar contraseña </a></li>
+          <li><a href="cerrarSesion.php"> Cerrar Sesion </a></li>
+        </ul>
+      </nav>
+    
 
-    </header>
+  </header>
 
     <?php
     require "BD.php";

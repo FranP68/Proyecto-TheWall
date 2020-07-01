@@ -20,6 +20,13 @@ z-index: 0;
     max-width: 850px;
     margin:0 auto;
  }
+ .logo-nav-container{
+     float: left;
+     display: inline-block;
+    width: 150px; 
+    margin-right: 50px;
+    margin-left: 60px;
+ }
 
  .header{
     background-color: rgb(175, 54, 6);
@@ -54,6 +61,7 @@ list-style: none;
 
  .navegacion ul li{
     display: inline-block;
+    margin-top: 10px;
  }
      .navegacion ul li a {
          display: block;

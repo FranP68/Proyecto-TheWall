@@ -23,7 +23,7 @@
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="static/css/pancho.css">
   <link rel="stylesheet" type="text/css" href="static/css/estilos.css">
-  <title>Hello, world!</title>
+  <title>The Wall</title>
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -51,26 +51,28 @@
     <header class="header">
     <div class="container logo-nav-container">
       <img class="logoW" src="static/img/logo2.jpg" />
-      <a href="#" class="logo"> The Wall</a>
+      <a href="inicio.php" class="logo"> The Wall</a>
+      </div>
       <nav class="navegacion">
-        <ul>
+        <ul >
           <li>
           <form  action="buscar.php" method="POST" >
             
-            <input type="text" name="busqueda" id="buscador" placeholder="Buscar usuario" class="form-control" required>
-            </li>
-            <button type="submit" class="btn btn-info mb-1" id="botonBuscador"><i class="fa fa-search"></i></button>
-        </form>
+              <input type="text" name="busqueda" id="buscador" placeholder="Buscar usuario" class="form-control" required>
+              </li>
+              <button type="submit" class="btn btn-info mb-1" id="botonBuscador"><i class="fa fa-search"></i></button>
+          </form>
           <li><a href="inicio.php">Inicio </a></li>
           <li><a href="miPerfil.php">Perfil </a></li>
-          <li><a href="editarPerfil.php">Editar perfil</a></li>
+          <li><a href="editarPerfil.php">Editar perfil </a></li>
           <li><a href="editarContraseña.php">Editar contraseña </a></li>
-          <li><a href="index.php"> Cerrar Sesion </a></li>
+          <li><a href="cerrarSesion.php"> Cerrar Sesion </a></li>
         </ul>
-
       </nav>
-    </div>
-      </header>
+    
+
+  </header>
+
 
       <main class="main">
     <div class="modal-dialog text-center">

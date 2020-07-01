@@ -31,7 +31,7 @@
     <header class="header">
         <div class="container logo-nav-container">
           <img class="logoW" src="static/img/logo2.jpg" />
-          <a href="#" class="logo"> The Wall</a>
+          <a href="index.php" class="logo"> The Wall</a>
           <nav class="navegacion">
             <ul>
          
@@ -71,12 +71,11 @@
         </div>
             <div class="form-group" id="user-group">
                 <span class="nuestroinput">
-                    <input type="file" name="img"  onchange="validarImagen(this);" placeholder="Seleccione foto de perfil" ><!-- class="nuestroinput" id="nuestroinput"-->
+                    <input type="file" name="img"  onchange="validarImagen(this);" value="Seleccione foto de perfil" >
+
                 </span>
             
-                <label for="nuestroinput">
-                    <span class="nuestroinput">Seleccione foto de perfil</span>
-                </label>
+                
         </div>
             
         </div>

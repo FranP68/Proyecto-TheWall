@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="static/css/pancho.css">
   <link rel="stylesheet" type="text/css" href="static/css/estilos.css">
-  <title>Hello, world!</title>
+  <title>The Wall</title>
 
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,7 +44,8 @@
   <header class="header">
     <div class="container logo-nav-container">
       <img class="logoW" src="static/img/logo2.jpg" />
-      <a href="#" class="logo"> The Wall</a>
+      <a href="inicio.php" class="logo"> The Wall</a>
+      </div>
       <nav class="navegacion">
         <ul >
           <li>
@@ -61,7 +62,7 @@
           <li><a href="cerrarSesion.php"> Cerrar Sesion </a></li>
         </ul>
       </nav>
-    </div>
+    
 
   </header>
 
