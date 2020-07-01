@@ -1,6 +1,5 @@
 <?php 
-class Verificar{
-
+class Verificar extends Exception{
 
     public static function validar_clave($clave, $clave2, &$error_clave){
         if($clave == $clave2){
@@ -94,6 +93,7 @@ class Verificar{
 
 
         public static function obtener_claveUsuario($nombreUsuario, $clave, &$error_coincideClaveUsuario){
+            try{
             require 'BD.php';
             $sql= "SELECT contrasenia FROM usuarios  WHERE (nombreusuario = '$nombreUsuario') ";
             $result = mysqli_query($conn, $sql);
@@ -103,10 +103,13 @@ class Verificar{
                     $error_coincideClaveUsuario = "ingreso correctamente"; 
                     return true;
                 }
-            else{
-                $error_coincideClaveUsuario = "La clave es erronea" ."<br>";
-                return false;
+                else{
+                    throw new Exception("La clave es erronea" ."<br>");
+                    return false;
+                }
             }
+            }catch(Exception $e){
+                echo $e;
             }
         }
         

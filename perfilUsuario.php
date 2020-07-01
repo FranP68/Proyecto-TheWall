@@ -164,7 +164,7 @@
                 <?php echo "<li>$row[0] </li> " ;
                 if(isset($row[1])){
                     $bytesImagen = $row["imagen_contenido"];?>
-                    <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> "><?php
+                    <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " width="500"><?php
                 }
                 ?>
                 <?php $idMensaje=$row[2];

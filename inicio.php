@@ -113,7 +113,7 @@
         <h3 class="men-box2-title">Ultimos mensajes</h3>
         
 
-          <?php $sql2 = " SELECT m.texto, m.imagen_contenido, u.nombre, u.apellido, u.nombreusuario, u.foto_contenido, s.usuarioseguido_id, m.id,m.usuarios_id FROM mensaje m INNER JOIN siguiendo s ON (s.usuarioseguido_id = m.usuarios_id) INNER JOIN usuarios u ON (u.id = m.usuarios_id) WHERE ($idLogueado = s.usuarios_id) OR (m.usuarios_id=$idLogueado) ORDER BY m.fechayhora DESC "; ?>
+          <?php $sql2 = " SELECT m.texto, m.imagen_contenido, u.nombre, u.apellido, u.nombreusuario, u.foto_contenido, s.usuarioseguido_id, m.id,m.usuarios_id FROM mensaje m LEFT JOIN siguiendo s ON (s.usuarioseguido_id = m.usuarios_id) INNER JOIN usuarios u ON (u.id = m.usuarios_id) WHERE (($idLogueado = s.usuarios_id) OR ($idLogueado = u.id)) ORDER BY m.fechayhora DESC "; ?>
           <?php
           if ($re = mysqli_query($conn, $sql2)) {
 
