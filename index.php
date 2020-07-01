@@ -117,14 +117,16 @@
         <h3 class="men-box2-title">Ultimos mensajes</h3>
         
 
-          <?php $sql2 = " SELECT m.texto, m.imagen_contenido, u.nombre, u.apellido, u.nombreusuario, u.foto_contenido, s.usuarioseguido_id, m.id FROM mensaje m INNER JOIN siguiendo s ON (s.usuarioseguido_id = m.usuarios_id) INNER JOIN usuarios u ON (u.id = m.usuarios_id) WHERE ($idLogueado = s.usuarios_id) ORDER BY m.fechayhora DESC "; ?>
+          <?php $sql2 = " SELECT m.texto, m.imagen_contenido, u.nombre, u.apellido, u.nombreusuario, u.foto_contenido, s.usuarioseguido_id, m.id,m.usuarios_id FROM mensaje m INNER JOIN siguiendo s ON (s.usuarioseguido_id = m.usuarios_id) INNER JOIN usuarios u ON (u.id = m.usuarios_id) WHERE ($idLogueado = s.usuarios_id) OR (m.usuarios_id=$idLogueado) ORDER BY m.fechayhora DESC "; ?>
           <?php
           if ($re = mysqli_query($conn, $sql2)) {
 
             while ($row = mysqli_fetch_array($re)) {
               if (isset($row[0])) {
                 $bytesImagen = $row["foto_contenido"]; ?>
+                
                 <form action="validarDejarDeSeguir.php" method="POST" >
+                 
                 <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " class="avatar2" alt="">
                 <?php
                 $nombreU = $row["nombre"];
@@ -132,14 +134,23 @@
                 $usuarioSeguido = $row["nombreusuario"];
                 $usuarioSeguido_id=$row[6];
                 ?>
-
-                <a class="usuarioLink" type="button" href="perfilUsuario.php?idUsuario=<?php echo $usuarioSeguido_id ?>"><?php echo "$nombreU "; echo $apellidoU; ?></a>
-                <a class="usuarioLink" type="button" href="perfilUsuario.php?idUsuario=<?php echo $usuarioSeguido_id ?>"><?php echo "($usuarioSeguido)" ?></a></h3>
-                
+                <?php $idMensajeDuenio=$row['usuarios_id'];
+                if ($idMensajeDuenio!=$idLogueado){ ?>             
+                        
+                        <a class="usuarioLink" type="button" href="perfilUsuario.php?idUsuario=<?php echo $idMensajeDuenio ?>"><?php echo "$nombreU "; echo $apellidoU; ?></a>
+                        <a class="usuarioLink" type="button" href="perfilUsuario.php?idUsuario=<?php echo $idMensajeDuenio ?>"><?php echo "($usuarioSeguido)" ?></a>
+                    <?php  } else{ ?>
+                        
+                        <a class="usuarioLink" type="button" href="miPerfil.php"><?php echo "$nombreU "; echo $apellidoU; ?></a>
+                        <a class="usuarioLink" type="button" href="miPerfil.php"><?php echo "($usuarioSeguido)" ?></a>
+                    <?php }?>
                 
                   <input type="hidden"   name="usuarioSeguido" value="<?php echo $usuarioSeguido?>">
                   <input type="hidden"    name="US_id" value="<?php echo $usuarioSeguido_id?>">
-                  <button type= "submit" class="dejarDeSeguir"  >Dejar de Seguir</button>
+                  <?php 
+                  if ($idMensajeDuenio!=$idLogueado){ ?> 
+                    <button type= "submit" class="dejarDeSeguir"  >Dejar de Seguir</button>
+                  <?php } ?> 
                 </form>
                 <div class="unMensaje">        
                   <li>

@@ -117,16 +117,6 @@
                 </ul>
             
             <?php } ?>
-
-                <!-- <li> <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php">Cristiano Ronaldo</a> <a class="usuarioLink" type="button" href="perfilUsuarioCristiano.php"> (CR7)</a></h3>
-                <button class="dejarDeSeguir">Dejar de Seguir</button>
-            </li> -->
-            
-
-
-
-      
-
         
     </div>
 
@@ -147,27 +137,35 @@
                     $bytesImagen = $row["imagen_contenido"];?>
                     <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> "><?php
                 }
-                
                 $idMensaje=$row[2];
+                $sqlMG="SELECT COUNT(mg.id) FROM me_gusta mg WHERE $idMensaje=mg.mensaje_id";
+                $rsMG=mysqli_query($conn, $sqlMG);
+                if ($rowMG=mysqli_fetch_array($rsMG)){
+                    $cantMG=$rowMG[0];
+                }
+                
                 $sql3="SELECT COUNT(mg.id) FROM me_gusta mg WHERE $idMensaje=mg.mensaje_id AND $idLogueado=mg.usuarios_id ";
                 $rs2=mysqli_query($conn, $sql3);
-               if ($row=mysqli_fetch_row($rs2)){
-                    if($row[0]==0){?>
+               if ($row5=mysqli_fetch_row($rs2)){
+                    if($row5[0]==0){?>
                         <form action="ponerMeGusta.php" method="post" class="form-mensaje">
                         <input type="hidden"   name="idMensaje" value="<?php echo $idMensaje?>">
-                        <input type="submit" value="Me gusta" class="meGusta">
-                        </form>>
+                        <input type="submit" value="Me gusta (<?php echo $cantMG ?>)" class="meGusta">
+                        </form>
                     <?php }
-                    elseif ($row[0]==1){?>
+                    elseif ($row5[0]==1){?>
                         <form action="quitarMeGusta.php" method="post" class="form-mensaje">
                         <input type="hidden"   name="idMensaje" value="<?php echo $idMensaje?>">
-                        <input type="submit" value="Ya no me gusta" class="yaNoMeGusta">
+                        <input type="submit" value="Ya no me gusta(<?php echo $cantMG ?>)" class="yaNoMeGusta">
                         </form>
                 <?php }  
                 } ?>
                 
+                <form action="eliminarMensaje.php" method="post" class="form-mensaje">
+                <input type="hidden"   name="idMensaje" value="<?php echo $idMensaje?>">
+                <input type="submit" value="Eliminar" class="eliminar">
+                </form>
                 
-                <button class="eliminar">Eliminar</button>
                 
             <?php } ?>
             <?php
