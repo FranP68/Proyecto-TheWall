@@ -36,7 +36,7 @@ if ((!empty($_POST['usuario']))  && (!empty($_POST['clave']))) {
                 $id = trim($row[0]);
             }
             $_SESSION['id'] = $id;
-            header("Location:index.php");
+            header("Location:inicio.php");
         } else {
             echo "$error_coincideClaveUsuario";
 

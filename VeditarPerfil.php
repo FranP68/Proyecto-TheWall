@@ -11,10 +11,7 @@
         $apellido = $_POST['apellidos'];
         $nombre = $_POST['nombre'];
         $email =  $_POST['correo'];
-        $imagenTmp = $_FILES['img']['tmp_name'];
-        $imagenType = $_FILES['img']['type'];
-        $bytesImagen = addslashes(file_get_contents($imagenTmp));
-        $tipo=substr($imagenType, 6);
+        
 
        
         // verificar nombre
@@ -49,23 +46,27 @@
                 $sql1 = "UPDATE usuarios SET nombre='$nombre', apellido='$apellido' , email='$email'  WHERE nombreusuario='$usuario' ";
             }
             elseif(!empty($_FILES['img']['name']) ){
+                
                 $imagenTmp = $_FILES['img']['tmp_name'];
                 $imagenType = $_FILES['img']['type'];
                 $bytesImagen = addslashes(file_get_contents($imagenTmp));
                 $tipo=substr($imagenType, 6);
-
-
-                $sql1 = "UPDATE usuarios SET nombre='$nombre', apellido='$apellido' , email='$email', foto_contenido='$bytesImagen', foto_tipo='$tipo'  WHERE nombreusuario='$usuario' ";
+                if (Verificar::validar_foto($tipo,$error_foto)){             
+                    $sql1 = "UPDATE usuarios SET nombre='$nombre', apellido='$apellido' , email='$email', foto_contenido='$bytesImagen', foto_tipo='$tipo'  WHERE nombreusuario='$usuario' ";
+                }
+                else{
+                    $sql1 = "UPDATE usuarios SET nombre='$nombre', apellido='$apellido' , email='$email'  WHERE nombreusuario='$usuario' ";
+                    echo $error_foto;
+                }
             }
             
             if (mysqli_query($conn, $sql1)) {
                 echo "Actualizar registro.";
-                session_start();
                 $_SESSION['nombre'] = $nombre;
                 $_SESSION['apellido'] =$apellido; 
                 $_SESSION['correo'] = $email; 
         
-                header("Location:index.php");
+                header("Location:inicio.php");
                 
             }
             else{

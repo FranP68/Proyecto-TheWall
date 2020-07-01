@@ -80,10 +80,10 @@
             </li>
             <button type="submit" class="btn btn-info mb-1" id="botonBuscador"><i class="fa fa-search"></i></button>
         </form>
-                    <li><a href="index.php">Inicio </a></li>
+                    <li><a href="inicio.php">Inicio </a></li>
                     <li><a href="miPerfil.php">Perfil </a></li>
                     <li><a href="editarPerfil.php">Configuracion </a></li>
-                    <li><a href="login.php"> Cerrar Sesion </a></li>
+                    <li><a href="index.php"> Cerrar Sesion </a></li>
                 </ul>
             </nav>
         </div>
@@ -153,7 +153,12 @@
                     <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> "><?php
                 }
                 ?>
-                
+                <?php $idMensaje=$row[2];
+                $sqlMG="SELECT COUNT(mg.id) FROM me_gusta mg WHERE $idMensaje=mg.mensaje_id";
+                $rsMG=mysqli_query($conn, $sqlMG);
+                if ($rowMG=mysqli_fetch_array($rsMG)){
+                    $cantMG=$rowMG[0];
+                }?>
                 <?php
                 
                 $idMensaje=$row[2];
@@ -163,13 +168,13 @@
                     if($row[0]==0){?>
                         <form action="ponerMeGusta.php" method="post" class="form-mensaje">
                         <input type="hidden"   name="idMensaje" value="<?php echo $idMensaje?>">
-                        <input type="submit" value="Me gusta" class="meGusta">
+                        <input type="submit" value="Me gusta (<?php echo $cantMG ?>)" class="meGusta">
                         </form>>
                     <?php }
                     elseif ($row[0]==1){?>
                         <form action="quitarMeGusta.php" method="post" class="form-mensaje">
                         <input type="hidden"   name="idMensaje" value="<?php echo $idMensaje?>">
-                        <input type="submit" value="Ya no me gusta" class="yaNoMeGusta">
+                        <input type="submit" value="Ya no me gusta(<?php echo $cantMG ?>)" class="yaNoMeGusta">
                         </form>
                 <?php }  
                 } ?>

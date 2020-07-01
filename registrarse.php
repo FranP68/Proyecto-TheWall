@@ -83,7 +83,7 @@
         <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Registrate</button>
     </form>
     <div class="col-12">
-      <p>¿Ya tienes una cuenta? <a class="link" href="login.php">Iniciar Sesion </a>  </p>
+      <p>¿Ya tienes una cuenta? <a class="link" href="index.php">Iniciar Sesion </a>  </p>
     </div>
 </main>
     

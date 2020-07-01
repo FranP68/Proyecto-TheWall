@@ -42,8 +42,9 @@
         // ---------------------
         $usuarioDuplicadoOk = Verificar::usuario_duplicado($nombreUsuario,$error_usuarioDuplicado);
 
+        $fotoOk=Verificar::validar_foto($tipo,$error_foto);
 
-        if($usuarioDuplicadoOk && $nombreOk && $claveOk && $apellidoOk && $emailOk && $emailDuplicadoOk ){
+        if($usuarioDuplicadoOk && $nombreOk && $claveOk && $apellidoOk && $emailOk && $emailDuplicadoOk && $fotoOk){
             //agrego nuevo usuario a la base de datos
             $sql1 = "INSERT INTO usuarios(nombre,apellido, email,foto_tipo, nombreUsuario,foto_contenido, contrasenia) VALUES ('$nombre','$apellido','$email','$tipo','$nombreUsuario','$bytesImagen', '$clave') ";
             if (mysqli_query($conn, $sql1)) {
@@ -59,15 +60,8 @@
                     $id = trim($row[0]);
                 }
                 $_SESSION['id']=$id;
-                /* $rs = mysqli_query ($conn, " SELECT MAX(id_tabla) AS id FROM tabla " );
-                if ($row = mysqli_fetch_row($rs)) {
-                    $id = trim($row[0]);
-                    
-                }
-                
-                $_SESSION['id']=$id; */
 
-                header("Location:index.php");
+                header("Location:inicio.php");
                 
             }
             else{
@@ -85,7 +79,9 @@
             if (!$usuarioDuplicadoOk)
                 echo "$error_usuarioDuplicado";
             if (!$claveOk)
-                echo "$error_clave";    
+                echo "$error_clave";  
+            if (!$fotoOk)
+                echo "$error_foto";   
 
            // echo "El nombre de usuario ya esta en uso 11";
         }    
@@ -116,18 +112,6 @@
         }
 
     }
-    //probando foto
-    /*
-    $sql = "SELECT * FROM usuarios";
-    $stm = $conn->query($sql);
-    
-    while ($datos = $stm->fetch_object()){ 
-        
-        $f = base64_encode($datos->foto_contenido);//descomentar para probar?>
-        <p> <img width="30px" src="data:image/jpg; base64, <?php echo  $f ?>"  ></p>
-    
-    <?php } ?>
-*/
 ?>    
 
 

@@ -69,7 +69,7 @@ class Verificar{
 
 
     public static function validar_nombre($nombre,&$error_nombre){
-    $expresionSoloLetras = " /^[a-z]+$/i ";
+    $expresionSoloLetras = " /^[a-zA-Z ]+$/i ";
     if (!preg_match($expresionSoloLetras, $nombre)) {
         $error_nombre = "El nombre deben ser solo letras " ."<br>";
         return false;
@@ -81,7 +81,7 @@ class Verificar{
     }
 
     public static function validar_apellido($apellido,&$error_apellido){
-        $expresionSoloLetras = " /^[a-z]+$/i ";
+        $expresionSoloLetras = " /^[a-zA-Z ]+$/i ";
         if (!preg_match($expresionSoloLetras, $apellido)) {
             $error_apellido = "El apellido deben ser solo letras " ."<br>";
             return false;
@@ -119,9 +119,15 @@ class Verificar{
                 $error_email = "El correo es correcto" ."<br>"; 
                 return true;
             }
-    
-    
-    
+        }
+        public static function validar_foto($foto_tipo, &$error_foto){
+            if ($foto_tipo=="png" || $foto_tipo=="jpg" || $foto_tipo=="jpeg" || $foto_tipo=="PNG" || $foto_tipo=="JPG" || $foto_tipo=="JPEG"){
+                return true;
+            }
+            else{
+                $error_foto = "El formato es incorrecto. Se aceptan .pgn, .jgp, .jpeg" ."<br>"; 
+                return false;
+            }
         }
     }    
 
