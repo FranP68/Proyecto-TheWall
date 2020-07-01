@@ -35,10 +35,10 @@
             </li>
             <button type="submit" class="btn btn-info mb-1" id="botonBuscador"><i class="fa fa-search"></i></button>
         </form>
-                    <li id="resultado"></li>
                     <li><a href="inicio.php">Inicio </a></li>
                     <li><a href="miPerfil.php">Perfil </a></li>
-                    <li><a href="editarPerfil.php">Configuracion </a></li>
+                    <li><a href="editarPerfil.php">Editar perfil</a></li>
+                    <li><a href="editarContraseña.php">Editar contraseña </a></li>
                     <li><a href="index.php"> Cerrar Sesion </a></li>
                 </ul>               
             </nav>
@@ -70,14 +70,18 @@
             <h3 class="nombre"><?php echo "$nombre " ; echo $apellido;?></h3>
             <h3 class="nombre"><?php echo $usuario?></h3>
         </div>
-        <form action="nuevoMensaje.php" method="post" class="form-mensaje">
-                    <div>
-                        <textarea name="nuevoMensaje" placeholder="Escriba un nuevo mensaje" maxlength="140" minlength="1" style="width: 300px;height: 120px;"></textarea>
-                    </div>
-                    <input type="file" id="foto" class="botonImagen" onchange="validarImagen(this);" value="Seleccionar imagen">
-                    <input type="submit" class="botonMensaje" value="Enviar mensaje">
+        
 
-                </form>
+        <form action="nuevoMensaje.php" method="post" class="form-mensaje" enctype="multipart/form-data" onsubmit="return validarMensaje();">
+          <div>
+            <textarea name="nuevoMensaje" id="mensaje" placeholder="Escriba un nuevo mensaje" maxlength="140" minlength="1" style="width: 230px;height: 120px;"></textarea>
+          </div>
+          <input type="file" name="img" class="botonImagen" value="Seleccionar imagen" onchange="validarImagen(this);">
+          <input type="submit" class="botonMensaje" value="Enviar mensaje">
+
+        </form>
+
+
         <ul class="seguidores">
             <h3 class="nombre">Usuarios Seguidos</h3>
             

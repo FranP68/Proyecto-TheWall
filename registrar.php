@@ -54,6 +54,8 @@
                 $_SESSION['nombre']=$nombre;
                 $_SESSION['apellido']=$apellido;
                 $_SESSION['email'] = $email;
+                $_SESSION['clave'] = $clave;
+
                 //obtengo id de usuario
                 $rs=mysqli_query($conn, "SELECT id FROM usuarios WHERE nombreusuario='$nombreUsuario' ");
                 if ($row = mysqli_fetch_row($rs)) {
@@ -68,6 +70,7 @@
                 echo "Error: " . $sql1 . "<br>" . mysqli_error($conn);
             }
         }else{
+            
             if (!$nombreOk)
                 echo "$error_nombre";
             if (!$apellidoOk)
@@ -82,7 +85,7 @@
                 echo "$error_clave";  
             if (!$fotoOk)
                 echo "$error_foto";   
-
+            header("Location:registrarse.php"); //comentar si quiero ver los informes de php
            // echo "El nombre de usuario ya esta en uso 11";
         }    
     }
@@ -110,7 +113,7 @@
         if(  empty($_FILES['img']['name'])){
             echo "El imagen no está definida"."<br>";
         }
-
+        header("Location:registrarse.php"); //comentar si quiero ver los informes de php
     }
 ?>    
 

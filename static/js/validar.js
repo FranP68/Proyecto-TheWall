@@ -1,5 +1,5 @@
 function validar() {
-    var nombre, apellidos, correo, usuario, clave, clave2, expresionMail, expresionClave, expresionNum, expresionEspecial;
+    var nombre, apellidos, correo, usuario, clave, clave2, expresionMail, expresionNum, expresionEspecial;
     nombre = document.getElementById("nombre").value;
     apellidos = document.getElementById("apellidos").value;
     correo = document.getElementById("correo").value;
@@ -49,6 +49,8 @@ function validar() {
     }
 
 }
+
+
 
 
 function validar_clave(contrasenna)
@@ -114,28 +116,24 @@ function iguales(p1,p2){
     
         if (!window.FileReader) {
             alert('El navegador no soporta la lectura de archivos');
-            return;
+            img.src = URL.createObjectURL(null);  
+            return false;
         }
     
         if (!(/\.(jpg|png|gif)$/i).test(uploadFile.name)) {
-            alert('El archivo a adjuntar no es una imagen');
+            alert('El archivo a adjuntar no es una imagen'); 
+            img.src = URL.createObjectURL(null);  
+            window.locationf = "www.google.com.ar";
+            return false;
         }
-        /*else {
-            var img = new Image();
-            img.onload = function () {
-                if (this.width.toFixed(0) != 1000 && this.height.toFixed(0) != 1000) {
-                   alert('Las medidas deben ser: 1000 * 1000');
-                }
-                else if (uploadFile.size > 200000)
-                {
-                   alert('El peso de la imagen no puede exceder los 200kb')
-                }
-                else {
-                   alert('Imagen correcta :)')                
-                }
-            };*/
-            img.src = URL.createObjectURL(uploadFile);
-        //}                 
+        else{
+                img.src = URL.createObjectURL(uploadFile);
+
+        }
+            
+        
+            
+                   
     }
 
     function validarMensaje(){
@@ -151,3 +149,16 @@ function iguales(p1,p2){
         }
         return true;
     }
+
+    function validarIndex(){ 
+            var usuario, clave;
+
+            usuario = document.getElementById("usuario").value;
+
+            clave = document.getElementById("clave").value;
+
+            if(usuario == ""  || clave == ""){
+                alert("Todos los campos son requeridos");
+                return false;
+            }
+        }

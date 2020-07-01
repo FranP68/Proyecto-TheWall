@@ -1,4 +1,5 @@
 <?php
+include "claseVerificar.php";
 require 'BD.php';
 session_start();
 if  (   (!empty($_POST['nuevoMensaje']))     )  {
@@ -16,7 +17,16 @@ if  (   (!empty($_POST['nuevoMensaje']))     )  {
         $imagenType = $_FILES['img']['type'];
         $bytesImagen = addslashes(file_get_contents($imagenTmp));
         $tipo = substr($imagenType, 6);
-        $sql1 = "INSERT INTO mensaje(texto, imagen_contenido, imagen_tipo, usuarios_id, fechayhora) VALUES ('$texto', '$bytesImagen' , '$tipo' , '$idUsuario' , '$hoy') ";    
+
+        if((Verificar::validar_foto($tipo,$error_foto))){
+             $sql1 = "INSERT INTO mensaje(texto, imagen_contenido, imagen_tipo, usuarios_id, fechayhora) VALUES ('$texto', '$bytesImagen' , '$tipo' , '$idUsuario' , '$hoy') ";    
+        }
+        else{
+            header('Location:' . getenv('HTTP_REFERER')); //comentar si quiero ver la verificacion
+            echo $error_foto;
+        }
+
+       
     }
     else{
         $sql1 = "INSERT INTO mensaje(texto, usuarios_id, fechayhora) VALUES ('$texto', '$idUsuario' , '$hoy') ";

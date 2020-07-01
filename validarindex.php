@@ -9,6 +9,7 @@ if ((!empty($_POST['usuario']))  && (!empty($_POST['clave']))) {
 
     if (Verificar::usuario_duplicado($nombreUsuario, $error_usuarioDuplicado)) {
         echo "El usuario no existe";
+        header("Location:index.php"); //comentar si se quiere ver la validacion
     } else {
         if (Verificar::obtener_claveUsuario($nombreUsuario, $clave, $error_coincideClaveUsuario)) {
             session_start();
@@ -30,6 +31,7 @@ if ((!empty($_POST['usuario']))  && (!empty($_POST['clave']))) {
             $_SESSION['nombre'] = $nombre;
             $_SESSION['apellido'] = $apellido;
             $_SESSION['email'] = $email;
+            $_SESSION['clave'] = $clave;
             //obtengo id de usuario
             $rs = mysqli_query($conn, "SELECT id FROM usuarios WHERE nombreusuario='$nombreUsuario' ");
             if ($row = mysqli_fetch_row($rs)) {
@@ -39,9 +41,11 @@ if ((!empty($_POST['usuario']))  && (!empty($_POST['clave']))) {
             header("Location:inicio.php");
         } else {
             echo "$error_coincideClaveUsuario";
+            header("Location:index.php"); //comentar si quiero ver la validacion de php
 
         }
     }
 } else {
-    echo "sale por el emty";
+    header("Location:index.php"); //comentar si quiero ver la validacion de php
+    echo "sale por el emty"; 
 }

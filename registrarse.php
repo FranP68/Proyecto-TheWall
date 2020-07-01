@@ -21,7 +21,7 @@
       
         <!-- Nuestro css-->
         <link rel="stylesheet" type="text/css"  href="static/css/estilos.css">
-        <!-- <script src="static/js/validar.js"></script> -->
+        <script src="static/js/validar.js"></script>
       
       </head>
       

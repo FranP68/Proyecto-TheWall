@@ -54,14 +54,10 @@
               </li>
               <button type="submit" class="btn btn-info mb-1" id="botonBuscador"><i class="fa fa-search"></i></button>
           </form>
-          
-          
-
-          
-          <li id="resultado"></li>
           <li><a href="inicio.php">Inicio </a></li>
           <li><a href="miPerfil.php">Perfil </a></li>
-          <li><a href="editarPerfil.php">Configuracion </a></li>
+          <li><a href="editarPerfil.php">Editar perfil </a></li>
+          <li><a href="editarContraseña.php">Editar contraseña </a></li>
           <li><a href="cerrarSesion.php"> Cerrar Sesion </a></li>
         </ul>
       </nav>

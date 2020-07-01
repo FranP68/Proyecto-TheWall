@@ -19,7 +19,8 @@
 
   <!-- Nuestro css-->
   <link rel="stylesheet" type="text/css"  href="static/css/estilos.css">
-
+  
+  <script src="static/js/validar.js"></script>
 
 </head>
 
@@ -49,12 +50,12 @@
         <div class="col-18 user-img">
           <img src="static/img/avatar.png" />
         </div>
-        <form class="col-12" action="validarindex.php" method="POST">
+        <form class="col-12" action="validarindex.php" method="POST" onsubmit="return validarIndex();">
           <div class="form-group" id="user-group">
-          <input type="text" name="usuario" class="form-control" placeholder="Nombre de Usuario">  
+          <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Nombre de Usuario">  
           </div>
           <div class="form-group" id="contraseña-group">
-            <input type="password" name="clave" class="form-control" placeholder="Contraseña">  
+            <input type="password" id="clave" name="clave" class="form-control" placeholder="Contraseña">  
   
             </div>
             <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt" ></i>  Iniciar sesion</button>

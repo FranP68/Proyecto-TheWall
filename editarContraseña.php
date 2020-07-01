@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-   <script src="static/js/validarEdit.js"></script>
+  <script src="static/js/validarEditarClave.js"></script>
 </head>
 
 
@@ -26,14 +26,13 @@
   
   <body>
     
-  <?php
-      require "BD.php";
-      session_start();
-      $usuario = $_SESSION['usuario'];
-      $nombre = $_SESSION['nombre'];
-      $apellido = $_SESSION['apellido'];
-      $email = $_SESSION['email'];
-  ?>
+    <?php
+        require "BD.php";
+        session_start();
+        $usuario = $_SESSION['usuario'];
+        $clave = $_SESSION['clave'];
+        $id = $_SESSION['id'];
+    ?>
     
     <header class="header">
     <div class="container logo-nav-container">
@@ -73,25 +72,23 @@
               }
               ?>
   
-  <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " class="avatar2" alt="">
+            <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " class="avatar2" alt="">
             </div>
-    <form  class="col-12" action="VeditarPerfil.php"  method="POST" class="form-register" enctype="multipart/form-data" onsubmit="return validarEditarPerfil();">
+
+
+
+    <form  class="col-12" action="VeditarContrasenia.php"  method="POST" class="form-register" enctype="multipart/form-data" onsubmit="return validarEditarClave();">
         <div class="form-group" id="user-group"></div>
-        <h2 class="form__titulo">Editar Perfil</h2>
+        <h2 class="form__titulo">Cambiar Contraseña</h2>
         <div class="contenedor-inputs">
             <div class="form-group" id="user-group">
-            <input type="text" id="nombre" name="nombre" value="<?PHP echo $nombre ?>" class="form-control" >
+            <input type="password" id="claveActual" name="claveActual" placeholder="Contraseña actual" class="form-control" >
         </div>
         <div class="form-group" id="user-group">
-            <input type="text" id="apellidos" name="apellidos" value="<?PHP echo $apellido ?>" class="form-control"  >
+            <input type="password" id="claveNueva" name="claveNueva" placeholder="Contraseña nueva"  class="form-control"  >
         </div>
         <div class="form-group" id="user-group">
-            <input type="text" id="correo" name="correo" value="<?PHP echo $email ?>" class="form-control">
-            <div class="form-group" id="user-group">
-                <span class="nuestroinput">
-                    <input type="file" name="img"  onchange="validarImagen(this);" placeholder="Seleccione foto de perfil" ><!-- class="nuestroinput" id="nuestroinput"-->
-                </span>
-            
+            <input type="password" id="claveNueva2" name="claveNueva2" placeholder="Repetir contraseña nueva" class="form-control">
         </div>
             
         </div>
