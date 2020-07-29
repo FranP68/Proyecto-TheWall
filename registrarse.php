@@ -47,7 +47,7 @@
             <div class="col-12 user-img">
               <img src="static/img/avatar.png" />
             </div>
-    <form  class="col-12" action="registrar.php" method="POST" class="form-register" enctype="multipart/form-data" onsubmit="return validar();">
+    <form  class="col-12" action="registrar.php" method="POST" class="form-register" enctype="multipart/form-data" action="" onsubmit="return validar();">
         <div class="form-group" id="user-group"></div>
         <h2 class="form__titulo">CREA UNA CUENTA</h2>
         <div class="contenedor-inputs">
@@ -71,7 +71,7 @@
         </div>
             <div class="form-group" id="user-group">
                 <span class="nuestroinput">
-                    <input type="file" name="img"  onchange="validarImagen(this);" value="Seleccione foto de perfil" >
+                    <input type="file" name="img" id="foto"  value="Seleccione foto de perfil" >
 
                 </span>
             
@@ -79,7 +79,7 @@
         </div>
             
         </div>
-        <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Registrate</button>
+        <button type="submit" onchange="return validar();" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Registrate</button>
     </form>
     <div class="col-12">
       <p>¿Ya tienes una cuenta? <a class="link" href="index.php">Iniciar Sesion </a>  </p>

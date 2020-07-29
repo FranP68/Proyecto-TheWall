@@ -39,9 +39,9 @@
       <nav class="navegacion">
         <ul >
           <li>
-          <form  action="buscar.php" method="POST" >
+          <form  action="buscar.php" method="POST"  onsubmit="return validarBuscar();">
             
-              <input type="text" name="busqueda" id="buscador" placeholder="Buscar usuario" class="form-control" required>
+              <input type="text" name="busqueda" id="buscador" placeholder="Buscar usuario" class="form-control" >
               </li>
               <button type="submit" class="btn btn-info mb-1" id="botonBuscador"><i class="fa fa-search"></i></button>
           </form>
@@ -67,13 +67,18 @@
     ?>
     <div class="contenedor">        
         <ul class="seguidores">
-            <h3 class="nombre">Seguidores:</h3>
+            <h3 class="nombre">Usuarios:</h3>
             
             <?php 
+            
             $busqueda=$_POST['busqueda'];
-            $sql= "SELECT u.id, u.nombre, u.apellido, u.nombreusuario, u.foto_contenido FROM usuarios u INNER JOIN siguiendo s ON (s.usuarioseguido_id=u.id) WHERE ($idLogueado=s.usuarios_id) AND ((u.nombre LIKE '$busqueda%') OR (u.nombreusuario LIKE '$busqueda%') OR (u.apellido LIKE '$busqueda%'))";
-            $result = mysqli_query($conn, $sql);   
-            while ($datos = mysqli_fetch_array($result)) {
+            $busqueda=trim($busqueda);
+            $array=explode(' ', $busqueda);
+            $busqueda = $array[0];
+            
+            $sql= "SELECT u.id, u.nombre, u.apellido, u.nombreusuario, u.foto_contenido FROM usuarios u INNER JOIN siguiendo s ON (s.usuarioseguido_id=u.id) WHERE ($idLogueado=s.usuarios_id) AND (u.nombre  LIKE '$busqueda%' OR (u.nombreusuario LIKE '$busqueda%')) "; 
+            $result = mysqli_query($conn, $sql)or die(mysqli_error($conn));   
+            while ($datos = mysqli_fetch_array($result) ) {
             if (isset($datos[0])) {
                 $nombre=$datos['nombre'];
                 $apellido=$datos['apellido'];

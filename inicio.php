@@ -49,9 +49,9 @@
       <nav class="navegacion">
         <ul >
           <li>
-          <form  action="buscar.php" method="POST" >
+          <form  action="buscar.php" method="POST" onsubmit="return validarBuscar();">
             
-              <input type="text" name="busqueda" id="buscador" placeholder="Buscar usuario" class="form-control" required>
+              <input type="text" name="busqueda" id="buscador" placeholder="Buscar usuario" class="form-control">
               </li>
               <button type="submit" class="btn btn-info mb-1" id="botonBuscador"><i class="fa fa-search"></i></button>
           </form>
@@ -114,7 +114,7 @@
         <h3 class="men-box2-title">Ultimos mensajes</h3>
         
 
-          <?php $sql2 = " SELECT m.texto, m.imagen_contenido, u.nombre, u.apellido, u.nombreusuario, u.foto_contenido, s.usuarioseguido_id, m.id,m.usuarios_id FROM mensaje m LEFT JOIN siguiendo s ON (s.usuarioseguido_id = m.usuarios_id) INNER JOIN usuarios u ON (u.id = m.usuarios_id) WHERE (($idLogueado = s.usuarios_id) OR ($idLogueado = u.id)) ORDER BY m.fechayhora DESC "; ?>
+          <?php $sql2 = " SELECT m.texto, m.imagen_contenido, u.nombre, u.apellido, u.nombreusuario, u.foto_contenido, s.usuarioseguido_id, m.id,m.usuarios_id FROM mensaje m LEFT JOIN siguiendo s ON (s.usuarioseguido_id = m.usuarios_id) INNER JOIN usuarios u ON (u.id = m.usuarios_id) WHERE ($idLogueado = s.usuarios_id) ORDER BY m.fechayhora DESC "; ?>
           <?php
           if ($re = mysqli_query($conn, $sql2)) {
 

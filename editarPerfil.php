@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
    <script src="static/js/validarEdit.js"></script>
+   <script src="static/js/validar.js"></script>
 </head>
 
 
@@ -56,9 +57,9 @@
       <nav class="navegacion">
         <ul >
           <li>
-          <form  action="buscar.php" method="POST" >
+          <form  action="buscar.php" method="POST" onsubmit="return validarBuscar();">
             
-              <input type="text" name="busqueda" id="buscador" placeholder="Buscar usuario" class="form-control" required>
+              <input type="text" name="busqueda" id="buscador" placeholder="Buscar usuario" class="form-control">
               </li>
               <button type="submit" class="btn btn-info mb-1" id="botonBuscador"><i class="fa fa-search"></i></button>
           </form>

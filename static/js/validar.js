@@ -6,6 +6,7 @@ function validar() {
     clave = document.getElementById("clave").value;
     clave2 = document.getElementById("clave2").value;
     usuario = document.getElementById("usuario").value;
+    foto = document.getElementById("foto").value;
     expresionMail = /\w+@+\w+\.+[a-z]/;
     
 
@@ -46,7 +47,34 @@ function validar() {
     else if (! expresionMail.test(correo)){
         alert("El correo no es válido");
         return false;
+    
     }
+    if (foto == ""){
+        alert("La imagen no esta definida");
+        return false;
+    }
+    
+    else{
+        uploadFile = $('foto');
+        if (!window.FileReader) {
+            alert('El navegador no soporta la lectura de archivos');
+            img.src = URL.createObjectURL(null);  
+            return false;
+        }
+    
+        if (!(/\.(jpg|jpeg|png|gif)$/i).test(uploadFile.name)) {
+            alert('El archivo a adjuntar no es una imagen'); 
+            img.src = URL.createObjectURL(null);  
+            //window.locationf = "www.google.com.ar";
+            return false;
+
+        }
+        else{
+                img.src = URL.createObjectURL(uploadFile);
+            
+        }
+    }
+    
 
 }
 
@@ -111,30 +139,30 @@ function iguales(p1,p2){
           }
     }
 
-    function validarImagen(obj){
-        var uploadFile = obj.files[0];
+    // function validarImagen(obj){
+    //     var uploadFile = obj;
     
-        if (!window.FileReader) {
-            alert('El navegador no soporta la lectura de archivos');
-            img.src = URL.createObjectURL(null);  
-            return false;
-        }
+    //     if (!window.FileReader) {
+    //         alert('El navegador no soporta la lectura de archivos');
+    //         img.src = URL.createObjectURL(null);  
+    //         return false;
+    //     }
     
-        if (!(/\.(jpg|png|gif)$/i).test(uploadFile.name)) {
-            alert('El archivo a adjuntar no es una imagen'); 
-            img.src = URL.createObjectURL(null);  
-            window.locationf = "www.google.com.ar";
-            return false;
-        }
-        else{
-                img.src = URL.createObjectURL(uploadFile);
-
-        }
+    //     if (!(/\.(jpg|png|gif)$/i).test(uploadFile.name)) {
+    //         alert('El archivo a adjuntar no es una imagen'); 
+    //         img.src = URL.createObjectURL(null);  
+    //         window.locationf = "www.google.com.ar";
+    //         return false;
+    //     }
+    //     else{
+    //             img.src = URL.createObjectURL(uploadFile);
+    //             return true;
+    //     }
             
         
             
                    
-    }
+    // }
 
     function validarMensaje(){
         
@@ -162,3 +190,14 @@ function iguales(p1,p2){
                 return false;
             }
         }
+
+function validarBuscar(){
+    var busqueda;
+    busqueda = document.getElementById("buscador").value;
+    exp=/^\S/;
+    
+    if (busqueda == "" || !exp.test(busqueda)){
+        alert("Ingrese un patrón de búsqueda");
+        return false;
+    }       
+}
