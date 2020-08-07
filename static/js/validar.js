@@ -1,4 +1,4 @@
-function validar() {
+function validar(obj) {
     var nombre, apellidos, correo, usuario, clave, clave2, expresionMail, expresionNum, expresionEspecial;
     nombre = document.getElementById("nombre").value;
     apellidos = document.getElementById("apellidos").value;
@@ -55,7 +55,7 @@ function validar() {
     }
     
     else{
-        uploadFile = $('foto');
+        uploadFile = obj.files[0];
         if (!window.FileReader) {
             alert('El navegador no soporta la lectura de archivos');
             img.src = URL.createObjectURL(null);  
@@ -64,8 +64,6 @@ function validar() {
     
         if (!(/\.(jpg|jpeg|png|gif)$/i).test(uploadFile.name)) {
             alert('El archivo a adjuntar no es una imagen'); 
-            img.src = URL.createObjectURL(null);  
-            //window.locationf = "www.google.com.ar";
             return false;
 
         }
@@ -139,30 +137,6 @@ function iguales(p1,p2){
           }
     }
 
-    // function validarImagen(obj){
-    //     var uploadFile = obj;
-    
-    //     if (!window.FileReader) {
-    //         alert('El navegador no soporta la lectura de archivos');
-    //         img.src = URL.createObjectURL(null);  
-    //         return false;
-    //     }
-    
-    //     if (!(/\.(jpg|png|gif)$/i).test(uploadFile.name)) {
-    //         alert('El archivo a adjuntar no es una imagen'); 
-    //         img.src = URL.createObjectURL(null);  
-    //         window.locationf = "www.google.com.ar";
-    //         return false;
-    //     }
-    //     else{
-    //             img.src = URL.createObjectURL(uploadFile);
-    //             return true;
-    //     }
-            
-        
-            
-                   
-    // }
 
     function validarMensaje(){
         
