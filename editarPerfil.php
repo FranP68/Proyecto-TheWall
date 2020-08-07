@@ -30,7 +30,7 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-   <script src="static/js/validarEdit.js"></script>
+   <!-- <script src="static/js/validarEdit.js"></script> -->
    <script src="static/js/validar.js"></script>
 </head>
 
@@ -91,7 +91,7 @@
   
   <img src="data:image/jpeg; base64, <?php echo base64_encode($bytesImagen) ?> " class="avatar2" alt="">
             </div>
-    <form  class="col-12" action="VeditarPerfil.php"  method="POST" class="form-register" enctype="multipart/form-data" onsubmit="return validarEditarPerfil();">
+    <form  class="col-12" action="VeditarPerfil.php"  method="POST" class="form-register" enctype="multipart/form-data" onsubmit="return validarEditarPerfil(img);">
         <div class="form-group" id="user-group"></div>
         <h2 class="form__titulo">Editar Perfil</h2>
         <div class="contenedor-inputs">
@@ -105,7 +105,7 @@
             <input type="text" id="correo" name="correo" value="<?PHP echo $email ?>" class="form-control">
             <div class="form-group" id="user-group">
                 <span class="nuestroinput">
-                    <input type="file" name="img"  onchange="validarImagen(this);" placeholder="Seleccione foto de perfil" ><!-- class="nuestroinput" id="nuestroinput"-->
+                    <input type="file" name="img" id="foto"   placeholder="Seleccione foto de perfil" ><!-- class="nuestroinput" id="nuestroinput"-->
                 </span>
             
         </div>

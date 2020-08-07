@@ -34,31 +34,18 @@ function validarEditarPerfil() {
     }
 }
 
-function validarImagen(obj){
-    var uploadFile = obj.files[0];
+// function validarImagen(obj){
+//     var uploadFile = obj.files[0];
 
-    if (!window.FileReader) {
-        alert('El navegador no soporta la lectura de archivos');
-        return;
-    }
+//     if (!window.FileReader) {
+//         alert('El navegador no soporta la lectura de archivos');
+//         return;
+//     }
 
-    if (!(/\.(jpg|png|gif)$/i).test(uploadFile.name)) {
-        alert('El archivo a adjuntar no es una imagen');
-    }
-    /*else {
-        var img = new Image();
-        img.onload = function () {
-            if (this.width.toFixed(0) != 1000 && this.height.toFixed(0) != 1000) {
-               alert('Las medidas deben ser: 1000 * 1000');
-            }
-            else if (uploadFile.size > 200000)
-            {
-               alert('El peso de la imagen no puede exceder los 200kb')
-            }
-            else {
-               alert('Imagen correcta :)')                
-            }
-        };*/
-        img.src = URL.createObjectURL(uploadFile);
-    //}                 
-}
+//     if (!(/\.(jpg|png|gif)$/i).test(uploadFile.name)) {
+//         alert('El archivo a adjuntar no es una imagen');
+//     }
+    
+//         img.src = URL.createObjectURL(uploadFile);
+                     
+// }

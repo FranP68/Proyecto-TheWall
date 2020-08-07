@@ -137,6 +137,7 @@ function iguales(p1,p2){
           }
     }
 
+    
 
     function validarMensaje(){
         
@@ -174,4 +175,64 @@ function validarBuscar(){
         alert("Ingrese un patrón de búsqueda");
         return false;
     }       
+}
+
+
+function validarEditarPerfil(img) {
+    var nombre, apellidos, correo, expresionMail, expresionNum, expresionEspecial;
+    nombre = document.getElementById("nombre").value;
+    apellidos = document.getElementById("apellidos").value;
+    correo = document.getElementById("correo").value;
+    expresionMail = /\w+@+\w+\.+[a-z]/;
+    foto = document.getElementById("foto").value;
+    
+
+    expresionNum = /\d/;
+    expresionEspecial = /[*!"#$%&/()¨*+~{}^+_;,:.-]/;
+    if (nombre === "" || apellidos  == "" || correo == "") {
+        alert("Todos los campos son requeridos");
+        return false;
+    }
+    else if (nombre.length > 30) {
+        alert("El nombre es muy largo, debe tener menos de 30 letras");
+        return false;
+    }
+    else if (expresionNum.test(nombre) || expresionEspecial.test(nombre)) {
+        alert("El nombre no es válido, debe tener solo letras");
+        return false;
+    }
+    else if (expresionNum.test(apellidos) || expresionEspecial.test(apellidos)) {
+        alert("El apellido no es válido, debe tener solo letras");
+        return false;
+    }
+    else if (apellidos.length > 30) {
+        alert("El apellido es muy largo, debe tener menos de 30 letras");
+        return false;
+    }
+    else if (! expresionMail.test(correo)){
+        alert("El correo no es válido");
+        return false;
+    }
+    if (foto != ""){
+        return validarImagen(img);
+    }
+    
+}
+function validarImagen(obj){
+    var uploadFile = obj.files[0];
+
+    if (!window.FileReader) {
+        alert('El navegador no soporta la lectura de archivos');
+        img.src = URL.createObjectURL(null);  
+        return false;
+    }
+
+    if (!(/\.(jpeg|jpg|png|gif)$/i).test(uploadFile.name)) {
+        alert('El archivo a adjuntar no es una imagen'); 
+        return false;
+    }
+    else{
+            img.src = URL.createObjectURL(uploadFile);
+            return true;
+    }             
 }
