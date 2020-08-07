@@ -87,11 +87,11 @@
         </div>
         
 
-        <form action="nuevoMensaje.php" method="post" class="form-mensaje" enctype="multipart/form-data" onsubmit="return validarMensaje();">
+        <form action="nuevoMensaje.php" method="post" class="form-mensaje" enctype="multipart/form-data" onsubmit="return validarMensaje(img);">
           <div>
             <textarea name="nuevoMensaje" id="mensaje" placeholder="Escriba un nuevo mensaje" maxlength="140" minlength="1" style="width: 230px;height: 120px;"></textarea>
           </div>
-          <input type="file" name="img" class="botonImagen" value="Seleccionar imagen" onchange="validarImagen(this);">
+          <input type="file" name="img" id="foto" class="botonImagen" value="Seleccionar imagen" >
           <input type="submit" class="botonMensaje" value="Enviar mensaje">
 
         </form>

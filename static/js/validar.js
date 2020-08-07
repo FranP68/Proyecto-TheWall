@@ -139,16 +139,19 @@ function iguales(p1,p2){
 
     
 
-    function validarMensaje(){
+    function validarMensaje(img){
         
         var mensaje;
         var exp;
         mensaje=document.getElementById("mensaje").value;
-        
+        foto = document.getElementById("foto").value;
         exp=/^\S/;
         if (mensaje.length==0 || !exp.test(mensaje)){
             alert("El mensaje esta en blanco");
             return false;
+        }
+        if (foto != ""){
+            return validarImagen(img);
         }
         return true;
     }
