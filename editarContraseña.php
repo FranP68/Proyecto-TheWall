@@ -11,8 +11,55 @@
     <?php
     die();
   }
-  
+ 
+    include 'claseVerificar.php';
+    require 'BD.php';
+
+    session_start();
+    $usuario = $_SESSION['usuario'];
+    $claveUsuario = $_SESSION['clave'];
+    if(!empty($_POST)){
+    if (   (  !empty($_POST['claveActual']) )  && (  !empty($_POST['claveNueva'])  )  &&   (  !empty($_POST['claveNueva2']) ) ) 
+    { 
+        $claveActual = $_POST['claveActual'];
+        $claveNueva = $_POST['claveNueva'];
+        $claveNueva2 =  $_POST['claveNueva2'];
+
+        $claveActualOk=Verificar::validar_clave($claveUsuario, $claveActual, $error_clave);
+        
+        $claveNuevaOk=Verificar::validar_clave($claveNueva, $claveNueva2, $error_clave2);
+
+        if($claveActualOk && $claveNuevaOk && ($claveUsuario!==$claveNueva)){
+            //actualizo usuario en la base de datos
+            $sql1 = "UPDATE usuarios SET contrasenia='$claveNueva' WHERE nombreusuario='$usuario' ";
+
+            if (mysqli_query($conn, $sql1)) {
+                // echo "Actualizar contraseña.";
+                $_SESSION['clave'] = $claveNueva;
+                header("Location:inicio.php");    //si quiero ver el mensaje, comentar
+            }
+            else{
+                echo "Error: " . $sql1 . "<br>" . mysqli_error($conn);
+            }
+        }
+        else{
+            if (!$claveActualOk)
+                $errorCambioClave= "Error en clave actual: $error_clave";
+            if (!$claveNuevaOk)
+                $errorCambioClave= "Error en clave nueva: $error_clave2";
+            if ($claveUsuario==$claveNueva)
+            $errorCambioClave="La clave nueva debe ser distinta de la clave actual";
+        }
+    }
+    else{
+      $errorCambioClave="Todos los campos son requeridos";
+         
+
+    }
+  }
+
 ?>
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -30,8 +77,8 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <script src="static/js/validarEditarClave.js"></script>
-  <script src="static/js/validar.js"></script>
+  <!-- <script src="static/js/validarEditarClave.js"></script> -->
+  <!-- <script src="static/js/validar.js"></script> -->
 </head>
 
 
@@ -93,7 +140,7 @@
 
 
 
-    <form  class="col-12" action="VeditarContrasenia.php"  method="POST" class="form-register" enctype="multipart/form-data" onsubmit="return validarEditarClave();">
+    <form  class="col-12" action="editarContraseña.php"  method="POST" class="form-register" enctype="multipart/form-data" onsubmit="return validarEditarClave();">
         <div class="form-group" id="user-group"></div>
         <h2 class="form__titulo">Cambiar Contraseña</h2>
         <div class="contenedor-inputs">
@@ -106,7 +153,7 @@
         <div class="form-group" id="user-group">
             <input type="password" id="claveNueva2" name="claveNueva2" placeholder="Repetir contraseña nueva" class="form-control">
         </div>
-            
+            <p><?php echo $errorCambioClave  ?></p>
         </div>
         <button type="submit" name="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Guardar Cambios</button>
     

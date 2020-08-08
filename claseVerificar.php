@@ -1,6 +1,13 @@
 <?php 
 class Verificar extends Exception{
 
+    public function __construct($message= '', $code = 0) {
+        // some code
+        // make sure everything is assigned properly
+        parent::__construct($message, $code);
+      }
+    
+
     public static function validar_clave($clave, $clave2, &$error_clave){
         if($clave == $clave2){
             if(strlen($clave) < 6){
@@ -35,17 +42,19 @@ class Verificar extends Exception{
 
 
 
-    public static function usuario_duplicado($nombreUsuario,&$error_usuarioDuplicado){
+    public static function usuario_duplicado($nombreUsuario){
         require 'BD.php';
         $sql= "SELECT nombreusuario FROM usuarios WHERE (nombreusuario = '$nombreUsuario') ";
         $result = mysqli_query($conn, $sql);
         if (mysqli_num_rows($result) > 0) {
             $error_usuarioDuplicado = "El nombre de usuario ya esta en uso" ."<br>";
-            return false;
+            
+            // return false;
         }
         else {
-            $error_usuarioDuplicado = "";
-            return true;
+            $error_usuarioDuplicado = "El nombre de usuario es incorrecto";
+            throw new Verificar("$error_usuarioDuplicado");
+            // return true;
         }
     } 
 
@@ -60,6 +69,7 @@ class Verificar extends Exception{
         }
         else {
             $error_emailDuplicado = "";
+            
             return true;
         }
     } 
@@ -93,7 +103,7 @@ class Verificar extends Exception{
 
 
         public static function obtener_claveUsuario($nombreUsuario, $clave, &$error_coincideClaveUsuario){
-            try{
+            
             require 'BD.php';
             $sql= "SELECT contrasenia FROM usuarios  WHERE (nombreusuario = '$nombreUsuario') ";
             $result = mysqli_query($conn, $sql);
@@ -101,16 +111,14 @@ class Verificar extends Exception{
                 $claveUsuario = trim($row[0]);
                 if ($claveUsuario == $clave){
                     $error_coincideClaveUsuario = "ingreso correctamente"; 
-                    return true;
+                    // return true;
                 }
                 else{
-                    throw new Exception("La clave es erronea" ."<br>");
-                    return false;
+                    throw new Verificar("La clave es erronea");
+                    // return false;
                 }
             }
-            }catch(Exception $e){
-                echo $e;
-            }
+            
         }
         
         public static function validar_email($email, &$error_email){
