@@ -1,8 +1,8 @@
 <?php 
     require "BD.php";
     session_start();
-    $idLogueado = $_SESSION["id"];
-    $idMensaje=$_POST['idMensaje'];
+    $idLogueado = $_GET["id"];
+    $idMensaje= $_GET["idMensaje"];
     $sql= "DELETE FROM me_gusta WHERE $idMensaje=mensaje_id ";
     mysqli_query($conn, $sql);
     $sql= "DELETE FROM mensaje WHERE $idMensaje=id ";

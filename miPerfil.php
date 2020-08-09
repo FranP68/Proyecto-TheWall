@@ -182,11 +182,19 @@
                 <?php }  
                 } ?>
                 
-                <form action="eliminarMensaje.php" method="post" class="form-mensaje">
-                <input type="hidden"   name="idMensaje" value="<?php echo $idMensaje?>">
-                <input type="submit" value="Eliminar" class="eliminar">
+                <form action="" method="post" class="form-mensaje">
+                <!-- <input type="hidden"   name="idMensaje" value="<?php// echo $idMensaje?>"> -->
+                <input type="submit" onclick="preguntar(<?php echo $idMensaje?>,<?php echo $idLogueado ?>);" value="Eliminar" class="eliminar">
                 </form>
-                
+                <script type="text/javascript">
+                    function preguntar(idMensaje, idLogueado){
+                      if (confirm("¿Esta seguro que desea eliminar el mensaje?")){
+                        window.location.href = "eliminarMensaje.php?idMensaje=" + idMensaje + "&id=" + idLogueado;
+                      }
+
+
+                    }
+                </script>
                 
             <?php } ?>
             <?php
