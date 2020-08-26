@@ -1,6 +1,8 @@
 <?php
     include 'claseVerificar.php';
     require 'BD.php';
+    $alert="";
+    if (isset($_POST['submit'])) {
     if (   (  !empty($_POST['apellidos']) )  && (  !empty($_POST['nombre'])  ) && (  !empty($_POST['clave']) )  &&  (  !empty($_POST['clave2']) )  &&  (  !empty($_POST['usuario']) ) &&  (  !empty($_POST['correo']) ) &&  (  !empty($_FILES['img']['name']) ) )
     {   
         //obtengo datos del formulario
@@ -15,80 +17,14 @@
         $bytesImagen = addslashes(file_get_contents($imagenTmp));
         $tipo=substr($imagenType, 6);
         //---------------
-        
-        // verificar clave
-            $claveOk=Verificar::validar_clave($clave, $clave2, $error_clave);
-
-        // ----------------------
-
-        // verificar nombre
-            $nombreOk=Verificar::validar_nombre($nombre,$error_nombre);
-
-        // ---------------------
-
-        // verificar apellido
-
-        $apellidoOk=Verificar::validar_apellido($apellido,$error_apellido);
+        try{
+         Verificar::validar_registrar($nombreUsuario, $nombre, $apellido, $email,$clave, $clave2, $tipo, $bytesImagen);
+        }
+        catch(Verificar $e){
+            $alert = $e->getMessage();
+        }   
+    } 
     
-         // verificar email
-
-         $emailOk = Verificar::validar_email($email, $error_email);
-
-         // ---------------------
- 
-        // verificar email duplicado
-         $emailDuplicadoOk = Verificar::email_duplicado($email,$error_emailDuplicado);
-
-        // ---------------------
-        $usuarioDuplicadoOk = Verificar::usuario_duplicado($nombreUsuario,$error_usuarioDuplicado);
-
-        $fotoOk=Verificar::validar_foto($tipo,$error_foto);
-
-        if($usuarioDuplicadoOk && $nombreOk && $claveOk && $apellidoOk && $emailOk && $emailDuplicadoOk && $fotoOk){
-            //agrego nuevo usuario a la base de datos
-            $sql1 = "INSERT INTO usuarios(nombre,apellido, email,foto_tipo, nombreUsuario,foto_contenido, contrasenia) VALUES ('$nombre','$apellido','$email','$tipo','$nombreUsuario','$bytesImagen', '$clave') ";
-            if (mysqli_query($conn, $sql1)) {
-                echo "Nuevo registro.";
-                session_start();
-                $_SESSION['usuario']=$nombreUsuario;
-                $_SESSION['nombre']=$nombre;
-                $_SESSION['apellido']=$apellido;
-                $_SESSION['email'] = $email;
-                $_SESSION['clave'] = $clave;
-
-                //obtengo id de usuario
-                $rs=mysqli_query($conn, "SELECT id FROM usuarios WHERE nombreusuario='$nombreUsuario' ");
-                if ($row = mysqli_fetch_row($rs)) {
-                    $id = trim($row[0]);
-                }
-                $_SESSION['id']=$id;
-
-                header("Location:inicio.php");
-                
-            }
-            else{
-                echo "Error: " . $sql1 . "<br>" . mysqli_error($conn);
-            }
-        }else{
-            
-            if (!$nombreOk)
-                echo "$error_nombre";
-            if (!$apellidoOk)
-                echo "$error_apellido";
-            if (!$emailOk)
-                echo "$error_email";
-            if (!$emailDuplicadoOk)
-                echo "$error_emailDuplicado";
-            if (!$usuarioDuplicadoOk)
-                echo "$error_usuarioDuplicado";
-            if (!$claveOk)
-                echo "$error_clave";  
-            if (!$fotoOk)
-                echo "$error_foto";   
-            header("Location:registrarse.php"); //comentar si quiero ver los informes de php
-           // echo "El nombre de usuario ya esta en uso 11";
-        }    
-    }
     else{
         if(  empty($_POST['nombre']) ){
             echo "El nombre no está definido"."<br>";
@@ -113,9 +49,11 @@
         if(  empty($_FILES['img']['name'])){
             echo "El imagen no está definida"."<br>";
         }
-        header("Location:registrarse.php"); //comentar si quiero ver los informes de php
-    }
+        
+        } 
+       }
 ?>    
+
 
 
 

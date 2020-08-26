@@ -1,53 +1,24 @@
 <?php
 include 'claseVerificar.php';
 require 'BD.php';
-$alert='';
-
-if ((!empty($_POST['usuario']))  && (!empty($_POST['clave']))) {
+$alert = '';
+if (isset($_POST['submit'])) {
+  if ((!empty($_POST['usuario']))  && (!empty($_POST['clave']))) {
     $clave =  $_POST['clave'];
     $nombreUsuario =  $_POST['usuario'];
-    try{ 
-        Verificar::usuario_duplicado($nombreUsuario);
-        Verificar::obtener_claveUsuario($nombreUsuario, $clave, $error_coincideClaveUsuario) ;
-        session_start();
-        $rs = mysqli_query($conn, "SELECT nombre FROM usuarios WHERE nombreusuario='$nombreUsuario' ");
-        if ($row = mysqli_fetch_row($rs)) {
-            $nombre = trim($row[0]);
-        }
-        $rs = mysqli_query($conn, "SELECT apellido FROM usuarios WHERE nombreusuario='$nombreUsuario' ");
-        if ($row = mysqli_fetch_row($rs)) {
-            $apellido = trim($row[0]);
-        }
+    try {
+      Verificar::validar_login($nombreUsuario, $clave);
 
-        $rs = mysqli_query($conn, "SELECT email FROM usuarios WHERE nombreusuario='$nombreUsuario' ");
-        if ($row = mysqli_fetch_row($rs)) {
-            $email = trim($row[0]);
-        }
+      header("Location:inicio.php");
+    } catch (Verificar $e) {
 
-        $_SESSION['usuario'] = $nombreUsuario;
-        $_SESSION['nombre'] = $nombre;
-        $_SESSION['apellido'] = $apellido;
-        $_SESSION['email'] = $email;
-        $_SESSION['clave'] = $clave;
-        //obtengo id de usuario
-        $rs = mysqli_query($conn, "SELECT id FROM usuarios WHERE nombreusuario='$nombreUsuario' ");
-        if ($row = mysqli_fetch_row($rs)) {
-            $id = trim($row[0]);
-        }
-        $_SESSION['id'] = $id;
-        header("Location:inicio.php");
-    } catch (Verificar $e){
-        
-        $alert= $e->getMessage();
-        // header("Location:index.php"); //comentar si quiero ver la validacion de php
-
+      $alert = $e->getMessage();
     }
-}
-//  else {
+  } else {
 
-//     //header("Location:index.php"); //comentar si quiero ver la validacion de php
-//     // echo "Todos los campos son requeridos";
-// }
+    $alert= "Todos los campos son requeridos";
+  }
+}
 ?>
 
 
@@ -56,7 +27,7 @@ if ((!empty($_POST['usuario']))  && (!empty($_POST['clave']))) {
 <html lang="es">
 
 <head>
-  
+
   <title>The Wall</title>
   <link rel="stylesheet" href="estilos.css">
 
@@ -72,8 +43,8 @@ if ((!empty($_POST['usuario']))  && (!empty($_POST['clave']))) {
   <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
   <!-- Nuestro css-->
-  <link rel="stylesheet" type="text/css"  href="static/css/estilos.css">
-  
+  <link rel="stylesheet" type="text/css" href="static/css/estilos.css">
+
   <script src="static/js/validar.js"></script>
 
 </head>
@@ -81,66 +52,66 @@ if ((!empty($_POST['usuario']))  && (!empty($_POST['clave']))) {
 
 
 <body>
-  
- <header class="header">
-   <div class="container logo-nav-container">
-    <img class="logoW" src="static/img/logo2.jpg" />
-     <a href="#" class="logo" class="tituloWeb"> The Wall</a>
-     <nav class="navegacion">
-       <ul>
-      <!-- <li><a href="#">Inicio </a></li> 
+
+  <header class="header">
+    <div class="container logo-nav-container">
+      <img class="logoW" src="static/img/logo2.jpg" />
+      <a href="#" class="logo" class="tituloWeb"> The Wall</a>
+      <nav class="navegacion">
+        <ul>
+          <!-- <li><a href="#">Inicio </a></li> 
       <li><a href="miPerfil.php">Perfil </a></li> 
       <li><a href="#"> Cerrar Sesion </a></li>  -->
-    </ul>
-     </nav>
-   </div>
- </header>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
   <main>
 
-  <div class="modal-dialog text-center">
-    <div class="col-sm-8 main-section">
-      <div class="modal-content">
-        <div class="col-18 user-img">
-          <img src="static/img/avatar.png" />
-        </div>
-        <form class="col-12" action="index.php" method="POST" onsubmit="return validarIndex();">
-          <div class="form-group" id="user-group">
-          <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Nombre de Usuario">  
+    <div class="modal-dialog text-center">
+      <div class="col-sm-8 main-section">
+        <div class="modal-content">
+          <div class="col-18 user-img">
+            <img src="static/img/avatar.png" />
           </div>
-          <div class="form-group" id="contraseña-group">
-            <input type="password" id="clave" name="clave" class="form-control" placeholder="Contraseña">  
-  
+          <form class="col-12" action="index.php" method="POST" onsubmit="return validarIndex();">
+            <div class="form-group" id="user-group">
+              <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Nombre de Usuario">
+            </div>
+            <div class="form-group" id="contraseña-group">
+              <input type="password" id="clave" name="clave" class="form-control" placeholder="Contraseña">
+
             </div>
             <!-- Informa el error de login -->
-          <p><?php echo $alert  ?> </p>  
-            <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt" ></i>  Iniciar sesion</button>
-        </form>
-        <div class="col-12">
-          <p>¿No tienes una cuenta? <a class="link" href="registrarse.php">Registrate </a>  </p>
+            <p><?php echo $alert  ?> </p>
+            <input type="submit" name="submit" value="Iniciar sesión"  class="btn btn-primary">
+          </form>
+          <div class="col-12">
+            <p>¿No tienes una cuenta? <a class="link" href="registrarse.php">Registrate </a> </p>
+          </div>
+
+
+
+
         </div>
-
-      
-
-       
       </div>
+
     </div>
 
-  </div>
-  
 
 
-</main>
-<!-- Footer -->
-<footer class="page-footer font-small blue">
+  </main>
+  <!-- Footer -->
+  <footer class="page-footer font-small blue">
 
-   
-  <div class="footer">
-    <a> Francisco Pavon - Santiago Goggi</a>
-  </div>
 
-</footer>
-<!-- Footer -->
+    <div class="footer">
+      <a> Francisco Pavon - Santiago Goggi</a>
+    </div>
+
+  </footer>
+  <!-- Footer -->
 </body>
 
 
