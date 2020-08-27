@@ -1,21 +1,14 @@
 <!doctype html>
 <?php
+  include "claseVerificar.php";
   session_start();
   error_reporting(0);
   $s=$_SESSION['usuario'];
   
-  if(($s == NULL) || ($s == "")){
-    echo "Debe loguearse primero <br> ";
-    ?>
-    <a href='index.php'> Ir a iniciar sesion</a>
-    <?php
-    die();
-  }
- 
-    include 'claseVerificar.php';
+  
     require 'BD.php';
 
-    session_start();
+    
     $usuario = $_SESSION['usuario'];
     $claveUsuario = $_SESSION['clave'];
     if(!empty($_POST)){
@@ -86,7 +79,7 @@
 
   
   <body>
-    
+  <?php if (Verificar::validar_autorizacion($s)) { ?>
     <?php
         require "BD.php";
         session_start();
@@ -160,6 +153,34 @@
                                                                                                                                                                                        
       </form>
 </main>
+
+<?php } else { ?>
+        <header class="header">
+            <div class="container logo-nav-container">
+            <img class="logoW" src="static/img/logo2.jpg" />
+            <a href="inicio.php" class="logo"> The Wall</a>
+            </div>
+          <nav class="navegacion2">
+            <ul >
+                    
+              <li><a href="index.php">Iniciar Sesion </a></li>
+              <li><a href="registrarse.php"> Registrarse </a></li>
+            </ul>
+          </nav>
+    
+
+      </header>
+      
+      <div class="alertaAutorizacion">
+            <p> Para navegar por la página debe Iniciar sesión o Registrarse </p>
+      </div>
+  
+
+
+      
+          
+        
+  <?php } ?>
     
 
 
