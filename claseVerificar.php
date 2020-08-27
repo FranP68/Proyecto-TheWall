@@ -264,6 +264,15 @@ class Verificar extends Exception{
                 return false;
             }
         }
+
+        public static function validar_autorizacion($s){
+            if(($s == NULL) || ($s == "")){
+                return false; //no tengo autorizacion
+              }
+              else{ return true;} //tengo autorizacion
+        }
+
+
     }    
 
 ?>

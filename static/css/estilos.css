@@ -71,6 +71,26 @@ list-style: none;
      .navegacion ul li a:hover {
         background: rgb(97, 9, 9);
      }
+
+     .navegacion2 ul{
+        position: relative;
+        float: right;
+        padding: 0;
+        list-style: none;
+         }
+        
+         .navegacion2 ul li{
+            display: inline-block;
+            margin-top: 10px;
+         }
+             .navegacion2 ul li a {
+                 display: block;
+                 padding: 0.5rem 1rem;
+                 transition: all 0.4s linear;
+             }
+             .navegacion2 ul li a:hover {
+                background: rgb(97, 9, 9);
+             }
      
 
 

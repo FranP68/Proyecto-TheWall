@@ -3,17 +3,12 @@
 <!-- sirve para controlar que no se entre a una pagina sin antes haber iniciado sesion -->
 
 <?php
+  include "claseVerificar.php";
   session_start();
   error_reporting(0);
   $s=$_SESSION['usuario'];
+ 
   
-  if(($s == NULL) || ($s == "")){
-    echo "Debe loguearse primero <br> ";
-    ?>
-    <a href='index.php'> Ir a iniciar sesion</a>
-    <?php
-    die();
-  }
   
 ?>
 
@@ -40,7 +35,7 @@
 
 
 <body>
-
+  <?php if (Verificar::validar_autorizacion($s)) { ?>
   <header class="header">
     <div class="container logo-nav-container">
       <img class="logoW" src="static/img/logo2.jpg" />
@@ -200,7 +195,33 @@
     </ul>
 
     </div>
+      <?php } else{ ?>
+        <header class="header">
+            <div class="container logo-nav-container">
+            <img class="logoW" src="static/img/logo2.jpg" />
+            <a href="inicio.php" class="logo"> The Wall</a>
+            </div>
+          <nav class="navegacion2">
+            <ul >
+                    
+              <li><a href="index.php">Iniciar Sesion </a></li>
+              <li><a href="registrarse.php"> Registrarse </a></li>
+            </ul>
+          </nav>
+    
 
+      </header>
+      
+      <div class="alertaAutorizacion">
+            <p> Para navegar por la página debe Iniciar sesión o Registrarse </p>
+      </div>
+  
+
+
+      
+          
+        
+  <?php } ?>
 
     <!-- Footer -->
     <footer class="page-footer font-small blue">

@@ -3,7 +3,9 @@
 
 <?php
 require "BD.php";
-
+include "claseVerificar.php";
+error_reporting(0);
+$s=$_SESSION['usuario'];
 ?>
 
 
@@ -30,7 +32,7 @@ require "BD.php";
 
 
 <body>
-
+<?php if (Verificar::validar_autorizacion($s)) { ?>
     <header class="header">
         <div class="container logo-nav-container">
             <img class="logoW" src="static/img/logo2.jpg" />
@@ -55,7 +57,7 @@ require "BD.php";
 
 
     </header>
-
+    
     <?php
     require "BD.php";
     session_start();
@@ -142,7 +144,33 @@ require "BD.php";
 
         </ul>
     </div>
+    <?php } else{ ?>
+        <header class="header">
+            <div class="container logo-nav-container">
+            <img class="logoW" src="static/img/logo2.jpg" />
+            <a href="inicio.php" class="logo"> The Wall</a>
+            </div>
+          <nav class="navegacion2">
+            <ul >
+                    
+              <li><a href="index.php">Iniciar Sesion </a></li>
+              <li><a href="registrarse.php"> Registrarse </a></li>
+            </ul>
+          </nav>
+    
 
+      </header>
+      
+      <div class="alertaAutorizacion">
+            <p> Para navegar por la página debe Iniciar sesión o Registrarse </p>
+      </div>
+  
+
+
+      
+          
+        
+  <?php } ?>
     <!-- Footer -->
     <footer class="page-footer font-small blue">
 
