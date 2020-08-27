@@ -4,6 +4,7 @@
 <?php
 require "BD.php";
 include "claseVerificar.php";
+session_start();
 error_reporting(0);
 $s=$_SESSION['usuario'];
 ?>
@@ -107,7 +108,7 @@ $s=$_SESSION['usuario'];
 
             <?php
 
-            $sql = "SELECT u.id, u.nombre, u.apellido, u.nombreusuario, u.foto_contenido FROM usuarios u  WHERE ((u.nombre LIKE '%$busqueda%') OR (u.nombreusuario LIKE '%$busqueda%') OR (u.apellido LIKE '%$busqueda%')) AND u.id NOT IN (SELECT s.usuarioseguido_id FROM siguiendo AS s WHERE $idLogueado=s.usuarios_id ) ";
+            $sql = "SELECT u.id, u.nombre, u.apellido, u.nombreusuario, u.foto_contenido FROM usuarios u  WHERE ((u.nombre LIKE '%$busqueda%') OR (u.nombreusuario LIKE '%$busqueda%') OR (u.apellido LIKE '%$busqueda%')) AND ($idLogueado <> u.id) AND u.id NOT IN (SELECT s.usuarioseguido_id FROM siguiendo AS s WHERE $idLogueado=s.usuarios_id ) ";
             $result = mysqli_query($conn, $sql);
             while ($datos = mysqli_fetch_array($result)) {
                 if (isset($datos[0])) {
