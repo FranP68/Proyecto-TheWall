@@ -11,7 +11,7 @@
                 $sql1 = " DELETE FROM siguiendo WHERE id=$row[0] ";
                 if ($r = mysqli_query($conn, $sql1) ){
                     echo "Ha dejado de seguir a @$usuarioSeguido ";
-                    header('Location:' . 'inicio.php');//si se quiere ver los mensajes comentar la redireccion
+                    header("Location: " . $_SERVER["HTTP_REFERER"]);
                 }
                 else{
                     echo "Error: " . $sql1 . "<br>" . mysqli_error($conn);
