@@ -6,10 +6,11 @@
 
     include 'claseVerificar.php';
     require 'BD.php';
-
+    session_start();
     
     $alert ="";
     if (isset($_POST['submit'])){
+      
       $usuario = $_SESSION['usuario'];
       $emailActual = $_SESSION['email'];
     if (   (  !empty($_POST['apellidos']) )  && (  !empty($_POST['nombre'])  )  &&   (  !empty($_POST['correo']) ) ) 
@@ -110,6 +111,7 @@
     }
     //header("Location:editarPerfil.php");
         $bool = false;
+       
     }
 
 
@@ -119,7 +121,6 @@
 
 
 <?php
-  session_start();
   error_reporting(0);
   $s=$_SESSION['usuario'];
   
@@ -182,10 +183,11 @@
         </ul>
       </nav>
       <?php 
-    if ($_POST){
         $busqueda = $_POST['busqueda'];
-        header("Location:buscar.php?busqueda=$busqueda");
-    }
+
+        if ($busqueda<>''){
+           header("Location:buscar.php?busqueda=$busqueda");
+ }
     
     ?>
 

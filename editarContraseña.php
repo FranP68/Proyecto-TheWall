@@ -71,7 +71,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <!-- <script src="static/js/validarEditarClave.js"></script> -->
-  <!-- <script src="static/js/validar.js"></script> -->
+  <script src="static/js/validar.js"></script>
 </head>
 
 
@@ -110,8 +110,8 @@
         </ul>
       </nav>
       <?php 
-    if ($_POST){
-        $busqueda = $_POST['busqueda'];
+      $busqueda = $_POST['busqueda'];
+    if ($busqueda <>''){
         header("Location:buscar.php?busqueda=$busqueda");
     }
     
