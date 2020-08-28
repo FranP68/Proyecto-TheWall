@@ -5,9 +5,10 @@
   session_start();
   error_reporting(0);
   $s=$_SESSION['usuario'];
-  
-  
-  
+  $id_seg=$_GET['idUsuario'];
+  if (!$_GET['pagina']){
+    header("Location:perfilUsuario.php?idUsuario=$id_seg&pagina=1");
+  }
 ?>
 
 <head>
@@ -125,7 +126,6 @@
   
         <?php 
         $sql3= "SELECT COUNT(s.id) FROM siguiendo s WHERE $idLogueado=s.usuarios_id AND $idSeguido=s.usuarioseguido_id";
-        
         $rs=mysqli_query($conn,$sql3);
         while($row = mysqli_fetch_row($rs)){
             if($row[0]==1){ ?>
@@ -163,9 +163,15 @@
 
             
             <?php
-              $rs=mysqli_query ($conn, "SELECT texto,imagen_contenido,id FROM mensaje WHERE usuarios_id='$idSeguido' ORDER BY fechayhora DESC LIMIT 0,10" );
-            
-              while ($row = mysqli_fetch_array($rs)  ) {
+              $rs=mysqli_query ($conn, "SELECT texto,imagen_contenido,id FROM mensaje WHERE usuarios_id='$idSeguido' ORDER BY fechayhora DESC" );
+              $mensajes_por_pagina=10;
+              $cantidad=$rs->num_rows;
+              $start= ($_GET['pagina']-1)*$mensajes_por_pagina;    
+              $paginas=ceil($cantidad/$mensajes_por_pagina);
+
+              $re=mysqli_query ($conn, "SELECT texto,imagen_contenido,id FROM mensaje WHERE usuarios_id='$idSeguido' ORDER BY fechayhora DESC LIMIT $start, $mensajes_por_pagina" );
+              
+              while ($row = mysqli_fetch_array($re)  ) {
                     
                 ?>    
                 <?php echo "<li>$row[0] </li> " ;
@@ -212,6 +218,19 @@
 
 
         </ul>
+        <ul class="nav nav-pills justify-content-center">
+    <li class="page-item <?php echo $_GET['pagina']<= 1 ? 'disabled' : '' ?>  ">
+      <a class="page-link" href="perfilUsuario.php?idUsuario=<?php echo $idSeguido ?>&pagina=<?php echo $i-1 ?>" > Anterior</a>
+      </li>
+      <?php for ($i=0; $i<$paginas ;$i++ ) { ?>
+        <li class="page-item ">
+          <a class="page-link <?php echo $_GET['pagina']==$i+1 ? 'active' : '' ?> " href="perfilUsuario.php?idUsuario=<?php echo $idSeguido ?>&pagina=<?php echo $i+1 ?>" > <?php echo $i+1 ?></a>
+        </li>
+      <?php } ?>
+      <li class="page-item <?php echo $_GET['pagina']>= $paginas ? 'disabled' : '' ?>  ">
+        <a class="page-link" href="perfilUsuario.php?idUsuario=<?php echo $idSeguido ?>&pagina=<?php echo $i+1 ?>">Siguiente</a>
+      </li>
+</ul>
 
     </div>
     <?php } else { ?>
