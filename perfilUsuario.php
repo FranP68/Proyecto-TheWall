@@ -220,7 +220,7 @@
         </ul>
         <ul class="nav nav-pills justify-content-center">
     <li class="page-item <?php echo $_GET['pagina']<= 1 ? 'disabled' : '' ?>  ">
-      <a class="page-link" href="perfilUsuario.php?idUsuario=<?php echo $idSeguido ?>&pagina=<?php echo $i-1 ?>" > Anterior</a>
+      <a class="page-link" href="perfilUsuario.php?idUsuario=<?php echo $idSeguido ?>&pagina=<?php echo $_GET['pagina']-1 ?>" > Anterior</a>
       </li>
       <?php for ($i=0; $i<$paginas ;$i++ ) { ?>
         <li class="page-item ">
@@ -228,7 +228,7 @@
         </li>
       <?php } ?>
       <li class="page-item <?php echo $_GET['pagina']>= $paginas ? 'disabled' : '' ?>  ">
-        <a class="page-link" href="perfilUsuario.php?idUsuario=<?php echo $idSeguido ?>&pagina=<?php echo $i+1 ?>">Siguiente</a>
+        <a class="page-link" href="perfilUsuario.php?idUsuario=<?php echo $idSeguido ?>&pagina=<?php echo $_GET['pagina']+1 ?>">Siguiente</a>
       </li>
 </ul>
 
