@@ -42,12 +42,13 @@ $s=$_SESSION['usuario'];
         <nav class="navegacion">
             <ul>
                 <li>
-                    <form action="buscar.php" method="POST" onsubmit="return validarBuscar();">
+                    <form action="#" method="POST" onsubmit="return validarBuscar();">
 
                         <input type="text" name="busqueda" id="buscador" placeholder="Buscar usuario" class="form-control">
                 </li>
                 <button type="submit" class="btn btn-info mb-1" id="botonBuscador"><i class="fa fa-search"></i></button>
                 </form>
+
                 <li><a href="inicio.php">Inicio </a></li>
                 <li><a href="miPerfil.php">Perfil </a></li>
                 <li><a href="editarPerfil.php">Editar perfil </a></li>
@@ -55,7 +56,14 @@ $s=$_SESSION['usuario'];
                 <li><a href="cerrarSesion.php"> Cerrar Sesion </a></li>
             </ul>
         </nav>
-
+    <?php 
+    if ($_POST){
+        $busqueda = $_POST['busqueda'];
+        header("Location:buscar.php?busqueda=$busqueda");
+    }
+    
+    ?>
+    
 
     </header>
     
@@ -74,7 +82,7 @@ $s=$_SESSION['usuario'];
 
             <?php
 
-            $busqueda = $_POST['busqueda'];
+            $busqueda = $_GET['busqueda'];
 
             $sql= "SELECT u.id, u.nombre, u.apellido, u.nombreusuario, u.foto_contenido FROM usuarios u INNER JOIN siguiendo s ON (s.usuarioseguido_id=u.id) WHERE ($idLogueado=s.usuarios_id) AND ((u.nombre LIKE '%$busqueda%') OR (u.nombreusuario LIKE '%$busqueda%') OR (u.apellido LIKE '%$busqueda%'))";
             $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));

@@ -1,17 +1,12 @@
 <!doctype html>
 <html lang="es">
 <?php
+     include "claseVerificar.php";
   session_start();
   error_reporting(0);
   $s=$_SESSION['usuario'];
   
-  if(($s == NULL) || ($s == "")){
-    echo "Debe loguearse primero <br> ";
-    ?>
-    <a href='index.php'> Ir a iniciar sesion</a>
-    <?php
-    die();
-  }
+  
   
 ?>
 
@@ -38,6 +33,9 @@
 </head>
 
 <body>
+
+    <?php if (Verificar::validar_autorizacion($s)) { ?>
+
 
     <?php require "BD.php"; ?>
     <?php $idSeguido = ($_GET["idUsuario"]);
@@ -88,7 +86,7 @@
       <nav class="navegacion">
         <ul >
           <li>
-          <form  action="buscar.php" method="POST"  onsubmit="return validarBuscar();">
+          <form  action="#" method="POST"  onsubmit="return validarBuscar();">
             
               <input type="text" name="busqueda" id="buscador" placeholder="Buscar usuario" class="form-control">
               </li>
@@ -101,6 +99,13 @@
           <li><a href="cerrarSesion.php"> Cerrar Sesion </a></li>
         </ul>
       </nav>
+      <?php 
+    if ($_POST){
+        $busqueda = $_POST['busqueda'];
+        header("Location:buscar.php?busqueda=$busqueda");
+    }
+    
+    ?>
     
 
   </header>
@@ -209,6 +214,33 @@
         </ul>
 
     </div>
+    <?php } else { ?>
+        <header class="header">
+            <div class="container logo-nav-container">
+            <img class="logoW" src="static/img/logo2.jpg" />
+            <a href="inicio.php" class="logo"> The Wall</a>
+            </div>
+          <nav class="navegacion2">
+            <ul >
+                    
+              <li><a href="index.php">Iniciar Sesion </a></li>
+              <li><a href="registrarse.php"> Registrarse </a></li>
+            </ul>
+          </nav>
+    
+
+      </header>
+      
+      <div class="alertaAutorizacion">
+            <p> Para navegar por la página debe Iniciar sesión o Registrarse </p>
+      </div>
+  
+
+
+      
+          
+        
+  <?php } ?>
 
 
     </div>

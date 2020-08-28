@@ -96,7 +96,7 @@
       <nav class="navegacion">
         <ul >
           <li>
-          <form  action="buscar.php" method="POST" onsubmit="return validarBuscar();">
+          <form  action="#" method="POST" onsubmit="return validarBuscar();">
             
               <input type="text" name="busqueda" id="buscador" placeholder="Buscar usuario" class="form-control" >
               </li>
@@ -109,7 +109,13 @@
           <li><a href="cerrarSesion.php"> Cerrar Sesion </a></li>
         </ul>
       </nav>
+      <?php 
+    if ($_POST){
+        $busqueda = $_POST['busqueda'];
+        header("Location:buscar.php?busqueda=$busqueda");
+    }
     
+    ?>
 
   </header>
 

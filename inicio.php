@@ -7,20 +7,26 @@
   session_start();
   error_reporting(0);
   $s=$_SESSION['usuario'];
- 
+  
+  if (!$_GET){
+              header('Location:inicio.php?pagina=1');
+            }
+  
   
   
 ?>
+
 
 <!--  --------------------------                                          -->
 
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="static/css/bootstrap.min.css">
+
   <link rel="stylesheet" type="text/css" href="static/css/pancho.css">
   <link rel="stylesheet" type="text/css" href="static/css/estilos.css">
   <title>The Wall</title>
@@ -44,7 +50,7 @@
       <nav class="navegacion">
         <ul >
           <li>
-          <form  action="buscar.php" method="POST" onsubmit="return validarBuscar();">
+          <form  action="#" method="POST" onsubmit="return validarBuscar();">
             
               <input type="text" name="busqueda" id="buscador" placeholder="Buscar usuario" class="form-control">
               </li>
@@ -57,6 +63,13 @@
           <li><a href="cerrarSesion.php"> Cerrar Sesion </a></li>
         </ul>
       </nav>
+      <?php 
+    if ($_POST){
+        $busqueda = $_POST['busqueda'];
+        header("Location:buscar.php?busqueda=$busqueda");
+    }
+    
+    ?>
     
 
   </header>
@@ -109,9 +122,18 @@
         <h3 class="men-box2-title">Ultimos mensajes</h3>
         
 
-          <?php $sql2 = " SELECT m.texto, m.imagen_contenido, u.nombre, u.apellido, u.nombreusuario, u.foto_contenido, s.usuarioseguido_id, m.id,m.usuarios_id FROM mensaje m LEFT JOIN siguiendo s ON (s.usuarioseguido_id = m.usuarios_id) INNER JOIN usuarios u ON (u.id = m.usuarios_id) WHERE ($idLogueado = s.usuarios_id) ORDER BY m.fechayhora DESC "; ?>
+          <?php $mensajes_por_pagina=10;
+          $start= ($_GET['pagina']-1)*$mensajes_por_pagina;
+          $sql2 = " SELECT m.texto, m.imagen_contenido, u.nombre, u.apellido, u.nombreusuario, u.foto_contenido, s.usuarioseguido_id, m.id,m.usuarios_id FROM mensaje m LEFT JOIN siguiendo s ON (s.usuarioseguido_id = m.usuarios_id) INNER JOIN usuarios u ON (u.id = m.usuarios_id) WHERE ($idLogueado = s.usuarios_id) ORDER BY m.fechayhora DESC"; ?>
           <?php
           if ($re = mysqli_query($conn, $sql2)) {
+            $cantidad=$re->num_rows;
+            
+            $paginas=ceil($cantidad/$mensajes_por_pagina);
+            
+             
+            $sql3 = " SELECT m.texto, m.imagen_contenido, u.nombre, u.apellido, u.nombreusuario, u.foto_contenido, s.usuarioseguido_id, m.id,m.usuarios_id FROM mensaje m LEFT JOIN siguiendo s ON (s.usuarioseguido_id = m.usuarios_id) INNER JOIN usuarios u ON (u.id = m.usuarios_id) WHERE ($idLogueado = s.usuarios_id) ORDER BY m.fechayhora DESC LIMIT $start,$mensajes_por_pagina";
+            if ($re = mysqli_query($conn, $sql3)) {
 
             while ($row = mysqli_fetch_array($re)) {
               if (isset($row[0])) {
@@ -190,9 +212,26 @@
               }
           } else {
               echo "Error: " . $sql2 . "<br>" . mysqli_error($conn);
+          }
           } ?>
+          
                  
     </ul>
+    
+    
+    <ul class="nav nav-pills justify-content-center">
+    <li class="page-item <?php echo $_GET['pagina']<= 1 ? 'disabled' : '' ?>  ">
+      <a class="page-link" href="inicio.php?pagina=<?php echo $_GET['pagina']-1 ?>" > Anterior</a>
+      </li>
+      <?php for ($i=0; $i<$paginas ;$i++ ) { ?>
+        <li class="page-item ">
+          <a class="page-link <?php echo $_GET['pagina']==$i+1 ? 'active' : '' ?> " href="inicio.php?pagina=<?php echo $i+1 ?>" > <?php echo $i+1 ?></a>
+        </li>
+      <?php } ?>
+      <li class="page-item <?php echo $_GET['pagina']>= $paginas ? 'disabled' : '' ?>  ">
+        <a class="page-link" href="inicio.php?pagina=<?php echo $_GET['pagina']+1 ?>">Siguiente</a>
+      </li>
+</ul>
 
     </div>
       <?php } else{ ?>
